@@ -1,0 +1,38 @@
+@charset "GBK";
+/************** tab-ul ****************/
+.tab-ul{margin-top:10px;border-color:#C5D0DC;margin-bottom:0!important;margin-left:0;position:relative;top:1px;border-bottom:1px solid #ddd;padding-left:0;list-style:none;}
+.tab-ul>li{position:relative;display:block;float:left;margin-bottom:-1px;}
+.tab-ul>li>a { position: relative; display: block; padding: 10px 15px; margin-right: 2px; line-height: 1.42857; border: 0px solid transparent; border-radius: 4px 4px 0 0; padding: 7px 12px 8px; min-width: 100px; text-align: center; }
+.tab-ul>li>a, .tab-ul>li>a:focus { border-radius: 0!important; border-color: #c5d0dc; color: #999; margin-right: -1px; line-height: 18px; position: relative; }
+.tab-ul>li>a:focus, .tab-ul>li>a:hover {text-decoration: none;background-color: #eee;}
+.tab-ul>li>a:hover {border-color: #eee #eee #ddd;}
+.tab-ul>li.active>a, .tab-ul>li.active>a:focus, .tab-ul>li.active>a:hover {color: #555;background-color: #fff;border: 1px solid #ddd;border-bottom-color: transparent;cursor: default;}
+.tab-ul>li>a:hover {background-color: #FFF;color: #f25656;border-color: #c5d0dc;}
+.tab-ul>li:first-child>a {margin-left: 0;}
+.tab-ul>li.active>a, .tab-ul>li.active>a:focus, .tab-ul>li.active>a:hover {color: #576373;border-color: #c5d0dc #c5d0dc transparent;border-top: 2px solid #f25656;background-color: #FFF;z-index: 1;line-height: 18px;margin-top: -1px;}
+.tab-ul>li.active>a, .tab-ul>li.active>a:focus, .tab-ul>li.active>a:hover {color: #555;background-color: #fff;border: 1px solid #ddd;border-bottom-color: transparent;cursor: default;}
+.tab-ul>li.active>a, .tab-ul>li.active>a:focus, .tab-ul>li.active>a:hover {color: #576373;border-color: #c5d0dc #c5d0dc transparent;border-top: 2px solid #f25656;background-color: #FFF;z-index: 1;line-height: 18px;margin-top: -1px;}
+.tab-ul:before,.tab-ul:after{content: " ";display: table;}
+.tab-ul:after{clear: both;}
+
+.order_nav{margin-top: 10px;    height: 40px;}
+.order_nav a{    
+    margin-right: 20px;
+    font-size: 16px;
+    color: #797575;
+    display: block;
+    float: left;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #d0d0d0;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;}
+.order_nav span{color: #F00;}
+/* ----------------------------------
+CSS file for Discuz! x3.4 By www.dashulai.com
+(C) www.dashulai.com
+https://dwz.cn/TSY3DnQV
+Design Dashulai.com  https://dwz.cn/bEeiwujz
+update:2019-01-02 10:22
+---------------------------------- */

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:noxiao_title}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+</style>
+</head>
+<body style="background-color: #fff;">
+<div class="weui-msg">
+    <div class="weui-msg__icon-area"><i><img width="100" src="source/plugin/tom_love/images/noxiao.png"/></i></div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">{lang tom_love:noxiao_title}</h2>
+        <p class="weui-msg__desc">{$jyConfig['closed_xiao_msg']}</p>
+    </div>
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:void(0);" onClick="subscribe();" class="weui-btn weui-btn_default">{lang tom_love:noxiao_btn}</a>
+        </p>
+    </div>
+</div>
+<script>
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}">'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+</script>
+</body>
+</html>

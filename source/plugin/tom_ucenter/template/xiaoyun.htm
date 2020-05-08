@@ -1,0 +1,51 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<title>{lang tom_ucenter:login_title}</title>
+<link rel="stylesheet" href="source/plugin/tom_ucenter/images/style.css?v={$cssJsVersion}" />
+<script type="text/javascript" src="source/plugin/tom_ucenter/images/jquery.min-2.1.3.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_ucenter/images';
+</script>
+<script src="source/plugin/tom_ucenter/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.button-sp-area {
+    margin: 0 auto;
+    padding: 15px 0;
+    width: 60%;
+}
+</style>
+</head>
+<body class="body-white">
+	<div class="button-sp-area" style="margin-top: 200px;">
+		<a href="javascript:void(0);" onclick="refresh_html();" class="weui-btn weui-btn_plain-primary" style="color: #1aad19;">{lang tom_ucenter:login_refresh_btn}</a>
+	</div>
+<script>
+function refresh_html(){
+    window.location.href=window.location.href+"&prand={$prand}";
+}
+
+function connectAppbymeJavascriptBridge(callback) {
+    if (window.AppbymeJavascriptBridge) {
+        callback(AppbymeJavascriptBridge)
+    } else {
+        document.addEventListener('connectAppbymeJavascriptBridge', function() {
+            callback(AppbymeJavascriptBridge)
+        }, false)
+    }
+}
+    
+connectAppbymeJavascriptBridge(function(bridge){
+    AppbymeJavascriptBridge.login(function(data){
+        window.location.href=window.location.href+"&prand={$prand}";
+    });
+});
+</script>
+</body>
+</html>

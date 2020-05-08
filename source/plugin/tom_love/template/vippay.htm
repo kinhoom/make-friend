@@ -1,0 +1,221 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:vip_pay_title}-{$jyConfig['plugin_name']}</title>
+<meta name="description" content=""/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+	<h1>{lang tom_love:vip_pay_title}</h1>
+</header>
+<header class="score_box clearfix">
+	<div class="score_top_box clearfix">
+    	<figure><img src="source/plugin/tom_love/images/vip_ico.png"></figure>
+        <article>
+        	<header>{lang tom_love:vip_pay_grade}:</header>
+            <footer><!--{if $__UserInfo['vip_id'] == 1}-->{lang tom_love:vip_pay_grade_gold}<!--{else}-->{lang tom_love:vip_pay_grade_normal}<!--{/if}--></footer>
+        </article>
+    </div>
+    <div class="box_both clearfix"></div>
+
+    <div class="score_recharge_box from_class clearfix">
+        <div class="score_recharge_msg clearfix" style="height: 25px;color: #f60;">
+        <p>{lang tom_love:vip_pay_overtime}{lang tom_love:score_fg}<span><!--{if $__UserInfo['vip_id'] > 0}-->{$vipTime}<!--{else}--> - - <!--{/if}--></span></p>
+    </div>
+    <form id="payForm">
+        <table>
+          <colgroup><col width="25%"><col><col width="75%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>{lang tom_love:vip_pay_grade}:</td>
+              <td>
+                    <select name="vip_id">
+                        <option value="1">{lang tom_love:vip_pay_grade_gold}</option>
+                    </select>
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:vip_pay_paytime}:</td>
+              <td>
+                    <select name="month_id">
+                        <!--{loop $yuan_vip1Arr $key $val}-->
+                        <option value="{$key}">{$key}{lang tom_love:vip_pay_month_id1}{$val}{lang tom_love:vip_pay_month_id2}</option>
+                        <!--{/loop}-->
+                    </select>
+                  <input type="hidden" name="openid" value="{$openid}">
+                  <input type="hidden" name="act" value="vip">
+                  <input type="hidden" name="user_id" value="{$__UserInfo['id']}">
+                  <input type="hidden" name="formhash" value="{$formhash}">
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </form>
+    </div>
+    <div class="score_recharge_btn clearfix">
+    	<a href="javascript:void(0);" class="id_pay_btn">{lang tom_love:vip_pay_title}</a>
+    </div>
+    <div class="box_both clearfix"></div>
+    <div class="score_more_box clearfix">
+        <table class="table_list clearfix">
+        <tr>
+            <td style="width: 100px;"></td>
+            <td style="background-color: #cac8c4;color: #fff;">{lang tom_love:vip_pay_grade_normal}</td>
+            <td style="background-color: #f9b903;color: #fff;">{lang tom_love:vip_pay_grade_gold}</td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_rec}</td>
+            <td><font color="#fd0d0d">N</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_anlian}</td>
+            <!--{if $girlTequan == 1}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+            <!--{else}-->
+            <td><font color="#fd0d0d">{$jyConfig['anlian_score']}</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <!--{/if}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_lianxi}</td>
+            <td><font color="#fd0d0d">{$jyConfig['contact_score']}</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_hello}</td>
+            <!--{if $girlTequan == 1}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+            <!--{else}-->
+            <td><font color="#fd0d0d">{$jyConfig['hello_score']}</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <!--{/if}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_ss}</td>
+            <!--{if $girlTequan == 1}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+            <!--{else}-->
+            <td><font color="#fd0d0d">{$jyConfig['shuoshuo_score']}</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <!--{/if}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_list_sms}</td>
+            <!--{if $girlTequan == 1}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+            <!--{else}-->
+            <td><font color="#fd0d0d">{$jyConfig['sms_score']}</font><font color="#8e8e8e">{$jyConfig['score_name']}</font></td>
+            <!--{/if}-->
+            <td><font color="#238206">{lang tom_love:vip_score_list_no}</font></td>
+        </tr>
+        <tr>
+            <td style="color: #fe4c6e;">{lang tom_love:vip_score_contact_num_1}<br/>{lang tom_love:vip_score_contact_num_2}</td>
+            <td><font color="#fd0d0d">{$jyConfig['show_contact_num']}</font><font color="#8e8e8e">{lang tom_love:vip_score_contact_num_tiao}</font></td>
+            <td><font color="#fd0d0d">{$jyConfig['vip_show_contact_num']}</font><font color="#8e8e8e">{lang tom_love:vip_score_contact_num_tiao}</font></td>
+        </tr>
+        </table>
+        {$vip_payString}
+    </div>
+</header>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+var submintPayStatus = 0;
+$(".id_pay_btn").click( function () { 
+    if(submintPayStatus == 1){
+        return false;
+    }
+    loading('{lang tom_love:scorepay_do}');
+    submintPayStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$payUrl}",
+        dataType : "json",
+        data: $('#payForm').serialize(),
+        success: function(data){
+            loading(false);
+            if(data.status == 200) {
+                if(data.pay_status == 1) {
+                    tusi("{lang tom_love:scorepay_pay_succ}");
+                    setTimeout(function(){window.location.href=data.payurl+"&prand={$prand}";},500);
+                }else{
+                    submintPayStatus = 0;
+                    setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+                }
+            }else if(data.status == 301){
+                tusi("{lang tom_love:scorepay_order_error301}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else if(data.status == 302){
+                tusi("{lang tom_love:scorepay_order_error302}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else if(data.status == 303){
+                tusi("{lang tom_love:scorepay_order_error303}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else if(data.status == 304){
+                tusi("{lang tom_love:scorepay_order_error304}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else{
+                tusi("{lang tom_love:scorepay_order_error}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }
+        }
+    });
+});
+
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

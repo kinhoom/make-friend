@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:renzheng_title}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+<!--{if $renzheng_from == 'xiangqin'}-->
+.header_style2{background-color: #2AD2BD;}
+.phone_form_btn a{background-color: #2AD2BD;}
+.renzheng_form_btn a{background-color: #2AD2BD;}
+<!--{/if}-->
+</style>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<!--{if $renzheng_from == 'xiangqin'}-->
+    <a href="{$renzheng_back}">{lang tom_love:back}</a>
+    <!--{else}-->
+    <a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+    <!--{/if}-->
+	<h1>{lang tom_love:renzheng_title}</h1>
+</header>
+<section class="renzheng_box clearfix">
+	<div class="renzheng_msg_box clearfix">{$renzhengString}</div>
+	<div class="renzheng_form_box from_class clearfix">
+    	<form id="renzheng_form">
+        <table>
+          <colgroup><col width="25%"><col><col width="75%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>{lang tom_love:renzheng_xm}</td>
+              <td><input type="text" name="xm" id="xm" value="{$renzhengInfo['xm']}" placeholder="{lang tom_love:renzheng_xm_place}" class="input_text"></td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:renzheng_sfzh}</td>
+              <td><input type="text" name="sfzh" id="sfzh" value="{$renzhengInfo['sfzh']}" placeholder="{lang tom_love:renzheng_sfzh_place}" class="input_text"></td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:renzheng_pic_z1}<br/>{lang tom_love:renzheng_pic_z2}</td>
+              <td>
+              	<ul>
+                	<li>
+                        <div class="weui-uploader__input-box" style="cursor: pointer;">
+                            <input name="Filedata1" id="filedata1" class="weui-uploader__input" type="file">
+                        </div>
+                    </li>
+                    <li id="renzheng1"><img src="{$pic_z}" /></li>
+                </ul>
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:renzheng_pic_f1}<br/>{lang tom_love:renzheng_pic_f2}</td>
+              <td>
+              	<ul>
+                    <li>
+                        <div class="weui-uploader__input-box" style="cursor: pointer;">
+                            <input name="Filedata2" id="filedata2" class="weui-uploader__input" type="file">
+                        </div>
+                    </li>
+                    <li id="renzheng2"><img src="{$pic_f}" /></li>
+                </ul>
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:renzheng_pic_s1}<br/>{lang tom_love:renzheng_pic_s2}</td>
+              <td>
+              	<ul>
+                    <li>
+                        <div class="weui-uploader__input-box" style="cursor: pointer;">
+                            <input name="Filedata3" id="filedata3" class="weui-uploader__input" type="file">
+                        </div>
+                    </li>
+                    <li id="renzheng3"><img src="{$pic_s}" /></li>
+                </ul>
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:renzheng_content}</td>
+              <td>
+                  <textarea name="content" id="content" rows="4" placeholder="{lang tom_love:renzheng_content_place}">{$renzhengInfo['content']}</textarea>
+                  <input type="hidden" name="rid" value="{$renzhengInfo['id']}">
+                  <input type="hidden" name="act" value="save">
+                  <input type="hidden" name="formhash" value="{$formhash}">
+                  <input type="hidden" name="pic_z" id="pic_z" value="{$renzhengInfo['pic_z']}">
+                  <input type="hidden" name="pic_f" id="pic_f" value="{$renzhengInfo['pic_f']}">
+                  <input type="hidden" name="pic_s" id="pic_s" value="{$renzhengInfo['pic_s']}">
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </form>
+    </div>
+    <!--{if $renzhengInfo['renzheng_status'] == 1}-->
+    <div class="renzheng_form_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:renzheng_status1}</a>
+    </div>
+    <!--{elseif $renzhengInfo['renzheng_status'] == 2}-->
+    <div class="id_renzheng_form_btn renzheng_form_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:renzheng_status2}</a>
+    </div>
+    <!--{elseif $renzhengInfo['renzheng_status'] == 3}-->
+    <div class="id_renzheng_form_btn renzheng_form_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:renzheng_status3}</a>
+    </div>
+    <!--{else}-->
+    <div class="id_renzheng_form_btn renzheng_form_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:renzheng_status}</a>
+    </div>
+    <!--{/if}-->
+</section>
+<script language="javascript" src="source/plugin/tom_love/images/localResizeIMG4/dist/lrz.bundle.js"></script>
+<script type="text/javascript">
+
+var submintStatus = 0;
+$(".id_renzheng_form_btn").click( function () { 
+    var xm = $("#xm").val();
+    var sfzh = $("#sfzh").val();
+    var pic_z = $("#pic_z").val();
+    var pic_f = $("#pic_f").val();
+    var pic_s = $("#pic_s").val();
+    if(submintStatus == 1){
+        return false;
+    }
+    if(xm == ""){
+        tusi("{lang tom_love:renzheng_must_xm}");
+        return false;
+    }
+    if(pic_z == "source/plugin/tom_love/images/pic_z.png"){
+        tusi("{lang tom_love:renzheng_must_pic_z}");
+        return false;
+    }
+    if(pic_f == "source/plugin/tom_love/images/pic_f.png"){
+        tusi("{lang tom_love:renzheng_must_pic_f}");
+        return false;
+    }
+    if(pic_s == "source/plugin/tom_love/images/pic_s.png"){
+        tusi("{lang tom_love:renzheng_must_pic_s}");
+        return false;
+    }
+    if(sfzh == ""){
+        tusi("{lang tom_love:renzheng_must_sfzh}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$renzhengUrl}",
+        data: $('#renzheng_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==101){
+            }else{
+                tusi("{lang tom_love:renzheng_sub_success}");
+                setTimeout(function(){document.location.reload();},1888);
+            }
+        }
+    });
+});
+    
+$(document).on('change', '#filedata1', function() {
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"Filedata1"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl1}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        loading(false);
+                        $("#pic_z").val(dataarr[2]);
+                        $("#renzheng1").html('<img src="'+dataarr[1]+'">');
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+
+$(document).on('change', '#filedata2', function() {
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"Filedata2"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl2}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        loading(false);
+                        $("#pic_f").val(dataarr[2]);
+                        $("#renzheng2").html('<img src="'+dataarr[1]+'">');
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+
+$(document).on('change', '#filedata3', function() {
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"Filedata3"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl3}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        loading(false);
+                        $("#pic_s").val(dataarr[2]);
+                        $("#renzheng3").html('<img src="'+dataarr[1]+'">');
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+
+function checkMobile(s){
+	var regu =/^[1][2|3|8|4|5|6|7|9][0-9]{9}$/;
+	var re = new RegExp(regu);
+	if (re.test(s)) {
+		return true;
+	}else{
+		return false;
+	}
+}
+
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

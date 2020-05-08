@@ -1,0 +1,48 @@
+
+#adminrg{ width:800px; margin:0 auto; background:#fff;}
+#adminrg .biaoti{ margin-top:40px; height:60px;}
+#adminrg .biaoti h1{ font-size:24px; line-height:60px; text-align:center;}
+#adminrg .step{ margin-top:70px; height:40px; line-height:40px; text-align:center; }
+#adminrg .step .bg{ float:left; width:33.333%; border-radius:5px;}
+#adminrg .step .bc{ background:#FE4C6E; color:#fff;}
+#adminrg .step .bd{ color:#FE4C6E; font-size:20px;}
+#adminrg .from_box{ margin-top:35px;}
+#adminrg .from_box table{ width:500px; margin:0 auto;}
+#adminrg .from_box table tr{ height:50px;}
+#adminrg .from_box table tr th{ width:15%;}
+#adminrg .from_box table tr td input{ padding-left:10px; width:100%; border:1px solid #ccc; height:40px; border-radius:5px;}
+#adminrg .from_box .button{ margin:60px auto 60px; height:40px; width:200px; background:#FE4C6E; border-radius:5px; color:#fff; text-align:center; line-height:40px;}
+
+#handle{ width:1000px; margin:0 auto; background:#fff;}
+#handle .biaoti{ margin-top:40px; height:60px;}
+#handle .biaoti h1{ font-size:24px; line-height:60px; text-align:center;}
+#handle .step{ margin-top:70px; height:40px; line-height:40px; text-align:center; }
+#handle .step .bg{ float:left; width:33.333%; border-radius:5px;}
+#handle .step .bc{ background:#FE4C6E; color:#fff;}
+#handle .step .bd{ color:#FE4C6E; font-size:20px;}
+#handle .content{ margin-top:40px;}
+#handle .content .box-l{ width:499px; border-right:1px solid #fe4c6e; float:left;}
+#handle .content .box-l table{ width:90%;}
+#handle .content .box-l table tr{ min-height:40px;}
+#handle .content .box-l table tr th{padding:10px 0; width:30%;}
+#handle .content .box-l table tr td{padding:10px 0;}
+#handle .content .box-l table tr .input_class{ border-bottom:1px solid #fe4c6e; width:100%; height:40px; font-size:16px;}
+#handle .content .box-l table tr select{ border:none; border-bottom:1px solid #fe4c6e; width:100%; padding:8px 0;}
+#handle .content .box-l table tr textarea{ width:100%; height:80px; border-color:#fe4c6e;}
+#handle .content .box-r{ float:right; width:450px;}
+#handle .content .box-r table{ width:100%;}
+#handle .content .box-r table th{ padding:10px 0; width:30%; text-align:left;}
+#handle .content .box-r table td{ padding:10px 0;}
+#handle .box_button{ height:40px; width:200px; background:#fe4c6e; color:#fff; border-radius:5px; text-align:center; line-height:40px; font-size:20px; margin: 20px auto;}
+#handle .photo li{position:relative; float:left;}
+#handle .photo li img{ height:130px; width:130px; margin-right:15px; margin-bottom:15px;}
+#handle .photo li span a{ position:absolute; top:5px; right:15px; width:20px; cursor: default; height:20px; color:#fe4c6e;}
+
+
+/* ----------------------------------
+CSS file for Discuz! x3.4 By www.dashulai.com
+(C) www.dashulai.com
+https://dwz.cn/TSY3DnQV
+Design Dashulai.com  https://dwz.cn/bEeiwujz
+update:2019-01-02 10:22
+---------------------------------- */

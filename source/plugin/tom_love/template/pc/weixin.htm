@@ -1,0 +1,20 @@
+{template common/header}
+<!--{if $_G['inajax']}-->
+<!--{if error==1}-->
+<h1>Error!</h1>
+<!--{else}-->
+<div class="tom_jy_add">
+	<div class="tom_jy_add_l">
+        <img src="{$jyConfig['erw_picurl']}" width="200" height="200"/>
+        <h1>{lang tom_love:saoyisao}</h1>
+        <p>{$jyConfig['ewm_msg']}</p>
+    </div>
+    <div class="tom_jy_add_r">
+    	<div class="tom_jy_add_r_msg"></div>
+        <div class="tom_jy_add_r_desc">{$add_weixin_msg}</div>
+        <div class="tom_jy_add_r_close"><a href="javascript:;" onclick="hideWindow('tom_love_wx');"></a></div>
+    </div>
+</div>
+<!--{/if}-->
+<!--{/if}-->
+{template common/footer}

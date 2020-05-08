@@ -1,0 +1,48 @@
+<script language="javascript" src="source/plugin/tom_love/images/localResizeIMG4/dist/lrz.bundle.js"></script>
+<script>
+$(document).on('change', '#uploaderInput', function() {
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"uploaderInput"})
+    .then(function (rst) {
+        return rst;
+    })
+    .then(function (rst) {
+        rst.formData.append('fileLen', rst.fileLen);
+        if ($(".edit_upload #uploaderFiles li").length >= max_photo_num) {
+            loading(false);
+            tusi("{lang tom_xiangqin:upload_pic_num_error}");
+            return rst;
+        }
+        $.ajax({
+            url:"{$uploadUrl1}",
+            data: rst.formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (data) {
+                if(data == '') {
+                    loading(false);
+                    tusi('{lang tom_xiangqin:upload_error}');
+                }
+                var dataarr = data.split('|');
+                dataarr[0] = $.trim(dataarr[0]);
+                if(dataarr[0] == 'OK') {
+                    loading(false);
+                    $("#uploaderFiles").append('<li class=""><section class="img"><img src="'+dataarr[1]+'" /><p style="height:18px;" onclick="avatar('+dataarr[2]+');">{lang tom_xiangqin:edit_set_avatar}</p><div class="del" onclick="del_picurl('+dataarr[2]+');"><span class="edit_fuhao">x</span></div></section></li>');
+                }else if(dataarr[0] == 'OVER') {
+                    loading(false);
+                    tusi('{lang tom_xiangqin:upload_pic_num_error}');
+                }else{
+                    loading(false);
+                    tusi('{lang tom_xiangqin:upload_error}');
+                }
+            }
+        });
+        return rst;
+    })
+    .catch(function (err) {
+        loading(false);
+    })
+    .always(function () {
+    });
+});
+</script>

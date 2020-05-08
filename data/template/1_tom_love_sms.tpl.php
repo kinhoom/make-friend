@@ -1,0 +1,484 @@
+<?php if(!defined('IN_DISCUZ')) exit('Access Denied'); ?>
+<?php 
+    $lastMessage = DB::fetch_all("select user_id,content,add_time from pre_tom_love_pm_message where to_id={$__UserInfo['id']}  order by add_time desc limit 1;");
+    setcookie('ltime',$lastMessage[0]['add_time']);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<?php if($isGbk) { ?>
+<script>
+if (!String.prototype.padStart) {
+  String.prototype.padStart = function padStart(targetLength, padString) {
+    targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
+    padString = String(typeof padString !== 'undefined' ? padString : ' ');
+    if (this.length > targetLength) {
+      return String(this);
+    } else {
+      targetLength = targetLength - this.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
+      }
+      return padString.slice(0, targetLength) + String(this);
+    }
+  };
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<?php } else { ?>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<?php } ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title><?php echo $jyConfig['plugin_name'];?></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="text/javascript"  src="xmenu.js" charset="UTF-8"></script>
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v=<?php echo $cssJsVersion;?>" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="source/plugin/tom_love/images/common.js?v=<?php echo $cssJsVersion;?>" type="text/javascript" type="text/javascript"></script>
+</head>
+<body>
+<?php 
+$randnum = mt_rand();
+setcookie("randnum",$randnum);
+
+
+if($pageType == 'view') { ?>
+<header class="header_style3 clearfix">
+<a href="plugin.php?id=tom_love&amp;mod=sms">返回</a>
+<h1>正在和“<span class="nickname"><?php echo $toUserInfo['nickname'];?></span>”聊天</h1>
+</header>
+<section class="message_show clearfix">
+    <div class="message_show_content clearfix">
+    	<div class="msgbox b_m" id='msgboxmain'>
+            <?php if(is_array($messageList)) foreach($messageList as $key => $value) { ?>                <?php 
+if($value['user_id'] != $__UserInfo['id']) { ?>
+                <div class="friend_msg cl">
+                    <div class="avat z"><img style="height:32px;width:32px;" src="<?php echo $value['userInfo']['avatar'];?>" /></div>
+                    <div class="dialog_green z">
+                        <div class="dialog_c">
+                            <div class="dialog_t"><?php echo $value['content'];?></div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><?php echo dgmdate($value[add_time], 'u','9999','m-d H:i');?></div>
+                    </div>
+                </div>
+                <?php } else { ?>
+                <div class="self_msg cl">
+                    <div class="avat y"><img style="height:32px;width:32px;" src="<?php echo $value['userInfo']['avatar'];?>" /></div>
+                    <div class="dialog_white y">			
+                        <div class="dialog_c">
+                            <div class="dialog_t"><?php echo $value['content'];?></div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><?php echo dgmdate($value[add_time], 'u','9999','m-d H:i');?></div>
+                    </div>
+                </div>
+                <?php } ?>
+            <?php } ?>
+        </div>
+    </div>
+   <input type="hidden" id="from_id" value="<?php echo $toUserInfo['id'];?>">
+   <input type="hidden" name="avatar" id="avatar" value="<?php echo "http://192.168.1.21/data/attachment/common/".$toUserInfo['avatar']?>">
+   <input type="hidden"  id="last_msg_time" value="<?php echo $value['userInfo']['avatar'];?>">
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><?php if($page > 1) { ?><a href="<?php echo $prePageUrl;?>">上一页</a><?php } else { ?><span>上一页</span><?php } ?></li>
+          <li><?php if($showNextPage == 1) { ?><a href="<?php echo $nextPageUrl;?>">下一页</a><?php } else { ?><span>下一页</span><?php } ?></li>
+      </ul>
+    </div>
+    <div class="message_show_reply from_class clearfix">
+    	<form id="send_form">
+        <table>
+          <colgroup><col width="80%"><col><col width="20%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>
+                  <textarea name="content" id="content" rows="4" placeholder="不要超过50个字"></textarea>
+                  <input type="hidden" name="act" value="send">
+                  <input type="hidden" name="pm_lists_id" value="<?php echo $pm_lists_id;?>">
+                  <input type="hidden" name="to_user_id" value="<?php echo $toUserInfo['id'];?>">
+                  <input type="hidden" name="formhash" value="<?php echo $formhash;?>">
+              </td>
+              <td>
+                   <div id="send_btn" class="message_show_btn send_btn clearfix">
+                        <a href="javascript:void(0);">发送</a>
+                    </div>
+                  <div id="send_btn" class="message_reload_btn clearfix">
+                      <a href="javascript:void(0);" onclick="document.location.reload();">刷新</a>
+                    </div>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </form>
+    </div>
+</section>
+<section class="rechange">
+    <div class="rechange-box">
+        <div class="box">
+            <div class="box-img"><img src="source/plugin/tom_love/images/rechange_s13_logo.png"></div>
+            <div class="box-content">
+                <p class="content-title">您当前的<?php echo $jyConfig['score_name'];?>不足</p>
+                <p id="have">现有<?php echo $jyConfig['score_name'];?>:&nbsp;0</p>
+                <p id="need">所需<?php echo $jyConfig['score_name'];?>:&nbsp;0</p>
+            </div>
+            <div class="box-button"><a href="plugin.php?id=tom_love&amp;mod=scorepay"><img src="source/plugin/tom_love/images/rechange_s13_link.png"></a></div>
+        </div>
+        <div class="button" onClick="$('.rechange').hide();"><a href="javascript:;"><img src="source/plugin/tom_love/images/rechange_s13_hide.png"></a></div>
+    </div>
+</section>
+
+<?php } if($pageType == 'list') { ?>
+<section class="top_tab_nav clearfix">
+<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&amp;mod=sms" class="left current">消息列表</a><a href="plugin.php?id=tom_love&amp;mod=sms&amp;act=tzlist" class="right">系统消息<?php if($noReadTzNum > 0 ) { ?><span><?php echo $noReadTzNum;?></span><?php } ?></a>
+    </div>
+</section>
+<section class="message_list clearfix">
+    <?php if($smsDataCount > 0) { ?>
+<div class="msg_list_box clearfix" id="index-list">
+    </div>
+    <div style="display: none;" id="load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">正在加载...</p></div>
+    <div style="display: none;" id="no-load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">没有更多信息...</p></div>
+    <div style="display: none;" id="no-list-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">没有信息</p></div>
+    <?php } else { ?>
+    <div class="message_no_box clearfix">
+    	<a>暂无消息</a>
+    </div>
+    <?php } ?>
+</section>
+<?php if($smsOldNum > 0 ) { ?>
+<section class="old_sms_msg clearfix">
+    <div class="old_sms_msg_box clearfix">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="plugin.php?id=tom_love&amp;mod=sms_old">私信系统已经升级，点此访问老版私信列表</a>
+    </div>
+</section>
+<?php } } if($pageType == 'tzlist') { if($do_from != 'xiangqin') { ?>
+<section class="top_tab_nav clearfix">
+<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&amp;mod=sms" class="left">消息列表</a><a href="plugin.php?id=tom_love&amp;mod=sms&amp;act=tzlist" class="right current">系统消息</a>
+    </div>
+</section>
+<?php } ?>
+<section class="system_message_list clearfix">
+    <?php if($tzDataCount > 0) { ?>
+<div class="system_message_list_box clearfix">
+    	<ul class="clearfix">
+            <?php if(is_array($tzList)) foreach($tzList as $key => $value) { ?>            <li>
+                <article>
+                	<header>
+                        <h2>
+                            <img style="margin-top: -4px;height: 20px;margin-right: 5px;" src="source/plugin/tom_love/images/tongzi_ico.png"/><?php echo $value['title'];?>
+                            <?php if($value['is_read'] == 0 ) { ?><span>[未读]</span><?php } ?>
+                        </h2>
+                        <h3><?php echo dgmdate($value[tz_time], 'u');?></h3>
+                    </header>
+                    <section><p><?php echo $value['content'];?></p></section>
+                </article>
+            </li>
+            <?php } ?>
+        </ul>
+    </div>
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><?php if($page > 1) { ?><a href="<?php echo $prePageUrl;?>">上一页</a><?php } else { ?><span>上一页</span><?php } ?></li>
+          <li><?php if($showNextPage == 1) { ?><a href="<?php echo $nextPageUrl;?>">下一页</a><?php } else { ?><span>下一页</span><?php } ?></li>
+      </ul>
+    </div>
+    <?php } else { ?>
+    <div class="message_no_box clearfix">
+    	<a>暂无消息</a>
+    </div>
+    <?php } ?>
+</section>
+<?php } if($pageType == 'list' || $pageType == 'tzlist' ) { if($do_from != 'xiangqin') { include template('tom_love:footer'); } } ?>
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">温馨提示</strong></div>
+        <div class="weui-dialog__bd">需要手机号认证后才能继续操作</div>
+        <div class="weui-dialog__ft">
+            <a href="<?php echo $phoneUrl;?>" class="weui-dialog__btn weui-dialog__btn_default">去绑定</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">取消</a>
+        </div>
+    </div>
+</div>
+<script>
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+var submintStatus = 0;
+
+$(".send_btn").click( function () { 
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <?php if($jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1) { ?>
+    $('#must_phone').show();
+    return false;
+    <?php } ?>
+
+    var content = $("#content").val();
+    if(content == ""){
+        tusi("消息内容不能为空");
+        return false;
+    }
+    submintStatus = 1;
+console.log($('#send_form').serialize());
+                sendData();
+function sendData(){
+    $.ajax({
+        type: "GET",
+        url: "<?php echo $smsUrl;?>",
+        data: $('#send_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            if(msg == 101){
+                $('#have').html("现有<?php echo $jyConfig['score_name'];?>:&nbsp;<?php echo $__UserInfo['score'];?>");
+                $('#need').html("所需<?php echo $jyConfig['score_name'];?>:&nbsp;<?php echo $jyConfig['first_sms_score'];?>");
+                $('.rechange').show();
+                return false;
+            }else{
+               tusi("消息发送成功");
+               setTimeout(function(){document.location.reload();},1888); 
+            }
+        }
+    });
+}
+});
+$(document).ready(function(){
+   //$("#avatar").val("<?php echo $value['userInfo']['avatar'];?>");
+   $.get("<?php echo $ajaxClicksUrl;?>");
+getData();
+if($.cookie('ltime')){
+    var ltime = $.cookie('ltime');
+}else { 
+     ltime = 0;
+}
+console.log(ltime);
+function getData(){
+   $.ajax({
+	type: "GET",
+	url: "<?php echo $smsUrl;?>",
+	data: {"act":"receive","ltime":ltime,"self_id":<?php echo $__UserInfo['id'];?>,"formhash":"<?php echo $formhash;?>"},
+	success: function(msg){
+	    console.log(msg);
+	    if(msg.length == 37){
+		setTimeout(getData,5000);return false;
+	    }
+ 	    if(msg == 808) {
+		setTimeout(getData,5000);return false;
+            } else {
+	        var lastMsg = eval("("+msg+")");
+		var from_id = $("#from_id").val();
+		if(lastMsg.from_id != from_id){
+		    setTimeout(getData,5000);return false;
+		}
+		if(ltime == lastMsg.add_time){
+		    setTimeout(getData,5000);return false;
+		}
+	        console.log(lastMsg);
+		ltime = lastMsg.add_time;
+	        $.cookie('ltime', ltime, { expires: 7 });
+		addtime = timeago(lastMsg.add_time);
+		avatar = $('#avatar').val();
+	//document.getElementsByClassName("msgbox b_m")[0].append(htmladd);
+		$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+lastMsg.content+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+dateFormat("mm-dd HH:MM",new Date(lastMsg.add_time*1000))+'">'+addtime+'</span></div></div></div>')
+		setTimeout(getData,5000);
+            }	
+	}
+
+   })
+}
+function dateFormat(fmt, date) {
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
+}
+function timeago(dateTimeStamp){   
+    var minute = 60;      //把分，时，天，周，半个月，一个月用毫秒表示
+    var hour = minute * 60;
+    var day = hour * 24;
+    var week = day * 7;
+    var halfamonth = day * 15;
+    var month = day * 30;
+    var now = Date.parse(new Date())/1000;   //获取当前时间毫秒
+    var diffValue = now - dateTimeStamp;//时间差
+
+    if(diffValue < 0){
+        return;
+    }
+    var minC = diffValue/minute;  //计算时间差的分，时，天，周，月
+    var hourC = diffValue/hour;
+    var dayC = diffValue/day;
+    var weekC = diffValue/week;
+    var monthC = diffValue/month;
+    if(monthC >= 1 && monthC <= 3){
+        result = " " + parseInt(monthC) + "月前"
+    }else if(weekC >= 1 && weekC <= 3){
+        result = " " + parseInt(weekC) + "周前"
+    }else if(dayC >= 1 && dayC <= 6){
+        result = " " + parseInt(dayC) + "天前"
+    }else if(hourC >= 1 && hourC <= 23){
+        result = " " + parseInt(hourC) + "小时前"
+    }else if(minC >= 1 && minC <= 59){
+        result =" " + parseInt(minC) + "分钟前"
+    }else if(diffValue >= 0 && diffValue <= minute){
+        result = "刚刚"
+    }else {
+        var datetime = new Date();
+        datetime.setTime(dateTimeStamp);
+        var Nyear = datetime.getFullYear();
+        var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+        var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+        result = Nyear + "-" + Nmonth + "-" + Ndate
+    }
+    return result;
+}
+});
+<?php if($pageType == 'list'  ) { ?>
+var loadPage = 1;
+function indexLoadList(){
+    loadPage = 1;
+    loadList(1);
+}
+
+var loadListStatus = 0;
+function loadList(Page) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadListStatus = 1;
+    $("#index-list").html('');
+    $("#load-html").show();
+    $.ajax({
+        type: "GET",
+        url: "<?php echo $ajaxLoadPmListUrl;?>",
+        data: {page:Page},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#no-list-html").show();
+                return false;
+            }else{
+                loadPage += 1;
+                $("#index-list").html(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+   indexLoadList();
+});
+
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+        scrollLoadList();
+    }
+});
+
+function scrollLoadList() {
+    if(loadListStatus == 1){
+        return false;
+    }
+    if(loadPage > 500){
+        return false;
+    }
+    $('#load-html').show();
+$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "<?php echo $ajaxLoadPmListUrl;?>",
+        data: {page:loadPage},
+        success: function(msg){
+            loadListStatus = 0;
+            var data = eval('(\'+msg+\')');
+            if(data == 205){
+                loadListStatus = 1;
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $("#index-list").append(data);
+            }
+        }
+    });
+}
+<?php } ?>
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '<?php echo $wxJssdkConfig["appId"];?>',
+    timestamp: <?php echo $wxJssdkConfig["timestamp"];?>,
+    nonceStr: '<?php echo $wxJssdkConfig["nonceStr"];?>',
+    signature: '<?php echo $wxJssdkConfig["signature"];?>',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '<?php echo $shareTitle;?>',
+        link: '<?php echo $shareUrl;?>', 
+        imgUrl: '<?php echo $shareLogo;?>', 
+        success: function () { 
+            $.get("<?php echo $shareAjaxUrl;?>");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '<?php echo $shareTitle;?>',
+        desc: '<?php echo $shareDesc;?>',
+        link: '<?php echo $shareUrl;?>',
+        imgUrl: '<?php echo $shareLogo;?>',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("<?php echo $shareAjaxUrl;?>");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

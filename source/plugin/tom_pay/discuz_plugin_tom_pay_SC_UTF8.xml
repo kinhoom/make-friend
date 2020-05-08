@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3.1]]></item>
+	<item id="Time"><![CDATA[2018-09-16 18:53]]></item>
+	<item id="From"><![CDATA[www.huaidanwangluo.com]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[[点微]支付中心]]></item>
+			<item id="identifier"><![CDATA[tom_pay]]></item>
+			<item id="description"><![CDATA[[点微]微信系列插件的微信支付、支付宝支付中心]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[tom_pay/]]></item>
+			<item id="copyright"><![CDATA[bbs.huaidanwangluo.com]]></item>
+			<item id="version"><![CDATA[3.8]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=order]]></item>
+					<item id="menu"><![CDATA[支付流]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=addon]]></item>
+					<item id="menu"><![CDATA[微信营销专区]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2,X3.3,X3.4]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[应用名称]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[plugin_name]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[支付中心]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[11]]></item>
+				<item id="title"><![CDATA[[微信支付]绑定支付的APPID]]></item>
+				<item id="description"><![CDATA[绑定支付的APPID（必须配置，开户邮件中可查看）]]></item>
+				<item id="variable"><![CDATA[wxpay_appid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[12]]></item>
+				<item id="title"><![CDATA[[微信支付]商户号]]></item>
+				<item id="description"><![CDATA[商户号（必须配置，开户邮件中可查看）]]></item>
+				<item id="variable"><![CDATA[wxpay_mchid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[13]]></item>
+				<item id="title"><![CDATA[[微信支付]商户支付密钥]]></item>
+				<item id="description"><![CDATA[商户支付密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）
+设置地址：https://pay.weixin.qq.com/index.php/account/api_cert]]></item>
+				<item id="variable"><![CDATA[wxpay_key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[14]]></item>
+				<item id="title"><![CDATA[[微信支付]APPSECRET]]></item>
+				<item id="description"><![CDATA[公众帐号secert（仅JSAPI支付的时候需要配置， 登录公众平台，进入开发者中心可设置），
+获取教程：http://www.dasuhlai.com/index.php?m=help&t=wechat&faqid=39]]></item>
+				<item id="variable"><![CDATA[wxpay_appsecret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[15]]></item>
+				<item id="title"><![CDATA[[微信支付]网页授权域名]]></item>
+				<item id="description"><![CDATA[1、不设置留空
+2、如果你的论坛所在域名和你认证服务号设置的网页授权域名不一致，你就需要修改此设置。（前提是，你要有已经设置的那个域名服务器上传文件的权限，并且能执行php）
+3、设置教程：http://www.dasuhlai.com/index.php?m=help&t=wechat&faqid=156]]></item>
+				<item id="variable"><![CDATA[oauth_hosts]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="6">
+				<item id="displayorder"><![CDATA[21]]></item>
+				<item id="title"><![CDATA[[微信H5]开启微信H5支付]]></item>
+				<item id="description"><![CDATA[请到微信支付商户后台开通微信H5支付
+【支付宝和微信H5支付必须选择一个，否则手机版或者APP打开不能支付】]]></item>
+				<item id="variable"><![CDATA[open_h5]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="7">
+				<item id="displayorder"><![CDATA[22]]></item>
+				<item id="title"><![CDATA[[小程序]开启小程序支付]]></item>
+				<item id="description"><![CDATA[开启后，支持打包小程序时，调用小程序原生支付。【这个需要安装[点微]同城小程序插件 http://addon.discuz.com/?@tom_xiaofenlei.plugin】]]></item>
+				<item id="variable"><![CDATA[open_xiao]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[30]]></item>
+				<item id="title"><![CDATA[[支付宝]开启支付宝]]></item>
+				<item id="description"><![CDATA[请申请支付宝手机网站支付接口
+https://docs.open.alipay.com/203]]></item>
+				<item id="variable"><![CDATA[open_alipay]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="9">
+				<item id="displayorder"><![CDATA[31]]></item>
+				<item id="title"><![CDATA[[支付宝]合作伙伴身份]]></item>
+				<item id="description"><![CDATA[获取地址：https://openhome.alipay.com/platform/keyManage.htm?keyType=partner]]></item>
+				<item id="variable"><![CDATA[alipay_pid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="10">
+				<item id="displayorder"><![CDATA[32]]></item>
+				<item id="title"><![CDATA[[支付宝]MD5安全校验码]]></item>
+				<item id="description"><![CDATA[获取地址：https://openhome.alipay.com/platform/keyManage.htm?keyType=partner]]></item>
+				<item id="variable"><![CDATA[alipay_key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="11">
+				<item id="displayorder"><![CDATA[33]]></item>
+				<item id="title"><![CDATA[[千帆]开启千帆APP支付]]></item>
+				<item id="description"><![CDATA[开启后，千帆APP里面将会调用千帆APP支付]]></item>
+				<item id="variable"><![CDATA[open_qf_pay]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="12">
+				<item id="displayorder"><![CDATA[34]]></item>
+				<item id="title"><![CDATA[[千帆]支付类型ID]]></item>
+				<item id="description"><![CDATA[订单类型（请前往小后台>>金币与支付>>支付管理>>支付JS类型 获取你想要的支付类型）]]></item>
+				<item id="variable"><![CDATA[qf_type]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="13">
+				<item id="displayorder"><![CDATA[35]]></item>
+				<item id="title"><![CDATA[[千帆]secert]]></item>
+				<item id="description"><![CDATA[获取千帆接口secert，不清楚在哪边找可以咨询APP客服]]></item>
+				<item id="variable"><![CDATA[qf_secret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="14">
+				<item id="displayorder"><![CDATA[36]]></item>
+				<item id="title"><![CDATA[[千帆]hostname]]></item>
+				<item id="description"><![CDATA[千帆后台获取 http://hostname.qianfanapi.com 接口地址中 hostname 部分填写，不清楚在哪边找可以咨询APP客服]]></item>
+				<item id="variable"><![CDATA[qf_hostname]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="15">
+				<item id="displayorder"><![CDATA[37]]></item>
+				<item id="title"><![CDATA[[小云]开启小云APP支付]]></item>
+				<item id="description"><![CDATA[开启小云APP微信支付，需要配置微信开放平台参数]]></item>
+				<item id="variable"><![CDATA[open_xy_pay]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="16">
+				<item id="displayorder"><![CDATA[38]]></item>
+				<item id="title"><![CDATA[[开放平台]APPID]]></item>
+				<item id="description"><![CDATA[仅小云APP需要填写]]></item>
+				<item id="variable"><![CDATA[wxopen_appid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="17">
+				<item id="displayorder"><![CDATA[39]]></item>
+				<item id="title"><![CDATA[[开放平台]商户号]]></item>
+				<item id="description"><![CDATA[仅小云APP需要填写]]></item>
+				<item id="variable"><![CDATA[wxopen_mchid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="18">
+				<item id="displayorder"><![CDATA[40]]></item>
+				<item id="title"><![CDATA[[开放平台]商户支付密钥]]></item>
+				<item id="description"><![CDATA[仅小云APP需要填写]]></item>
+				<item id="variable"><![CDATA[wxopen_key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="19">
+				<item id="displayorder"><![CDATA[41]]></item>
+				<item id="title"><![CDATA[[开放平台]APPSECRET]]></item>
+				<item id="description"><![CDATA[仅小云APP需要填写]]></item>
+				<item id="variable"><![CDATA[wxopen_appsecret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="20">
+				<item id="displayorder"><![CDATA[42]]></item>
+				<item id="title"><![CDATA[[马甲]开启马甲APP支付]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[open_mag_pay]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="21">
+				<item id="displayorder"><![CDATA[43]]></item>
+				<item id="title"><![CDATA[[马甲]客户端网址]]></item>
+				<item id="description"><![CDATA[格式 ： http://app.xxxx.com]]></item>
+				<item id="variable"><![CDATA[magapp_url]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="22">
+				<item id="displayorder"><![CDATA[44]]></item>
+				<item id="title"><![CDATA[[马甲]马甲密钥]]></item>
+				<item id="description"><![CDATA[马甲后台，新增应用-生成Secret]]></item>
+				<item id="variable"><![CDATA[magapp_secret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="23">
+				<item id="displayorder"><![CDATA[90]]></item>
+				<item id="title"><![CDATA[强制http回调通知]]></item>
+				<item id="description"><![CDATA[开启后，微信支付回调通知强制http访问【需要关闭服务器强制https跳转，兼容 http 和 https 都能访问论坛】]]></item>
+				<item id="variable"><![CDATA[must_http]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="24">
+				<item id="displayorder"><![CDATA[91]]></item>
+				<item id="title"><![CDATA[网页授权借权协议]]></item>
+				<item id="description"><![CDATA[【设置网页借权是借权域名是https还是http】]]></item>
+				<item id="variable"><![CDATA[oauth_http]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1 = http
+2 = https]]></item>
+			</item>
+			<item id="25">
+				<item id="displayorder"><![CDATA[99]]></item>
+				<item id="title"><![CDATA[启用JS获取用户IP]]></item>
+				<item id="description"><![CDATA[这个功能，主要是用于那些存在代理的服务器，不能正确获取用户的IP的用户使用，开启后使用JS获取用户的IP。【默认关闭】]]></item>
+				<item id="variable"><![CDATA[open_js_getip]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="26">
+				<item id="displayorder"><![CDATA[100]]></item>
+				<item id="title"><![CDATA[版权说明]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[copyright]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[技术支持-点微科技]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="handle"><![CDATA[操作]]></item>
+				<item id="delete"><![CDATA[删除]]></item>
+				<item id="fenhao"><![CDATA[封号]]></item>
+				<item id="recover"><![CDATA[恢复]]></item>
+				<item id="act_success"><![CDATA[操作成功]]></item>
+				<item id="duihuan"><![CDATA[兑换]]></item>
+				<item id="status"><![CDATA[状态]]></item>
+				<item id="status_delete"><![CDATA[<font color="#FF0000">删除</font>]]></item>
+				<item id="status_fenhao"><![CDATA[<font color="#FF0000">封号</font>]]></item>
+				<item id="status_normal"><![CDATA[<font color="#009900">正常</font>]]></item>
+				<item id="paixu"><![CDATA[排序]]></item>
+				<item id="open"><![CDATA[开启]]></item>
+				<item id="close"><![CDATA[关闭]]></item>
+				<item id="makesure_del_msg"><![CDATA[你确定要删除选择内容？删除后不可恢复！]]></item>
+				<item id="url_title"><![CDATA[活动地址]]></item>
+				<item id="url_title_msg"><![CDATA[你可以复制此地址放到自定义菜单或者自动回复里]]></item>
+				<item id="pay_help_title"><![CDATA[使用帮助]]></item>
+				<item id="pay_help_1"><![CDATA[升级后出现数据库错误：<a target="_blank" href="{SITEURL}plugin.php?id=tom_pay:updb">点此处理</a>（操作之前先备份数据库）]]></item>
+				<item id="order_list_title"><![CDATA[支付流]]></item>
+				<item id="order_no"><![CDATA[订单号]]></item>
+				<item id="goods_name"><![CDATA[商品名]]></item>
+				<item id="pay_price"><![CDATA[支付价格]]></item>
+				<item id="payment"><![CDATA[支付方式]]></item>
+				<item id="wxpay_jsapi"><![CDATA[公众账号支付]]></item>
+				<item id="wxpay_native"><![CDATA[微信扫描支付]]></item>
+				<item id="wxpay_h5"><![CDATA[微信H5支付]]></item>
+				<item id="wxpay_xiao"><![CDATA[小程序支付]]></item>
+				<item id="alipay_wap"><![CDATA[支付宝支付]]></item>
+				<item id="qianfan_pay"><![CDATA[千帆APP支付]]></item>
+				<item id="qianfan_pay_btn"><![CDATA[补单]]></item>
+				<item id="appbyme_pay"><![CDATA[小云APP支付]]></item>
+				<item id="magapp_pay"><![CDATA[马甲APP支付]]></item>
+				<item id="magapp_pay_btn"><![CDATA[补单]]></item>
+				<item id="add_time"><![CDATA[发起时间]]></item>
+				<item id="order_time"><![CDATA[下单时间]]></item>
+				<item id="pay_time"><![CDATA[支付时间]]></item>
+				<item id="order_status"><![CDATA[订单状态]]></item>
+				<item id="order_status_1"><![CDATA[待支付]]></item>
+				<item id="order_status_2"><![CDATA[已支付]]></item>
+				<item id="order_status_3"><![CDATA[取消交易]]></item>
+				<item id="today_pay_price_title"><![CDATA[今天支付]]></item>
+				<item id="month_pay_price_title"><![CDATA[本月支付]]></item>
+				<item id="all_pay_price_title"><![CDATA[总支付]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="open_in_wx"><![CDATA[请在微信中打开本页面]]></item>
+				<item id="pre_page"><![CDATA[上一页]]></item>
+				<item id="next_page"><![CDATA[下一页]]></item>
+				<item id="back"><![CDATA[返回]]></item>
+				<item id="doing"><![CDATA[处理中...]]></item>
+				<item id="yuan"><![CDATA[元]]></item>
+				<item id="yuan_ico"><![CDATA[￥]]></item>
+				<item id="days"><![CDATA[天]]></item>
+				<item id="hours"><![CDATA[时]]></item>
+				<item id="minute"><![CDATA[分]]></item>
+				<item id="second"><![CDATA[秒]]></item>
+				<item id="goods_name"><![CDATA[商品名]]></item>
+				<item id="goods_beizu"><![CDATA[备注信息]]></item>
+				<item id="daojishi"><![CDATA[支付倒计时]]></item>
+				<item id="pay_price"><![CDATA[付款金额]]></item>
+				<item id="payment"><![CDATA[选择支付方式]]></item>
+				<item id="pay_btn"><![CDATA[立即支付]]></item>
+				<item id="native_dialog_title"><![CDATA[微信扫码支付]]></item>
+				<item id="native_dialog_msg"><![CDATA[长按图片保存二维码，然后点击微信扫一扫选择相册二维码，开始支付]]></item>
+				<item id="native_dialog_btn"><![CDATA[知道了]]></item>
+				<item id="pay_succ_dialog_title"><![CDATA[支付成功]]></item>
+				<item id="pay_succ_dialog_msg"><![CDATA[恭喜你支付成功]]></item>
+				<item id="pay_succ_dialog_no"><![CDATA[返回]]></item>
+				<item id="pay_succ_dialog_ok"><![CDATA[完成支付]]></item>
+				<item id="pay_succ2_dialog_title"><![CDATA[已经支付]]></item>
+				<item id="pay_succ2_dialog_msg"><![CDATA[当前订单已经完成支付，请勿重复支付]]></item>
+				<item id="pay_error_dialog_title"><![CDATA[支付失败]]></item>
+				<item id="pay_error_dialog_msg"><![CDATA[抱歉支付失败]]></item>
+				<item id="pay_error_dialog_btn"><![CDATA[返回]]></item>
+				<item id="pay_succ"><![CDATA[支付成功]]></item>
+				<item id="pay_fail"><![CDATA[支付失败]]></item>
+				<item id="pay_error"><![CDATA[支付错误]]></item>
+				<item id="pay_error_100"><![CDATA[已经支付]]></item>
+				<item id="pay_error_101"><![CDATA[订单状态异常]]></item>
+				<item id="pay_error_500"><![CDATA[生成微信订单失败]]></item>
+				<item id="pay_error_404"><![CDATA[订单不存在]]></item>
+				<item id="pay_error_301"><![CDATA[支付标示获取失败]]></item>
+				<item id="pay_must_mobile"><![CDATA[在手机端才能发起微信支付]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

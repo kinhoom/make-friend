@@ -1,0 +1,27 @@
+.xiangqin-list #index-list{padding:0 6px; background:#f7f7f7; min-height: 300px!important;}
+.xiangqin-list #index-list:after{content: " "; clear: both; display: block; height: 0; visibility: hidden;}
+
+.xiangqin-list .item_big { background-color: #fff; width: 46%; float: left; margin: 2%; box-sizing: border-box; margin-bottom: 10px; position:relative; border-radius: 8px;}
+.xiangqin-list .item_big .pictop { max-width: 360px; max-height: 360px; overflow: hidden; height: calc((100vw - 0px)/ 2); width: 100%; margin-left: auto; margin-right: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;}
+.xiangqin-list .item_big .pictop img { object-fit: cover; width: 100%; height: 100%;}
+
+.xiangqin-list .item_big .picmiddle { padding-top: 5px; padding-left: 5px; padding-right: 5px; position: relative; overflow: hidden; height: 20px;}
+.xiangqin-list .item_big .picmiddle .left { font-size: 1em; color: #5a5757; float: left; max-width: calc(100% - 70px); overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;}
+.xiangqin-list .item_big .picmiddle .right { font-size: 16px; color: #5a5757; width: 30px; float: left;}
+.xiangqin-list .item_big .picmiddle img { width: 18px; padding-left: 4px;}
+.xiangqin-list .item_big .picmiddle span.sui { font-size: 1em;color: #ff6c87; position: absolute; right: 5px; background: #fff;}
+.xiangqin-list .item_big .picbottom { line-height:20px;padding: 5px;height: 20px;overflow: hidden;}
+.xiangqin-list .item_big .picbottom span.left { font-size: 0.8em; color: #a19f9f; float: left; height: 20px;}
+.xiangqin-list .item_big .picbottom span.icon { float: right; height: 20px; width: 50%; overflow: hidden; text-align: right;}
+.xiangqin-list .item_big .picbottom span.icon .vip_id{ width:56px; height:25px; position:absolute; left: 2px; top: 2px;}
+.xiangqin-list .item_big .shoucang{ padding-top: 5px; padding-bottom: 5px; margin: 0px 5px; border-top: 1px solid #e5e5e5;}
+.xiangqin-list .item_big .shoucang .left{ text-align: center; color: #a19f9f; font-size: .8em; width: 50%; float: left; border-right: 1px solid #e5e5e5; box-sizing: border-box;}
+.xiangqin-list .item_big .shoucang .delshoucang{ text-align: center; color: #a19f9f; font-size: .8em; box-sizing: border-box;}
+.xiangqin-list .item_big .shoucang .right{ float: right; width: 50%; text-align: center; color: #a19f9f; font-size: .8em;}
+/* ----------------------------------
+CSS file for Discuz! x3.4 By www.dashulai.com
+(C) www.dashulai.com
+https://dwz.cn/TSY3DnQV
+Design Dashulai.com  https://dwz.cn/bEeiwujz
+update:2019-01-02 10:22
+---------------------------------- */

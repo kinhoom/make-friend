@@ -1,0 +1,563 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$shareTitle}</title>
+<script src="source/plugin/tom_xiangqin/images/jquery.js" type="text/javascript"></script>
+<link href="source/plugin/tom_xiangqin/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_xiangqin/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/swiper.min.css?v={$cssJsVersion}" rel="stylesheet" />
+<link rel="stylesheet" href="source/plugin/tom_xiangqin/images/iconfont/iconfont.css?v={$cssJsVersion}" />
+<script type="text/javascript" src="source/plugin/tom_love/images/swiper.min.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+.swiper-container img{  height:{$xiangqinConfig['info_toppic_height']}px;width: 100%;object-fit: cover;}
+.shouqi{display:none !important;}
+.block{display:block !important;}
+</style>
+</head>
+<body>
+<!--{if $__Xiangqin['vip_id'] > 0}-->
+<div class='info_back'>
+    <a href="plugin.php?id=tom_xiangqin&mod=index"><font class="iconfont" style="position: absolute;top: -7px;left: 8px;">
+        <i class="tciconfont tcicon-xiangqin_arrow-to-left" style=" font-size: 18px;color: #fff;"></i>
+        </font>
+    </a>
+</div>
+<!--{/if}-->
+<!--{if $__Xiangqin['vip_id'] > 0}-->
+<!--{if $photoList}-->
+<div class="slide-box swiper-container" style="height:{$xiangqinConfig['info_toppic_height']}px;">
+    <div class="slide-list swiper-wrapper clearfix">
+        <!--{loop $photoList $key $value}-->
+        <div class="item-area swiper-slide">
+            <!--{if $__IsWeixin == 1}-->
+            <a href="javascript:void(0);" onclick="wxLoadPic('{$value['pic_url']}');">
+            <!--{else}-->
+            <a href="javascript:void(0);" onclick="loadPic({$value['xiangqin_id']},$photoCount);">
+            <!--{/if}-->
+                <img src="{$value['pic_url']}">
+            </a>
+        </div>
+        <!--{/loop}-->
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<!--{/if}-->
+<section class="pic_info id-pic-tip box_hide clearfix" style="z-index: 999;height: 100%; position:fixed">
+	<div class="pic_info_in id-pic-tip-in" style="top: 0px; height: 100%; background-image: url();">
+        <div class="pic_info_nav">
+            <a class="id-pic-prev">{lang tom_xiangqin:pre_pic}</a>
+            <a class="id-pic-tip-close">{lang tom_xiangqin:close_pic}</a>
+            <a class="id-pic-next">{lang tom_xiangqin:next_pic}</a>
+        </div>
+        <div class="pic_info_count">
+            <span class="id-pic_now">1</span>/<span class="id-pic_count">1</span>
+        </div>
+	</div>
+</section>
+<div class="info_zhuangtai clearfix">
+	<div class="head-t">
+        <img src="{$pic_url}">
+	</div>
+	<div class="xinxi">
+		<div class="name">
+            <!--{if $info['sex'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/boy.png">
+            <!--{else}-->
+            <img src="source/plugin/tom_xiangqin/images/girl.png">
+            <!--{/if}-->
+            <span class="username">{$info['xm']}</span>
+		</div>
+        <div class="area">
+            <font class="iconfont" style="position: absolute;top: 28px;left: 1px;">
+                <i class="tciconfont tcicon-xiangqin_dingwei" style=" font-size: 14px;"></i>
+            </font>
+            <span style="padding-left:20px;">{$juzhuCityInfo['name']} {$juzhuAreaInfo['name']}</span>
+            <span>{$age}{lang tom_xiangqin:info_sui}</span>
+        </div>
+	</div>
+	<div class="liwu">
+        <span>
+			<!--{if $info['vip_id'] > 0}-->
+	        <img src="source/plugin/tom_xiangqin/images/vip.png">
+            <!--{/if}-->
+		</span>
+		<span>
+			<!--{if $info['house_id'] == 3 || $info['house_id'] == 4}-->
+	        <img src="source/plugin/tom_xiangqin/images/house.png">
+            <!--{/if}-->
+		</span>
+		<span>
+            <!--{if $loveInfo['phone_renzheng'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/mobile.png">
+            <!--{/if}-->
+		</span>
+		<span>
+            <!--{if $info['che_id'] == 2 || $info['che_id'] == 3 || $info['che_id'] == 4}-->
+            <img src="source/plugin/tom_xiangqin/images/car.png">
+            <!--{/if}-->
+		</span>
+        <span>
+            <!--{if $loveInfo['renzheng'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/renzheng.png">
+            <!--{/if}-->
+		</span>
+	</div>
+</div>
+<!--{else}-->
+<div class="info_zhuangtai clearfix">
+	<div class="head-t">
+        <img src="{$pic_url}">
+	</div>
+	<div class="xinxi">
+		<div class="name">
+            <!--{if $info['sex'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/boy.png">
+            <!--{else}-->
+            <img src="source/plugin/tom_xiangqin/images/girl.png">
+            <!--{/if}-->
+            <span class="username">{$info['xm']}</span>
+		</div>
+        <div class="area">
+            <font class="iconfont" style="position: absolute;top: 26px;left: 1px;">
+                <i class="tciconfont tcicon-xiangqin_dingwei" style=" font-size: 18px;"></i>
+            </font>
+            <span style="padding-left:24px;">{$juzhuCityInfo['name']} {$juzhuAreaInfo['name']}</span>
+            <span>{$age}{lang tom_xiangqin:info_sui}</span>
+        </div>
+	</div>
+	<div class="liwu">
+        <span>
+			<!--{if $info['vip_id'] > 0}-->
+	        <img src="source/plugin/tom_xiangqin/images/vip.png">
+            <!--{/if}-->
+		</span>
+		<span class="anlian">
+			<!--{if $info['house_id'] == 3 || $info['house_id'] == 4}-->
+	        <img src="source/plugin/tom_xiangqin/images/house.png">
+            <!--{/if}-->
+		</span>
+		<span>
+            <!--{if $loveInfo['phone_renzheng'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/mobile.png">
+            <!--{/if}-->
+		</span>
+		<span>
+            <!--{if $info['che_id'] == 2 || $info['che_id'] == 3 || $info['che_id'] == 4}-->
+            <img src="source/plugin/tom_xiangqin/images/car.png">
+            <!--{/if}-->
+		</span>
+        <span>
+            <!--{if $loveInfo['renzheng'] == 1}-->
+            <img src="source/plugin/tom_xiangqin/images/renzheng.png">
+            <!--{/if}-->
+		</span>
+	</div>
+</div>
+<!--{/if}-->
+<div class="info_information">
+	<div class="ziliao">
+        <div class="info_title_left"></div>
+        <span class="left">{lang tom_xiangqin:info_gerenziliao}</span>
+        <span class="no">(ID:{$info['user_no']})</span>
+		<ul class="clearfix">
+			<li><span class="left">{$info['height']}CM</span></li>
+			<li><span class="left">{$info['weight']}KG</span></li>
+			<li><span class="left">{$xingzuoArray[$info['xingzuo_id']]}{lang tom_xiangqin:info_zuo}</span></li>
+            <li><span class="left">{$maritalArray[$info['marital_id']]}</span></li>
+			<li><span>{lang tom_xiangqin:info_shuxiang}: </span><span class="left">{$shuxiangArray[$info['shuxiang_id']]}</span></li>
+			<li><span class="left">{$xuexingArray[$info['xuexing_id']]}{lang tom_xiangqin:info_xuexing}</span></li>
+			<li><span class="left">{$minzuArray[$info['minzu_id']]}</span></li>
+            <li><span class="left">{$childArray[$info['child_id']]}</span></li>
+            <li><span class="left">{$eduArray[$info['edu_id']]}</span></li>
+            <li><span>{lang tom_xiangqin:info_jiguan}: </span><span class="left">{$hujiCityInfo['name']} {$hujiAreaInfo['name']}</span></li>
+			<li><span>{lang tom_xiangqin:shouru}: </span><span class="left">{$info['shouru']}/{lang tom_xiangqin:yue}</span></li>
+			<li><span>{lang tom_xiangqin:info_house}: </span><span class="left">{$houseArray[$info['house_id']]}</span></li>
+			<li><span>{lang tom_xiangqin:info_car}: </span><span class="left">{$carArray[$info['che_id']]}</span></li>
+            <li><span>{lang tom_xiangqin:job}: </span><span class="left">{$info['job']}</span></li>
+		</ul>
+	</div>
+    <!--{if $xiangqinConfig['closed_all_tel'] == 0 && $loveInfo['is_majia'] == 0}-->
+    <div class="info_border"></div>
+	<div class="contact">
+        <div class="info_title_left"></div>
+		<span class="left">{lang tom_xiangqin:info_contact}</span>
+        <!--{if $__Xiangqin['vip_id'] < 1}-->
+        <div class="info_vip">
+            <img src="source/plugin/tom_xiangqin/images/shouji.png">
+            <a href="plugin.php?id=tom_xiangqin&mod=vip"><span>{lang tom_xiangqin:info_vip}</span></a>
+        </div>
+        <!--{else}-->
+        <!--{if $chakanTag == 1}-->
+        <ul class="clearfix">
+            <!--{if $info['closed'] == 0}-->
+			<li class="call">{lang tom_xiangqin:tel}
+                <span class="left"><a href="tel:{$info['tel']}">
+                <font class="iconfont" >
+                    <i class="tciconfont tcicon-xiangqin_dianhua"></i>
+                </font><span>{lang tom_xiangqin:info_call}</span></a></span>
+            </li>
+            <!--{else}-->
+            <!--{/if}-->
+			<li>{lang tom_xiangqin:weixin}<span class="left">{$info['wx']}</span></li>
+			<li>{lang tom_xiangqin:qq}<span class="left">{$info['qq']}</span></li>
+		</ul>
+        <!--{else}-->
+        <div class="info_vip">
+            <i class="tciconfont tcicon-xiangqin_my_yanjing" style="font-size: 11px;"></i>
+            <!--{if $showChakanXz == 1}-->
+                <!--{if $overChakanNum == 1}-->
+                <a href="javascript:void(0);" onclick="chakan3();"><span>{lang tom_xiangqin:info_chakan_btn}</span></a>
+                <!--{else}-->
+                <a href="javascript:void(0);" onclick="chakan2();"><span>{lang tom_xiangqin:info_chakan_btn}</span></a>
+                <!--{/if}-->
+            <!--{else}-->
+            <a href="javascript:void(0);" onclick="chakan1();"><span>{lang tom_xiangqin:info_chakan_btn}</span></a>
+            <!--{/if}-->
+        </div>
+        <!--{/if}-->
+        <!--{/if}-->
+	</div>
+    <!--{/if}-->
+    <!--{if $xiangqinConfig['closed_all_tel'] == 1 && $loveInfo['is_majia'] == 0}-->
+    <div class="info_border"></div>
+	<div class="contact">
+        <div class="info_title_left"></div>
+		<span class="left">{lang tom_xiangqin:info_contact}</span>
+        <div class="info_vip">
+            <img src="source/plugin/tom_xiangqin/images/shouji.png">
+            <a onClick="weixin('{$hongniangQrcode}','{$hongniangInfo[0]['wx']}');" href="javascript:void(0);"><span>{lang tom_xiangqin:info_contact_hnwx}</span></a>
+        </div>
+	</div>
+    <!--{/if}-->
+	<div class="info_border"></div>
+	<div class="jieshao">
+        <div class="info_title_left"></div>
+		<span class="describe">{lang tom_xiangqin:info_describe}</span>
+		<div class="content">
+			<span>{$info['describe']}</span>
+		</div>
+	</div>
+	<div class="info_border"></div>
+	<div class="require">
+        <div class="info_title_left"></div>
+		<span class="left">{lang tom_xiangqin:info_zheou_desc}</span>
+		<ul class="clearfix">
+            <li class="one" style="display:none;"><span>{lang tom_xiangqin:info_area}</span><span>{$zheouProvinceInfo['name']}-{$zheouCityInfo['name']}</span></li>
+			<li class="two"><span>{lang tom_xiangqin:age}{lang tom_xiangqin:fenhao}</span><span>{$info['zheou_min_age']}-{$info['zheou_max_age']}{lang tom_xiangqin:info_sui}</span></li>
+			<li class="three"><span>{lang tom_xiangqin:martial}{lang tom_xiangqin:fenhao}</span><span><!--{if $info['zheou_marital_id'] == 99}-->{lang tom_xiangqin:martial_99}<!--{else}-->{$maritalArray[$info['zheou_marital_id']]}<!--{/if}--></span></li>
+			<li class="four"><span>{lang tom_xiangqin:height}{lang tom_xiangqin:fenhao}</span><span>{$info['zheou_min_height']}-{$info['zheou_max_height']}cm</span></li>
+			<li class="five"><span>{lang tom_xiangqin:edu}{lang tom_xiangqin:fenhao}</span><span><!--{if $info['zheou_edu_id'] == 99}-->{lang tom_xiangqin:edu_99}<!--{else}-->{$eduArray[$info['zheou_edu_id']]}<!--{/if}--></span></li>
+			<li class="six"><span>{lang tom_xiangqin:minzu}{lang tom_xiangqin:fenhao}</span><span><!--{if $info['zheou_minzu_id'] == 99}-->{lang tom_xiangqin:minzu_99}<!--{else}-->{$minzuArray[$info['zheou_minzu_id']]}<!--{/if}--></span></li>
+		</ul>
+	</div>
+	<div class="info_border"></div>
+	<div class="qita">
+        <div class="info_title_left"></div>
+		<span class="left">{lang tom_xiangqin:info_qita}</span>
+		<div class="yaoqiu">{$info['zheou_desc']}</div>
+	</div>
+    <div class="info_hongniang">{lang tom_xiangqin:info_contact_hongniang}</div>
+    <div class="hongniang_info clearfix" style="padding-bottom:100px;">
+        <div class="hongniang_left">
+            <img src="{$hongniangPicurl}">
+        </div>
+        <div class="hongniang_right">
+            <div class="hongniang_right_top">
+                <span>{$hongniangInfo[0]['name']}</span>
+            </div>
+            <div class="hongniang_desc">
+                <p>{$hongniangInfo[0]['desc']}</p>
+            </div>
+        </div>
+        <a class="hongniang_wx" onClick="weixin('{$hongniangQrcode}','{$hongniangInfo[0]['wx']}');" href="javascript:void(0);">
+            <font class="iconfont">
+            <i class="tciconfont tcicon-xiangqin_weixin"></i>
+            </font>
+        </a>
+        <a class="hongniang_tel" href="tel:{$hongniangInfo[0]['tel']}">
+            <font class="iconfont">
+            <i class="tciconfont tcicon-xiangqin_dianhua"></i>
+            </font>
+        </a>
+    </div>
+</div>
+<div class="info_foot_list">
+	<ul class="clearfix">
+        <a href="plugin.php?id=tom_xiangqin&mod=index"><font class="iconfont" style="position: absolute;top: 10px;left: 20px;">
+            <i class="tciconfont tcicon-xiangqin_shouye" style=" font-size: 25px;color: #797979;"></i>
+            </font>
+        </a>
+        <!--{if $__Xiangqin['vip_id'] < 1}-->
+        <!--{if is_array($isCollect) && !empty($isCollect)}-->
+		<li class="left" style="background: #E36561;margin-left: 14%;width: 40%;" onClick="shoucang({$info['id']});">{lang tom_xiangqin:info_yishoucang}</li>
+        <!--{else}-->
+        <li class="left" style="background: #E36561;margin-left: 14%;width: 40%;" onClick="shoucang({$info['id']});">{lang tom_xiangqin:info_shoucang}</li>
+        <!--{/if}-->
+        <!--{else}-->
+         <!--{if is_array($isCollect) && !empty($isCollect)}-->
+		<li class="left" style="margin-left: 14%;width: 40%;" onClick="shoucang({$info['id']});">{lang tom_xiangqin:info_yishoucang}</li>
+        <!--{else}-->
+        <li class="left" style="margin-left: 14%;width: 40%;" onClick="shoucang({$info['id']});">{lang tom_xiangqin:info_shoucang}</li>
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{if $__Xiangqin['vip_id'] < 1}-->    
+        <a href="plugin.php?id=tom_xiangqin&mod=vip"><li class="right" style="background: #f0ba12;width: 40%;">{lang tom_xiangqin:info_sjvip}</li></a>
+        <!--{else}-->
+		<a href="plugin.php?id=tom_love&mod=report&report_from=xiangqin&report_user_id={$info['user_id']}"><li class="right" style="width:40%;">{lang tom_xiangqin:info_report}</li></a>
+        <!--{/if}-->
+	</ul>
+</div>
+<a href="javascript:void(0);" onClick="kefu();">
+    <div class="kefu" style='bottom:75px;'>
+        <img src="source/plugin/tom_xiangqin/images/kefu.png">
+    </div>
+</a>
+<div id="dialogs">
+    <!--BEGIN dialog1-->
+    <div class="js_dialog" id="overChakanBox" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_xiangqin:info_chakan_over_title}</strong></div>
+            <div class="weui-dialog__bd">{lang tom_xiangqin:info_chakan_over_msg}</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_xiangqin:info_chakan_over_no}</a>
+                <a href="plugin.php?id=tom_xiangqin&mod=vip" class="weui-dialog__btn weui-dialog__btn_primary"><font color="#fd0d0d">{lang tom_xiangqin:info_chakan_over_ok}</font></a>
+            </div>
+        </div>
+    </div>
+    <!--END dialog1-->
+</div>
+<script type="text/javascript">
+$('#dialogs').on('click', '.weui-dialog__btn', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+});
+        
+$(function(){
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 50,
+        centeredSlides: true,
+        autoplay: 3500,
+        autoplayDisableOnInteraction: false
+    });
+});
+
+var submintChakanStatus = 0;
+function chakan1(){
+    if(submintChakanStatus == 1){
+        return false;
+    }
+    submintChakanStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$chakanUrl}",
+        data: "",
+        success: function(msg){
+            submintChakanStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==200){
+                tusi("{lang tom_xiangqin:info_chakan_succ}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},888);
+            }else{
+                tusi("{lang tom_xiangqin:info_chakan_error}");
+            }
+        }
+    });
+}
+function chakan2(){
+    if(submintChakanStatus == 1){
+        return false;
+    }
+    layer.open({
+        content: '<br/>{lang tom_xiangqin:info_chakan_sure_msg1}<font color="#fd0d0d">1</font>{lang tom_xiangqin:info_chakan_sure_msg2}<font color="#fd0d0d">{$shengyuChakanNum}</font>{lang tom_xiangqin:info_chakan_sure_msg3}<br/>&nbsp;'
+        ,btn: ['{lang tom_xiangqin:info_chakan_sure_ok}', '{lang tom_xiangqin:info_chakan_sure_no}']
+        ,yes: function(index){
+          submintChakanStatus = 1;
+          $.ajax({
+                type: "GET",
+                url: "{$chakanUrl}",
+                data: "",
+                success: function(msg){
+                    submintChakanStatus = 0;
+                    var data = eval('('+msg+')');
+                    if(data.status==200){
+                        tusi("{lang tom_xiangqin:info_chakan_succ}");
+                        setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},888);
+                    }else if(data.status==301){
+                        tusi("{lang tom_xiangqin:info_chakan_error301}");
+                        setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},888);
+                    }else{
+                        tusi("{lang tom_xiangqin:info_chakan_error}");
+                    }
+                }
+            });
+            layer.close(index);
+        }
+    });
+}
+function chakan3(){
+    $('#overChakanBox').show();
+}
+
+function shoucang(xiangqin_id){
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxAddShoucangUrl}",
+        data: {xiangqin_id:xiangqin_id,formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data.status == 200){
+                tusi("{lang tom_xiangqin:index_shoucang_succ_msg}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else if(data.status == 101){
+                tusi("{lang tom_xiangqin:index_yishoucang_succ_msg}");
+            }else{
+                tusi("{lang tom_xiangqin:index_yichang_msg}");
+            }
+        }
+    });
+}
+
+var picListStr = '{$picListStr}';
+function wxLoadPic(picurl){
+    var picarr = picListStr.split('|');
+    wx.previewImage({
+        current: picurl,
+        urls: picarr 
+    });
+}
+    
+var userId = 0;
+var nowPic = 0;
+var allPic = 0;
+var picData = new Array();
+
+function loadPic(uid,count){
+    
+    <!--{if $show_pic_prompt_box == 1}-->
+    $('.id-pic-succ').show();
+    return false;
+    <!--{/if}-->
+    userId = uid;
+    allPic = count;
+    nowPic = 1;
+    picData = [];
+    
+    if(allPic > 0){
+    }else{
+        return false;
+    }
+    
+    $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_xiangqin:ajax",
+        data: "act=pic&uid="+userId,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var i = 1;
+            $.each(json,function(k,v){
+                picData[i] = v;
+                i++;
+            })
+            $(window).scrollTop(0);
+            $(".id-pic-tip-in").css('top', 0).css('height', $(window).height());
+            //$(".id-pic-tip-in").css('top', $(document.body).scrollTop()).css('height', $(window).height());
+            $(".id-pic-tip").removeClass('box_hide');
+            $('.id-pic-tip-in').css('background-image', 'url(' + picData[1] + ')');
+            $('.id-pic-tip-in .id-pic_now').html(1);
+            $('.id-pic-tip-in .id-pic_count').html(allPic);
+        }
+    });
+}
+$(".id-pic-prev").on("click", function(){
+    if(nowPic > 1){
+        nowPic = nowPic - 1;
+        $('.id-pic-tip-in').css('background-image', 'url(' + picData[nowPic] + ')');
+        $('.id-pic-tip-in .id-pic_now').html(nowPic);
+    }
+});
+
+$(".id-pic-next").on("click", function(){
+    if(nowPic < allPic){
+        nowPic = nowPic + 1;
+        $('.id-pic-tip-in').css('background-image', 'url(' + picData[nowPic] + ')');
+        $('.id-pic-tip-in .id-pic_now').html(nowPic);
+    }
+});
+
+$(".id-pic-tip-close").on("click", function(){
+    $(".id-pic-tip").addClass('box_hide');
+    $('.id-pic-tip-in').css('background-image', '');
+    userId = 0;
+    picData = [];
+    nowPic = 0;
+    allPic = 0;
+}); 
+function weixin(qrcode,wx){
+    layer.open({
+        content: '<img src="'+qrcode+'"><p>{lang tom_xiangqin:hongniang_weixin_msg}<p/><p><span>{lang tom_xiangqin:hongniang_weixin_search}:</span><span id="hongniang_search">'+wx+'</span><p/>'
+        ,btn: '{lang tom_xiangqin:subscribe_ok}'
+    });
+}
+function kefu(){
+    layer.open({
+        content: '<img src="{$xiangqinConfig['kefu_qrcode']}"><p>{lang tom_xiangqin:kefu_msg}<p/>'
+        ,btn: '{lang tom_xiangqin:subscribe_ok}'
+    });
+}
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'previewImage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body>
+<!--{if $pageType == 'view'}-->
+<header class="header_style3 clearfix">
+	<a href="plugin.php?id=tom_love&mod=sms">{lang tom_love:back}</a>
+	<h1>{lang tom_love:sms_sendshow_title1}<span class="nickname">{$toUserInfo['nickname']}</span>{lang tom_love:sms_sendshow_title2}</h1>
+</header>
+<section class="message_show clearfix">
+    <div class="message_show_content clearfix">
+    	<div class="msgbox b_m">
+            <!--{loop $messageList $key $value}-->
+                <!--{if $value['user_id'] != $__UserInfo['id']}-->
+                <div class="friend_msg cl">
+                    <div class="avat z"><img style="height:32px;width:32px;" src="{$value['userInfo']['avatar']}" /></div>
+                    <div class="dialog_green z">
+                        <div class="dialog_c">
+                            <div class="dialog_t">{$value['content']}</div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><!--{date($value[add_time], 'u','9999','m-d H:i')}--></div>
+                    </div>
+                </div>
+                <!--{else}-->
+                <div class="self_msg cl">
+                    <div class="avat y"><img style="height:32px;width:32px;" src="{$value['userInfo']['avatar']}" /></div>
+                    <div class="dialog_white y">			
+                        <div class="dialog_c">
+                            <div class="dialog_t">{$value['content']}</div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><!--{date($value[add_time], 'u','9999','m-d H:i')}--></div>
+                    </div>
+                </div>
+                <!--{/if}-->
+            <!--{/loop}-->
+        </div>
+    </div>
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><!--{if $page > 1}--><a href="{$prePageUrl}">{lang tom_love:pre_page}</a><!--{else}--><span>{lang tom_love:pre_page}</span><!--{/if}--></li>
+          <li><!--{if $showNextPage == 1}--><a href="{$nextPageUrl}">{lang tom_love:next_page}</a><!--{else}--><span>{lang tom_love:next_page}</span><!--{/if}--></li>
+      </ul>
+    </div>
+    <div class="message_show_reply from_class clearfix">
+    	<form id="send_form">
+        <table>
+          <colgroup><col width="80%"><col><col width="20%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>
+                  <textarea name="content" id="content" rows="4" placeholder="{lang tom_love:sms_send_content_place}"></textarea>
+                  <input type="hidden" name="act" value="send">
+                  <input type="hidden" name="pm_lists_id" value="{$pm_lists_id}">
+                  <input type="hidden" name="to_user_id" value="{$toUserInfo['id']}">
+                  <input type="hidden" name="formhash" value="{$formhash}">
+              </td>
+              <td>
+                   <div id="send_btn" class="message_show_btn send_btn clearfix">
+                        <a href="javascript:void(0);">{lang tom_love:sms_send_btn}</a>
+                    </div>
+                  <div id="send_btn" class="message_reload_btn clearfix">
+                      <a href="javascript:void(0);" onclick="document.location.reload();">{lang tom_love:sms_reload}</a>
+                    </div>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </form>
+    </div>
+</section>
+<section class="rechange">
+    <div class="rechange-box">
+        <div class="box">
+            <div class="box-img"><img src="source/plugin/tom_love/images/rechange_s13_logo.png"></div>
+            <div class="box-content">
+                <p class="content-title">{lang tom_love:rechange_title_1}{$jyConfig['score_name']}{lang tom_love:rechange_title_2}</p>
+                <p id="have">{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+                <p id="need">{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+            </div>
+            <div class="box-button"><a href="plugin.php?id=tom_love&mod=scorepay"><img src="source/plugin/tom_love/images/rechange_s13_link.png"></a></div>
+        </div>
+        <div class="button" onClick="$('.rechange').hide();"><a href="javascript:;"><img src="source/plugin/tom_love/images/rechange_s13_hide.png"></a></div>
+    </div>
+</section>
+
+<!--{/if}-->
+<!--{if $pageType == 'list'}-->
+<section class="top_tab_nav clearfix">
+	<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&mod=sms" class="left current">{lang tom_love:nav_sms_list}</a><a href="plugin.php?id=tom_love&mod=sms&act=tzlist" class="right">{lang tom_love:nav_system_msg_list}<!--{if $noReadTzNum > 0 }--><span>{$noReadTzNum}</span><!--{/if}--></a>
+    </div>
+</section>
+<section class="message_list clearfix">
+    <!--{if $smsDataCount > 0}-->
+	<div class="msg_list_box clearfix" id="index-list">
+    </div>
+    <div style="display: none;" id="load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_jiazaiing}</p></div>
+    <div style="display: none;" id="no-load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_more}</p></div>
+    <div style="display: none;" id="no-list-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_list}</p></div>
+    <!--{else}-->
+    <div class="message_no_box clearfix">
+    	<a>{lang tom_love:sms_no_sms}</a>
+    </div>
+    <!--{/if}-->
+</section>
+<!--{if $smsOldNum > 0 }-->
+<section class="old_sms_msg clearfix">
+    <div class="old_sms_msg_box clearfix">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="plugin.php?id=tom_love&mod=sms_old">{lang tom_love:sms_old_msg}</a>
+    </div>
+</section>
+<!--{/if}-->
+<!--{/if}-->
+<!--{if $pageType == 'tzlist'}-->
+<!--{if $do_from != 'xiangqin'}-->
+<section class="top_tab_nav clearfix">
+	<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&mod=sms" class="left">{lang tom_love:nav_sms_list}</a><a href="plugin.php?id=tom_love&mod=sms&act=tzlist" class="right current">{lang tom_love:nav_system_msg_list}</a>
+    </div>
+</section>
+<!--{/if}-->
+<section class="system_message_list clearfix">
+    <!--{if $tzDataCount > 0}-->
+	<div class="system_message_list_box clearfix">
+    	<ul class="clearfix">
+            <!--{loop $tzList $key $value}-->
+            <li>
+                <article>
+                	<header>
+                        <h2>
+                            <img style="margin-top: -4px;height: 20px;margin-right: 5px;" src="source/plugin/tom_love/images/tongzi_ico.png"/>{$value['title']}
+                            <!--{if $value[is_read] == 0 }--><span>[{lang tom_love:sms_no_read}]</span><!--{/if}-->
+                        </h2>
+                        <h3><!--{date($value[tz_time], 'u')}--></h3>
+                    </header>
+                    <section><p>{$value['content']}</p></section>
+                </article>
+            </li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><!--{if $page > 1}--><a href="{$prePageUrl}">{lang tom_love:pre_page}</a><!--{else}--><span>{lang tom_love:pre_page}</span><!--{/if}--></li>
+          <li><!--{if $showNextPage == 1}--><a href="{$nextPageUrl}">{lang tom_love:next_page}</a><!--{else}--><span>{lang tom_love:next_page}</span><!--{/if}--></li>
+      </ul>
+    </div>
+    <!--{else}-->
+    <div class="message_no_box clearfix">
+    	<a>{lang tom_love:sms_no_sms}</a>
+    </div>
+    <!--{/if}-->
+</section>
+<!--{/if}-->
+<!--{if $pageType == 'list' || $pageType == 'tzlist' }-->
+<!--{if $do_from != 'xiangqin'}-->
+{template tom_love:footer}
+<!--{/if}-->
+<!--{/if}-->
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:must_phone_popup_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:must_phone_popup_content}</div>
+        <div class="weui-dialog__ft">
+            <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_love:must_phone_popup_go}</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:must_phone_popup_cancel}</a>
+        </div>
+    </div>
+</div>
+<script>
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+var submintStatus = 0;
+
+$(".send_btn").click( function () { 
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+
+    var content = $("#content").val();
+    if(content == ""){
+        tusi("{lang tom_love:sms_send_no_empty}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$smsUrl}",
+        data: $('#send_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            if(msg == 101){
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;{$__UserInfo['score']}");
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;{$jyConfig['first_sms_score']}");
+                $('.rechange').show();
+                return false;
+            }else{
+               tusi("{lang tom_love:sms_send_success}");
+               setTimeout(function(){document.location.reload();},1888); 
+            }
+        }
+    });
+});
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+<!--{if $pageType == 'list'  }-->
+var loadPage = 1;
+function indexLoadList(){
+    loadPage = 1;
+    loadList(1);
+}
+
+var loadListStatus = 0;
+function loadList(Page) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadListStatus = 1;
+    $("#index-list").html('');
+    $("#load-html").show();
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadPmListUrl}",
+        data: {page:Page},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#no-list-html").show();
+                return false;
+            }else{
+                loadPage += 1;
+                $("#index-list").html(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+   indexLoadList();
+});
+
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+        scrollLoadList();
+    }
+});
+
+function scrollLoadList() {
+    if(loadListStatus == 1){
+        return false;
+    }
+    if(loadPage > 500){
+        return false;
+    }
+    $('#load-html').show();
+	$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadPmListUrl}",
+        data: {page:loadPage},
+        success: function(msg){
+            loadListStatus = 0;
+            var data = eval('(\'+msg+\')');
+            if(data == 205){
+                loadListStatus = 1;
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $("#index-list").append(data);
+            }
+        }
+    });
+}
+<!--{/if}-->
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

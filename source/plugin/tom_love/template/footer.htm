@@ -1,0 +1,39 @@
+<section class="footer_block clearfix"></section>
+<footer class="footer_main clearfix">
+	<ul class="clearfix">
+        <!--{if $_GET['mod'] == 'index' }-->
+        <li class="footer_nav_index2"><a href="plugin.php?id=tom_love&mod=index&prand={$prand}"><span class="nav2">{lang tom_love:nav_index}</span></a></li>
+        <!--{else}-->
+        <li class="footer_nav_index1"><a href="plugin.php?id=tom_love&mod=index&prand={$prand}"><span class="nav1">{lang tom_love:nav_index}</span></a></li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'list' }-->
+        <li class="footer_nav_search2"><a href="plugin.php?id=tom_love&mod=list&prand={$prand}"><span class="nav2">{lang tom_love:nav_search}</span></a></li>
+        <!--{else}-->
+        <li class="footer_nav_search1"><a href="plugin.php?id=tom_love&mod=list&prand={$prand}"><span class="nav1">{lang tom_love:nav_search}</span></a></li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'shuoshuo' }-->
+        <li class="footer_nav_ss2"><a href="plugin.php?id=tom_love&mod=shuoshuo&prand={$prand}"><span class="nav2">{lang tom_love:nav_ss}</span></a></li>
+        <!--{else}-->
+        <li class="footer_nav_ss1"><a href="plugin.php?id=tom_love&mod=shuoshuo&prand={$prand}"><span class="nav1">{lang tom_love:nav_ss}</span></a></li>
+        <!--{/if}-->
+        <!--{if $jyConfig['open_tongcheng'] == 0 }-->
+        <!--{if $_GET['mod'] == 'sms' }-->
+        <li class="footer_nav_sms2"><a href="plugin.php?id=tom_love&mod=sms&prand={$prand}"><span class="nav2">{lang tom_love:nav_sms}</span></a></li>
+        <!--{else}-->
+        <li class="{$footerNavSmsClass}"><a href="plugin.php?id=tom_love&mod=sms&prand={$prand}"><span class="nav1">{lang tom_love:nav_sms}</span></a></li>
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{if $jyConfig['open_tongcheng'] == 1 }-->
+        <li class="footer_nav_tc1"><a href="plugin.php?id=tom_tongcheng&mod=index&prand={$prand}"><span class="nav1">{lang tom_love:nav_tc}</span></a></li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'my' }-->
+        <li class="footer_nav_my2"><a href="plugin.php?id=tom_love&mod=my&prand={$prand}"><span class="nav2">{lang tom_love:nav_my}</span></a></li>
+        <!--{else}-->
+        <!--{if $jyConfig['open_tongcheng'] == 1 }-->
+        <li class="{$footerNavMyClass}"><a href="plugin.php?id=tom_love&mod=my&prand={$prand}"><span class="nav1">{lang tom_love:nav_my}</span></a></li>
+        <!--{else}-->
+        <li class="footer_nav_my1"><a href="plugin.php?id=tom_love&mod=my&prand={$prand}"><span class="nav1">{lang tom_love:nav_my}</span></a></li>
+        <!--{/if}-->
+        <!--{/if}-->
+    </ul>
+</footer>

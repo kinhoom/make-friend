@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:photo_title}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+	<h1>{lang tom_love:photo_title}</h1>
+</header>
+<section class="mypic_box clearfix">
+	<div class="mypic_list_box clearfix">
+    	<ul class="clearfix" id="photolist">
+            <!--{loop $picList $key $value}-->
+        	<li>
+                <figure>
+                <span><a href="{$delUrl}{$value['id']}"></a></span>
+                <img src="{$value['pic_url']}" alt="">
+                </figure>
+            </li>
+            <!--{/loop}-->
+      </ul>
+    </div>
+    <div class="box_both clearfix"></div>
+    <div class="mypic_upload_box clearfix">
+    	<div class="mypic_upload_box_file">
+            <div class="weui-uploader__input-box" style="cursor: pointer;float: none;margin-left: auto;margin-right: auto;">
+                <input name="Filedata" id="filedata" class="weui-uploader__input" type="file">
+            </div>
+        </div>
+    </div>
+    <div class="mypic_upload_box_msg"><p>{lang tom_love:photo_title_msg1}{$jyConfig['pic_num']}{lang tom_love:photo_title_msg2}</p><p>{lang tom_love:pic_upload_error1}{$jyConfig['max_upload_size']}kb{lang tom_love:pic_upload_error2}</p></div>
+</section>
+<script language="javascript" src="source/plugin/tom_love/images/localResizeIMG4/dist/lrz.bundle.js"></script>
+<script>
+var allow_upload_num = "{$allow_upload_num}";
+allow_upload_num = allow_upload_num * 1;
+
+var delUrl = "{$delUrl}";
+$(document).on('change', '#filedata', function() {
+
+    if(allow_upload_num == 0){
+        tusi('{lang tom_love:photo_over_num}');
+        return false;
+    }
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"Filedata"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        allow_upload_num --;
+                        loading(false);
+                        $('#photolist').append('<li><figure><span><a href="'+delUrl+dataarr[2]+'"></a></span><img src="'+dataarr[1]+'" alt=""></figure></li>');
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+</script>
+<script type="text/javascript">
+   
+function showUploadMsg(){
+	$('body').append('<div id="upload_msg_box" onclick="hideUploadMsg();" style="position:fixed;left:0px;top:0px;width:100%;height:100%;background-color: rgba(0,0,0,0.5);text-align:right;" ontouchmove="return true;" ><img src="source/plugin/tom_love/images/upload_msg.png" style="margin-top:10px;margin-right:10px;"></div>');
+}
+function hideUploadMsg(){
+    $("#upload_msg_box").remove();
+}
+
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$user['nickname']}{lang tom_love:shuoshuoinfo_dongtai_msg}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/guangc.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+body{ background: #fff;}
+</style>
+</head>
+<body>
+<header class="header_style2 clearfix" style="display:none;">
+    <a href="javascript:history.go(-1)">{lang tom_love:back}</a>
+    <h1>{$user['nickname']}{lang tom_love:shuoshuoinfo_dongtai_msg}</h1>
+</header>
+<!--{if $userStatus == 1 }-->
+<div id="art-content">
+    <ul class="content"style="border:none;" id="shuoshuo-{$ssInfo['id']}">
+        <li class="on">
+          <dl class="clearfix">
+            <dt style="position: relative;">
+                <a href="plugin.php?id=tom_love&mod=info&uid={$user['id']}">
+                    <img class="shuoshuo_avatar" src="{$user['avatar']}" width="40px" height="40px">
+                </a>
+            </dt>
+            <dd style="position: relative;">
+                <label style="font-size:14px; color: rgb(90, 133, 206);white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 85%;"><!--{if $user['sex'] == 1}--><font class="man" color="#5a85ce">{lang tom_love:man_ico}</font><!--{/if}--><!--{if $user['sex'] == 2}--><font class="woman" color="#F90271">{lang tom_love:woman_ico}</font><!--{/if}--><font color="#5a85ce">{$user['nickname']}:</font>
+                    <!--{if $ssInfo['user_id'] == $__UserInfo['id']}--><span class="identity Check" style="color: #f00;" onclick="deleteShuoshuo({$ssInfo['id']});">[{lang tom_love:shuoshuo_del_title}]</span>&nbsp;<!--{/if}-->
+                    <span class="fr c858 f12" style="position: absolute;right: 5px;"><!--{date($ssInfo[ss_time], 'u')}--></span> 
+                </label>
+                <div class="f14" style="line-height: 1.5; -ms-word-wrap: normal;">
+                    <div id="contc-314004" style="padding-right:5px;">{$ssInfo['content']}</div>
+                    <!--{if $ssPhotoList }-->
+                    <div class="on_img clearfix">
+                       <ul id="Gallery" class="gallery">
+                            <!--{loop $ssPhotoList $k1 $v1}-->
+                            <!--{if $count > 1}-->
+                            <li><img class="small_pic" src="{$v1['picurl']}" onclick="showPic('{$v1['picurl']}');"></li>
+                            <!--{else}-->
+                            <li><img class="big_pic" src="{$v1['picurl']}" onclick="showPic('{$v1['picurl']}');"></li>
+                            <!--{/if}-->
+                            <!--{/loop}-->
+                       </ul>
+                    </div>
+                    <!--{/if}-->
+                    <div class="gj c858 clearfix">
+                        <span class="t_r" id="btn-zan{$ssInfo['id']}" <!--{if $is_zan_flag == 0}-->onclick="praise({$ssInfo['id']})"<!--{/if}-->>
+                            <I class="gj_za <!--{if $is_zan_flag == 1}-->zaned<!--{/if}-->"></I>{lang tom_love:shuoshuo_del_zan}<EM id="zanCount-{$ssInfo['id']}">{$ssInfo['zan_count']}</EM> 
+                        </span> 
+                        <span class="t_r" id="btn-reply{$ssInfo['id']}" ssid="{$ssInfo['id']}"  articlereplybtn="">
+                            <I class="gj_p"></I>{lang tom_love:shuoshuo_del_pin}<EM id="replyCount-{$ssInfo['id']}">{$ssInfo['reply_count']}</EM> 
+                        </span>
+                    </div>
+                </div>
+            </dd>
+          </dl>
+        </li>
+        <!--{if $ssZanList }-->
+        <li class="in rel artcomment" id="zan-{$value['id']}" style="border-bottom: #fff 1px solid;">
+            <div class="shuoshuo_line"></div>
+            <div class="jiantou"></div>
+            <aside class="rel bz_img clearfix">
+                <!--{loop $ssZanList $k2 $v2}-->
+                <a href="plugin.php?id=tom_love&mod=info&uid={$v2['zan_user_id']}">
+                    <img src="{$v2['zan_user_avatar']}" width="30px" height="30px">
+                </a>
+                <!--{/loop}-->
+                <i class="shang abs"></i>
+            </aside>
+        </li>
+        <!--{/if}-->
+        <div id="replay-temp-{$ssInfo['id']}"></div>
+        <!--{if $ssReplyData }-->
+        <!--{loop $ssReplyData $k3 $v3}-->
+        <li class="in rel artcomment" id="reply-{$v3['id']}">
+        <!--{if $is_zan_flag == 0 }-->
+        <div class="jiantou"></div>
+        <!--{else}-->
+        <!--{/if}-->
+        <dl class="clearfix">
+            <dt>
+            <a href="plugin.php?id=tom_love&mod=info&uid={$v3['reply_user_id']}">
+                <img class="shuoshuo_avatar" src="{$v3['reply_user_avatar']}" width="30px" height="30px">
+            </a> 
+            </dt>
+            <dd>
+                <label style="font-size:14px; color: #F90271"><!--{if $v3['reply_user_sex'] == 1}--><font class="man" color="#5a85ce">{lang tom_love:man_ico}</font><!--{/if}--><!--{if $v3['reply_user_sex'] == 2}--><font class="woman" color="#F90271">{lang tom_love:woman_ico}</font><!--{/if}--><font color="#5a85ce">{$v3['reply_user_nickname']}:</font>
+                <!--{if $v3['reply_user_id'] == $__UserInfo['id']}--><span class="identity Check" style="color: #f00;" onclick="deleteReply({$v3['id']})">[{lang tom_love:shuoshuo_del_title}]</span><!--{/if}-->
+                <span class="fr c858 f12"><!--{date($v3[reply_time], 'u')}--></span> 
+            </label>
+            <P>{$v3['content']}</P>
+            </dd>
+        </dl>
+        <I class="ping abs"></I>
+        </li>
+        <!--{/loop}-->
+        <!--{/if}-->
+    </ul>
+</div>
+<!--{else}-->
+<!--{/if}-->
+<section class="pic_shuoshuoinfo id-shuoshuopic-tip box_hide clearfix" style="z-index: 9999999;height: 2000px;position: fixed;">
+	<div class="pic_shuoshuoinfo_in id-shuoshuopic-tip-in" style="top: 0px; height: 550px; background-image: url();"></div>
+</section>
+<input id="hidName" type="hidden" value="{$__UserInfo['nickname']}">
+<input id="hidUserId" type="hidden" value="{$__UserInfo['id']}"> 
+<input id="hidUserPic" type="hidden" value="{$__UserInfo['avatar']}">
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:must_phone_popup_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:must_phone_popup_content}</div>
+        <div class="weui-dialog__ft">
+            <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_love:must_phone_popup_go}</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:must_phone_popup_cancel}</a>
+        </div>
+    </div>
+</div>
+{template tom_love:footer}
+{template tom_love:shuoshuohtm}
+<script type="text/javascript">
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+function closeSubscribe(){
+    $('#subscribe').hide();
+    $.get("{$subscribeUrl}");
+}
+
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:subscribe_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+
+function showPic(picurl){
+    $(".id-shuoshuopic-tip").removeClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', 'url(' + picurl + ')');
+}
+
+$(".pic_shuoshuoinfo").on("click", function(){
+    $(".id-shuoshuopic-tip").addClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', '');
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$user['nickname']}{lang tom_love:shuoshuoinfo_dongtai_msg}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}',
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$user['nickname']}{lang tom_love:shuoshuoinfo_dongtai_msg}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+        },
+        cancel: function () {
+        }
+    });
+});
+</script>
+</body>
+</html>

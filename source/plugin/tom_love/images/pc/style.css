@@ -1,0 +1,56 @@
+@charset "gb2312";
+/* CSS Document */
+/******************************************* reset ******************************************/
+body,h1,h2,h3,h4,dl,dt,dd,ul,ol,li,a,div,em,span,img,form,input,p,i{ padding:0px; margin:0px; border:none;}
+em,i{word-wrap: break-word;font-style:normal;}
+a{ color:#464646; text-decoration:none; }
+a:link,a:visited,a:active{color:#464646; text-decoration:none;}
+ul, ol, dl,li {list-style: none ;}
+.clear {display: block;clear: both;font-size: 0;height: 0;line-height: 0;overflow: hidden;}
+/******************************************* ads ******************************************/
+.tom_jy_ads{ height: 60px; width: 100%; background-color: #E7E7E7; margin-top: 5px; margin-right: auto; margin-left: auto; }
+/******************************************* tabs ******************************************/
+.tom_jy_tabs{ height: 35px; width: 100%; margin-top: 10px; margin-right: auto; margin-left: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #E8E8E8; position: relative; }
+.tom_jy_tabs_l{ height: 35px; width: 300px; float: left; position: absolute; left: 10px; bottom: -1px; z-index: 99; line-height: 35px; text-align: center; }
+.tom_jy_tabs_r{ height: 35px; width: 110px; float: right; }
+.tom_jy_tabs_l a{ height: 33px; width: 100px; display: block; float: left; background-color: #FFF; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #FFF; border-right-color: #FFF; border-bottom-color: #EAEAEA; border-left-color: #FFF; }
+.tom_jy_tabs_l a.cur{ border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #E8E8E8; border-right-color: #E8E8E8; border-bottom-color: #FFF; border-left-color: #E8E8E8; }
+
+.tom_jy_tabs_r a{ background-image: url(tom_wx_btn.png); background-repeat: no-repeat; height: 25px; width: 100px; display: block; margin-top: 5px; }
+
+/******************************************* main ******************************************/
+.tom_jy_tabs_main{ width: 100%; margin-top: 5px; margin-right: auto; margin-left: auto; }
+.tom_jy_tabs_main_box{ width: 100%; }
+.tom_jy_tabs_main_page{ width: 930px; height: 40px; margin-bottom: 20px; padding-right: 30px; }
+.tom_jy_tabs_main_box li{ height: 292px; width: 182px; float: left; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; }
+.tom_jy_tabs_main_box li a{ height: 290px; width: 180px; border: 1px solid #E8E8E8; display: block; }
+.tom_jy_tabs_main_box li a:hover{ border: 1px solid #FC0AA2; background-color: #FEF1FA; }
+.tom_jy_tabs_main_item_pic{ margin: 4px; height: 180px; width: 170px; overflow: hidden; float: left; border: 1px solid #EAEAEA; }
+.tom_jy_tabs_main_item_pic img{ height: auto;height: 100%; width: 100%; }
+.tom_jy_tabs_main_item_title{ height: 25px; width: 170px; line-height: 25px; margin-right: 5px; margin-left: 5px; }
+.tom_jy_tabs_main_item_title h1{ float: left; font-size: 16px; height: 25px; width: 100px; overflow: hidden; }
+.tom_jy_tabs_main_item_title span{ float: right; }
+.tom_jy_tabs_main_item_desc{ height: 40px; width: 170px; line-height: 20px; font-size: 13px; overflow: hidden; margin-right: 5px; margin-left: 5px; }
+.tom_jy_tabs_main_item_more{ height: 25px; width: 170px; line-height: 25px; margin-right: 5px; margin-left: 5px; }
+.tom_jy_tabs_main_item_more span.time{ float: left; font-size: 12px; color: #999; }
+.tom_jy_tabs_main_item_more span.btn{ float: right; display: block; height: 25px; width: 80px; background-image: url(more_btn.png); background-repeat: no-repeat; }
+
+/******************************************* add ******************************************/
+.tom_jy_add{ height: 300px; width: 600px; margin: auto; }
+.tom_jy_add_l{ height: 260px; width: 200px; margin-top: 25px; margin-left: 10px; float: left; }
+.tom_jy_add_l img{ height: 200px; width: 200px; }
+.tom_jy_add_l h1{ font-size: 18px; text-align: center; height: 25px; width: 200px; line-height: 25px; display: block; color: #333; }
+.tom_jy_add_l p{ text-align: center; font-size: 14px; height: 25px; width: 200px; line-height: 25px; display: block; color: #868686; }
+.tom_jy_add_r{ height: 260px; width: 350px; margin-top: 25px; float: right; margin-right: 10px; }
+.tom_jy_add_r_msg{ height: 100px; width: 350px; background-image: url(add_msg.png); background-repeat: no-repeat; float: left; }
+.tom_jy_add_r_desc{ height: 100px; width: 350px; line-height: 33px; font-size: 24px; float: left; overflow: hidden; }
+.tom_jy_add_r_close{ height: 30px; width: 350px; float: left; margin-top: 20px; }
+.tom_jy_add_r_close a{ height: 25px; width: 100px; background-image: url(add_close.png); background-repeat: no-repeat; display: block; margin-right: auto; margin-left: auto; margin-top: 2px; }
+
+/* ----------------------------------
+CSS file for Discuz! x3.4 By www.dashulai.com
+(C) www.dashulai.com
+https://dwz.cn/TSY3DnQV
+Design Dashulai.com  https://dwz.cn/bEeiwujz
+update:2019-01-02 10:22
+---------------------------------- */

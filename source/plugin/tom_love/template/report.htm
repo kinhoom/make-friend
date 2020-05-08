@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+<!--{if $report_from == 'xiangqin'}-->
+.header_style2{background-color: #2AD2BD;}
+.gaobai_from_btn a{background-color: #2AD2BD;}
+<!--{/if}-->
+</style>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<a href="javascript:void(0);" onclick="history.back();">{lang tom_love:back}</a>
+	<h1>{lang tom_love:report_title}</h1>
+</header>
+<section class="gaobai_list clearfix">
+	<div class="gaobai_add_from from_class clearfix">
+    	<form id="report_form">
+        <table>
+          <colgroup><col width="30%"><col><col width="70%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>{lang tom_love:report_user_id}</td>
+              <td>
+                 {$reportUserInfo['nickname']}
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:report_content}</td>
+              <td>
+                  <textarea name="report_content" id="report_content" rows="4" placeholder="{lang tom_love:report_placeholder}"></textarea>
+                  <input type="hidden" name="report_user_id" value="{$report_user_id}">
+                  <input type="hidden" name="act" value="save">
+                  <input type="hidden" name="formhash" value="{$formhash}">
+              </td>
+          </tr>
+          </tbody>
+      </table>
+        <div id="imgList" class="uploader-list clearfix" >
+            <div class="file-item thumbnail sspic_list_box" id="addimg">
+                <ul class="clearfix" id="photolist">
+                </ul>
+            </div>
+        </div>
+        <div class="btnboxlist" >
+            <a href="javascript:;" class="btnboxa" id="imgPicker"  >
+                <em class="btnimgemimg"><input type="file" name="Filedata" id="filedata" style="width:25px;opacity: 0;"></em>{lang tom_love:shuoshuo_add_pic_title}
+            </a>
+        </div>
+      </form>
+    </div>
+    <div class="gaobai_from_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:report_btn}</a>
+    </div>
+    
+</section>
+<script language="javascript" src="source/plugin/tom_love/images/localResizeIMG4/dist/lrz.bundle.js"></script>
+<script>
+var li_i = 1;
+var count = 0;
+$(document).on('change', '#filedata', function() {
+    if(count >= 2){
+        tusi('{lang tom_love:report_add_max_pic_msg}');
+        return false;
+    }
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:480,quality:0.8,fieldName:"Filedata"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        loading(false);
+                        $('#photolist').append('<li class="li_'+li_i+'"><input type="hidden" name="bmpicli[]" value="'+dataarr[2]+'"><figure><span><a href="javascript:void(0);" onclick="myremove('+li_i+');"></a></span><img src="'+dataarr[1]+'" alt=""></figure></li>');
+                        li_i++;
+                        count++;
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+
+function myremove(i){
+    $(".li_"+i).remove();
+    count--;
+}
+</script>
+<script>
+var submintStatus = 0;
+$(".gaobai_from_btn").click( function () { 
+    var report_content = $("#report_content").val();
+    if(submintStatus == 1){
+        return false;
+    }
+    if(report_content == ""){
+        tusi("{lang tom_love:must_report_content}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$reportUrl}",
+        data: $('#report_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            tusi("{lang tom_love:report_success}");
+            setTimeout(function(){document.location.reload();},1888);
+        }
+    });
+});
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

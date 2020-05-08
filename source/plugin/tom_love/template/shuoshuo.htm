@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html><head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:nav_gb}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/guangc.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+</style>
+</head>
+<body>
+<section class="top_tab_nav clearfix">
+	<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&mod=shuoshuo&prand={$prand}" class="left current">{lang tom_love:nav_gb}</a><a href="plugin.php?id=tom_love&mod=shuoshuo&act=addshuoshuo&prand={$prand}" class="right">{lang tom_love:gb_fb_btn}</a>
+    </div>
+</section>
+<!--{if $jyConfig['ss_adbox_1']}-->
+<section class="guangao_list clearfix">
+	<div class="guangao_list_box clearfix">
+        {$jyConfig['ss_adbox_1']}
+    </div>
+</section>
+<!--{/if}-->
+<div id="art-content"></div>
+<section class="pic_shuoshuoinfo id-shuoshuopic-tip box_hide clearfix" style="z-index: 9999999;height: 2000px;position: fixed;">
+	<div class="pic_shuoshuoinfo_in id-shuoshuopic-tip-in" style="top: 0px; height: 550px; background-image: url();"></div>
+</section>
+<div style="display: none;" id="load-html"><p style="height: 35px;line-height: 35px;text-align: center;color: #a5a19f;">{lang tom_love:list_jiazaiing}</p></div>
+<div style="display: none;" id="no-load-html"><p style="height: 35px;line-height: 35px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_more}</p></div>
+<div style="display: none;" id="no-list-html"><p style="height: 35px;line-height: 35px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_list}</p></div>
+<input id="hidName" type="hidden" value="{$__UserInfo['nickname']}">
+<input id="hidUserId" type="hidden" value="{$__UserInfo['id']}"> 
+<input id="hidUserPic" type="hidden" value="{$__UserInfo['avatar']}">
+<!--{if $show_guanzu_box == 1}-->
+<section id="subscribe">
+    <div class="subscribe_box">
+        <span>{lang tom_love:subscribe_title}</span>
+        <div class="right">
+            <div class="guanzu_show"><a href="javascript:void(0);" onClick="subscribe();">{lang tom_love:subscribe_guanzu}</a></div>
+            <div class="guanzu_close" onClick="closeSubscribe();">{lang tom_love:subscribe_close}</div>
+        </div>
+    </div>
+</section>
+<!--{/if}-->
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:must_phone_popup_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:must_phone_popup_content}</div>
+        <div class="weui-dialog__ft">
+            <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_love:must_phone_popup_go}</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:must_phone_popup_cancel}</a>
+        </div>
+    </div>
+</div>
+{template tom_love:footer}
+<i class="gotop" id="go-top" style="display: none;"></i>
+{template tom_love:shuoshuohtm}
+<script type="text/javascript">
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+function closeSubscribe(){
+    $('#subscribe').hide();
+    $.get("{$subscribeUrl}");
+}
+
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:subscribe_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+    });
+}
+
+function showPic(picurl){
+    $(".id-shuoshuopic-tip").removeClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', 'url(' + picurl + ')');
+}
+
+$(".pic_shuoshuoinfo").on("click", function(){
+    $(".id-shuoshuopic-tip").addClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', '');
+});
+        
+
+var loadPage = 1;
+function shuoshuoLoadList(){
+    loadPage = 1;
+    loadList(1);
+}
+
+var loadListStatus = 0;
+var no_list_html = $("#no-list-html").html();
+var load_html = $("#load-html").html();
+function loadList(Page) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadListStatus = 1;
+    $("#art-content").html(load_html);
+    $.ajax({
+        type: "GET",
+        url: "{$shuoshuoUrl}",
+        data: {act:"shuoshuoList",page:Page,uid:"{$uid}",formhash:"{$formhash}"},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#art-content").html(no_list_html);
+                return false;
+            }else{
+                loadPage += 1;
+                $("#art-content").html(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+   shuoshuoLoadList();
+});
+
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+        scrollLoadList();
+    }
+    if ((scrollTop + windowHeight) >= 1000) {
+        $('#go-top').show();
+    }else{
+        $('#go-top').hide();
+    }
+});
+
+$(document).on('click','#go-top', function () {
+    $('body,html').animate({scrollTop: 0}, 500);
+    return false;
+});
+
+function scrollLoadList() {
+    if(loadListStatus == 1){
+        return false;
+    }
+    if(loadPage > 50){
+        return false;
+    }
+    $('#load-html').show();
+	$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$shuoshuoUrl}",
+        data: {act:"shuoshuoList",page:loadPage,uid:"{$uid}",formhash:"{$formhash}"},
+        success: function(msg){
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $("#art-content").append(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+    $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () {
+        }
+    });
+});
+</script>
+</body>
+</html>

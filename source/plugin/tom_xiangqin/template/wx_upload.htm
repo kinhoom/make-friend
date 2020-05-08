@@ -1,0 +1,96 @@
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'previewImage',
+      'chooseImage',
+      'uploadImage',
+      'downloadImage'
+    ]
+});
+
+wx.ready(function () {
+    $(document).on('click', '#uploaderInput', function(){
+        var pic_length = $(".edit_upload #uploaderFiles li").length;
+        var photo_num = max_photo_num - pic_length ;
+        if(photo_num == 0){
+            tusi("{lang tom_xiangqin:upload_pic_num_error}");
+            return false;
+        }
+
+        wx.chooseImage({
+            count: photo_num,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                var length = res.localIds.length;
+                if(length > 0){
+                    loading('{lang tom_xiangqin:uploading}');
+                    uploadImg(res);
+                }
+            }
+        });
+        
+    })
+    
+    function uploadImg(res){
+        var i = 0, length = res.localIds.length;
+        if(length > 0){
+            function upload(){    
+                wx.uploadImage({
+                    localId: res.localIds[i], 
+                    isShowProgressTips: 0, 
+                    success: function (res) {
+                        var serverId = res.serverId;
+                        downloadServer(serverId);
+                        i++;
+                        if(i < length){
+                            upload(); 
+                        }else{
+                            loading(false);
+                        }
+                    },
+                    fail:function(res){
+                        loading(false);
+                        tusi('{lang tom_xiangqin:wx_upload_error}');
+                    }
+                });
+            }
+            upload();
+        }
+    } 
+    
+    function downloadServer(serverId){
+        $.ajax({
+            type:'POST',
+            url:'{$wxUploadUrl}',
+            data:{serverId:serverId},
+            dataType:'json',
+            success:function(data){
+                if(data.status == 200){
+                    $("#uploaderFiles").append('<li class=""><section class="img"><img src="'+data.picurl+'" /><p style="height:18px;" onclick="avatar('+data.photo_id+');">{lang tom_xiangqin:edit_set_avatar}</p><div class="del" onclick="del_picurl('+data.photo_id+');"><span class="edit_fuhao">x</span></div><input name="uploaderInput" type="hidden" value="'+data.picurl+'"/></section></li>');
+                }else if(data.status == 301){
+                    tusi('{lang tom_xiangqin:wx_upload_error_301}');
+                    return false;
+                }else if(data.status == 302){
+                    tusi('{lang tom_xiangqin:wx_upload_error_302}');
+                    return false;
+                }else{
+                    tusi('error');
+                    return false;
+                }
+            },
+            error:function(){
+                loading(false);
+                tusi('{lang tom_xiangqin:wx_upload_error_1}');
+            }
+        })
+    }
+});
+</script>

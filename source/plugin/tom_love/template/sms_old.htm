@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<base target="_self">
+</head>
+<body>
+<!--{if $pageType == 'view'}-->
+<header class="header_style3 clearfix">
+	<a href="plugin.php?id=tom_love&mod=sms_old"></a>
+	<h1>{lang tom_love:sms_sendshow_title1}<span class="nickname">{$toUserInfo['nickname']}</span>{lang tom_love:sms_sendshow_title2}</h1>
+</header>
+<section class="message_show clearfix">
+    <div class="message_show_content clearfix">
+    	<div class="msgbox b_m">
+            <!--{loop $pmList $key $value}-->
+                <!--{if $value[msgfromid] != $__UserInfo['bbs_uid']}-->
+                <div class="friend_msg cl">
+                    <div class="avat z"><img style="height:32px;width:32px;" src="{$toUserPic}" /></div>
+                    <div class="dialog_green z">
+                        <div class="dialog_c">
+                            <div class="dialog_t">{$value['message']}</div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><!--{date($value[dateline], 'u')}--></div>
+                    </div>
+                </div>
+                <!--{else}-->
+                <div class="self_msg cl">
+                    <div class="avat y"><img style="height:32px;width:32px;" src="{$userAvatarPic}" /></div>
+                    <div class="dialog_white y">			
+                        <div class="dialog_c">
+                            <div class="dialog_t">{$value['message']}</div>
+                        </div>
+                        <div class="dialog_b"></div>
+                        <div class="date"><!--{date($value[dateline], 'u')}--></div>
+                    </div>
+                </div>
+                <!--{/if}-->
+            <!--{/loop}-->
+        </div>
+    </div>
+    <!--{if $showPageBox == 1}-->
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><!--{if $page > 1}--><a href="{$prePageUrl}">{lang tom_love:pre_page}</a><!--{else}--><span>{lang tom_love:pre_page}</span><!--{/if}--></li>
+          <li><!--{if $showNextPage == 1}--><a href="{$nextPageUrl}">{lang tom_love:next_page}</a><!--{else}--><span>{lang tom_love:next_page}</span><!--{/if}--></li>
+      </ul>
+    </div>
+    <!--{/if}-->
+</section>
+<!--{/if}-->
+<!--{if $pageType == 'list'}-->
+<section class="message_list clearfix">
+    <!--{if $smsDataCount > 0}-->
+	<div class="message_list_box clearfix">
+    	<ul class="clearfix">
+            <!--{loop $smsList $key $value}-->
+            <li>
+                <figure><a href="plugin.php?id=tom_love&mod=info&uid={$value['__toid']}"><img src="{$value['__toavatar']}" alt="{$value['__tonickname']}"></a></figure>
+                <article>
+                	<header>
+                        <h2>
+                            <!--{if $value[msgfromid] == $__UserInfo['bbs_uid']}-->
+								{lang tom_love:sms_meto}{$value[__tonickname]}{lang tom_love:sms_shuo}
+							<!--{else}-->
+								{$value[__tonickname]}{lang tom_love:sms_tomeshuo}
+							<!--{/if}-->
+                            <!--{if $value[new]}--><span>[{lang tom_love:sms_no_read}]</span><!--{/if}-->
+                        </h2>
+                        <h3><!--{date($value[dateline], 'u')}--></h3>
+                    </header>
+                    <section><p>{$value[message]}</p></section>
+                    <footer>
+                    	<span class="show"><a href="plugin.php?id=tom_love&mod=sms_old&act=view&tobbsuid={$value['touid']}">{lang tom_love:sms_span_show}</a></span>
+                    </footer>
+                </article>
+            </li>
+            <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><!--{if $page > 1}--><a href="{$prePageUrl}">{lang tom_love:pre_page}</a><!--{else}--><span>{lang tom_love:pre_page}</span><!--{/if}--></li>
+          <li><!--{if $showNextPage == 1}--><a href="{$nextPageUrl}">{lang tom_love:next_page}</a><!--{else}--><span>{lang tom_love:next_page}</span><!--{/if}--></li>
+      </ul>
+    </div>
+    <!--{else}-->
+    <div class="message_no_box clearfix">
+    	<a>{lang tom_love:sms_no_sms}</a>
+    </div>
+    <!--{/if}-->
+</section>
+<!--{/if}-->
+<!--{if $pageType == 'list' || $pageType == 'tzlist' }-->
+{template tom_love:footer}
+<!--{/if}-->
+<script>
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

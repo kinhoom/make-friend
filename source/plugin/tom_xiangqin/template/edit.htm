@@ -1,0 +1,1067 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_xiangqin:edit_info}</title>
+<script src="source/plugin/tom_xiangqin/images/jquery.js" type="text/javascript"></script>
+<link href="source/plugin/tom_xiangqin/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_xiangqin/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="source/plugin/tom_xiangqin/images/iconfont/iconfont.css?v={$cssJsVersion}" />
+<link rel="stylesheet" href="source/plugin/tom_xiangqin/images/jquery-popups.css?v={$cssJsVersion}" />
+<link href="source/plugin/tom_xiangqin/images/mobiscroll.custom-2.16.1.min.css" rel="stylesheet">
+<script src="source/plugin/tom_xiangqin/images/mobiscroll.custom-2.16.1.min.js" type="text/javascript"></script>
+<script src="source/plugin/tom_xiangqin/images/edit.js" type="text/javascript"></script>
+<script src="source/plugin/tom_xiangqin/images/jquery-popups.js?" type="text/javascript"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.weui-cells{margin-top:0px;background: #F5F3F3;}
+.weui-uploader__input-box{margin-top:12px;margin-left:2%;}
+.weui-cell:before{position:relative;}
+.weui-cells:before{position:relative;}
+.weui-cells:after{position:relative;}
+.color{background:#09BB07;}
+.weui-cell{padding:0px;}
+input:-moz-placeholder,
+textarea:-moz-placeholder {color: #A9A9A9;font-family:'Helvetica Neue',Roboto,'microsoft yahei', Arial;}   
+input:-ms-input-placeholder,   
+textarea:-ms-input-placeholder {color: #A9A9A9;font-family:'Helvetica Neue',Roboto,'microsoft yahei', Arial;}
+input::-webkit-input-placeholder,   
+textarea::-webkit-input-placeholder {color: #A9A9A9;font-family:'Helvetica Neue',Roboto,'microsoft yahei', Arial;}
+.none{display:none;}
+body{background:#F5F3F3;}
+.weui-uploader__bd{overflow: hidden;border-radius: 10px;margin: 10px 5px 25px 5px;background: #fff;}
+.weui-cells_checkbox .weui-icon-checked:before{font-size:18px;}
+.yanse{border:1px solid #2AD2BD; color:#2AD2BD;}
+</style>
+</head>
+<body>
+<div id="xieyi-box" class='pop-ups__container'>
+  <div class="pop-ups__overlay"></div>
+  <div class="pop-ups__modal">
+      <div class="pop-ups__box" style="background: #fff;">
+          <p class='xieyi_header'>{lang tom_xiangqin:edit_xieyi}</p>
+          <div class='edit_xieyi_msg'>{$xieyi_txt}</div>
+          <div class="pop-ups__block"></div>
+      </div>
+      <div class="pop-ups__close">
+          <a href="javascript:void(0);" class="tcui-btn tcui-btn_default close-popups">{lang tom_xiangqin:edit_close}</a>
+      </div>
+  </div>
+</div>
+<div class="xiangqin_header">
+	<a href="plugin.php?id=tom_xiangqin&mod=my">
+        <font class="iconfont">
+            <i class="tciconfont tcicon-xiangqin_fanhui"></i>
+        </font>
+    </a>
+    <span>{lang tom_xiangqin:edit_own_info}</span>
+</div>
+<div class="edit_upload">
+    <form class="weui-cells" id="add_form" onsubmit="return false;">
+        <div class="edit_zhengshi_msg">
+            <span>{lang tom_xiangqin:edit_zhengshi_title}</span>{$xiangqinConfig['edit_zhengshi_msg']}
+        </div>
+        <div class="weui-uploader__bd">
+            <div class="edit_upload_pic">
+                <p class="left">{lang tom_xiangqin:edit_my_pic}</p>
+                <p class="right">{lang tom_xiangqin:edit_shangchuan}</p>
+            </div>
+            <ul class="weui-uploader__files clearfix" id="uploaderFiles">
+                <!--{loop $photoList $key $value}-->
+                <li id="picurl-{$value['id']}">
+                    <section class="img">
+                        <img src="{$value['pic_url']}">
+                        <!--{if $value['i'] == $avatar_i}-->
+                        <p id="is_avatar_{$value['id']}" style="background:#2AD2BD">{lang tom_xiangqin:edit_avatar}</p>
+                        <div class="del" onClick="del_picurl({$value['id']});"><span class="edit_fuhao">x</span></div>
+                        <!--{else}-->
+                        <p id="change_{$value['id']}" onClick="avatar({$value['id']});">{lang tom_xiangqin:edit_set_avatar}</p>
+                        <div class="del" onClick="del_picurl({$value['id']});"><span class="edit_fuhao">x</span></div>
+                        <!--{/if}-->
+                    </section>
+                </li>
+                <!--{/loop}-->
+            </ul>
+            <div class="weui-uploader__input-box" id="uploaderInput" style="cursor: pointer;">
+                <!--{if $__IsWeixin == 0 || $xiangqinConfig['open_many_pic_upload'] == 0}-->
+                <input name="uploaderInput" id="uploaderInput" class="weui-uploader__input" type="file" multiple="">
+                <!--{/if}-->
+            </div>
+        </div>
+        <div class="edit_jbxinxi">
+            <div class="edit_info">{lang tom_xiangqin:edit_jibeninfo}</div>
+            <!--{if $__Xiangqin['is_ok'] == 1}-->
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:user_no}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="user_no" id="user_no" check="need" value="{$__Xiangqin['user_no']}" disabled="disabled" style="border:none;">
+                </li>
+            </ul>
+            <!--{/if}-->
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:xm}
+                        <i class="required-sign"></i>
+                    </label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="xm" id="xm" check="need" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:xm}" value="{$__Xiangqin['xm']}">
+                </li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:sex}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <div class="edit_sex man <!--{if $__Xiangqin['sex'] == 1}--> yanse <!--{/if}-->">
+                        <input type="radio" name="sex" id="male" <!--{if $__Xiangqin['sex'] == 1}--> checked  <!--{/if}--> value="1">
+                        <label for="male">
+                            <span>{lang tom_xiangqin:man}</span>
+                            <img src="source/plugin/tom_xiangqin/images/boy.png">
+                        </label>
+                    </div>
+                    <div class="edit_sex woman <!--{if $__Xiangqin['sex'] == 2}--> yanse <!--{/if}-->">
+                        <input type="radio" name="sex" id="female" <!--{if $__Xiangqin['sex'] == 2}--> checked  <!--{/if}--> value="2">
+                        <label for="female">
+                            <span>{lang tom_xiangqin:woman}</span>
+                            <img src="source/plugin/tom_xiangqin/images/girl.png">
+                        </label>
+                    </div>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_birth_day}</label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input date" name="birthday" id="birthday" value="{$__Xiangqin['birth_year']}-{$__Xiangqin['birth_month']}-{$__Xiangqin['birth_day']}"  onchange="birthchange()" readonly="" type="text" style="border:none;">
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:height}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="height" id="height" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $heightArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['height'] == $value}-->selected<!--{/if}-->>{$value}CM</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:weight}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="weight" id="weight" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $weightArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['weight'] == $value}-->selected<!--{/if}-->>{$value}KG</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:xingzuo}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="xingzuo_id" id="xingzuo_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $xingzuoArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['xingzuo_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:shuxiang}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="shuxiang_id" id="shuxiang_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $shuxiangArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['shuxiang_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:xuexing}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="xuexing_id" id="xuexing_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $xuexingArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['xuexing_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:minzu}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="minzu_id" id="minzu_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $minzuArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['minzu_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:job}</label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="job" id="job" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:job}" value="{$__Xiangqin['job']}">
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edu}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="edu_id" id="edu_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $eduArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['edu_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:area}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="province_id" id="province_id" onchange="getCity();">
+                        <option value="0">{lang tom_xiangqin:edit_province}</option>
+                        <!--{loop $provinceList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['province_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="city_id" id="city_id" onchange="getArea();" style=" <!--{if $__Xiangqin['province_id'] == 0 }--><!--{/if}-->">
+                        <option value="0">{lang tom_xiangqin:edit_city}</option>
+                        <!--{loop $cityList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['city_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="area_id" id="area_id"  onchange="getTowns();" style=" <!--{if $__Xiangqin['city_id'] == 0 }--><!--{/if}--> ">
+                        <option value="0">{lang tom_xiangqin:edit_area}</option>
+                        <!--{loop $areaList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['area_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="towns_id" id="towns_id" style=" <!--{if $__Xiangqin['area_id'] == 0 }--><!--{/if}--> ">
+                        <option value="0">{lang tom_xiangqin:edit_town}</option>
+                        <!--{loop $townsList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['towns_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:hjarea}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="hjprovince_id" id="hjprovince_id" onchange="gethjCity();">
+                        <option value="0">{lang tom_xiangqin:edit_province}</option>
+                        <!--{loop $hjprovinceList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['hjprovince_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="hjcity_id" id="hjcity_id" onchange="gethjArea();" style=" <!--{if $__Xiangqin['hjprovince_id'] == 0 }--><!--{/if}-->">
+                        <option value="0">{lang tom_xiangqin:edit_city}</option>
+                        <!--{loop $hjcityList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['hjcity_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="hjarea_id" id="hjarea_id"  onchange="gethjTowns();" style=" <!--{if $__Xiangqin['hjcity_id'] == 0 }--><!--{/if}--> ">
+                        <option value="0">{lang tom_xiangqin:edit_area}</option>
+                        <!--{loop $hjareaList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['hjarea_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="hjtowns_id" id="hjtowns_id" style=" <!--{if $__Xiangqin['hjarea_id'] == 0 }--><!--{/if}--> " >
+                        <option value="0">{lang tom_xiangqin:edit_town}</option>
+                        <!--{loop $hjtownsList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['hjtowns_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:martial}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="marital_id" id="marital_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $maritalArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['marital_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:child}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="child_id" id="child_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $childArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['child_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+        </div>
+        <div class="edit_border">
+            <div class="edit_info">{lang tom_xiangqin:edit_contact}</div>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_xianshi}<!--{if $__UserInfo['phone_renzheng'] == 1}--><span class="edit_renzheng">{lang tom_xiangqin:edit_phone_renzheng_1}</span><!--{else}--><span class="edit_renzheng">{lang tom_xiangqin:edit_phone_renzheng_0}</span><!--{/if}--></label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="tel" id="tel" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:tel}" value="{$__Xiangqin['tel']}" <!--{if $__UserInfo['phone_renzheng'] == 1}--> onClick="phone_tishi();" readonly<!--{/if}-->>
+                </li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:weixin}</label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="wx" id="wx" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:weixin}" value="{$__Xiangqin['wx']}">
+                </li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label">{lang tom_xiangqin:qq}</label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="qq" id="qq" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:qq}" value="{$__Xiangqin['qq']}">
+                </li>
+            </ul>
+        </div>
+        <div class="edit_border">
+            <div class="edit_info">{lang tom_xiangqin:edit_money}</div>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_shouru}</label>
+                </li>
+                <li class="edit_right">
+                    <input class="edit_input" name="shouru" id="shouru" onKeyUp="value = value.replace(/\D/g,&#39;&#39;)" placeholder="{lang tom_xiangqin:qingshuru}{lang tom_xiangqin:edit_shouru}" value="{$__Xiangqin['shouru']}">
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:house}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="house_id" id="house_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $houseArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['house_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:che}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="che_id" id="che_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $carArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['che_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li class="right-icon"></li>
+            </ul>
+        </div>
+        <div class="edit_border">
+            <div class="edit_info">{lang tom_xiangqin:edit_zheouyq}</div>
+            <ul class="edit_change xian">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_age}</label>
+                </li>
+                <li class="edit_right">
+                    <select id="zheou_min_age" name="zheou_min_age" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $ageArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['zheou_min_age'] == $value}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->                
+                    </select>
+                </li>
+                <li style="margin-left: 20px;margin-right: 20px">{lang tom_xiangqin:edit_zhi} </li>
+                <li class="edit_right">
+                    <select id="zheou_max_age" name="zheou_max_age" class="edit_select" style="direction: inherit">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $ageArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['zheou_max_age'] == $value}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li>{lang tom_xiangqin:edit_sui}</li>
+            </ul>
+            <ul class="edit_change">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:height}</label>
+                </li>
+                <li class="edit_right">
+                    <select id="zheou_min_height" name="zheou_min_height" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $heightArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['zheou_min_height'] == $value}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->                
+                    </select>
+                </li>
+                <li style="margin-left: 20px;margin-right: 20px">{lang tom_xiangqin:edit_zhi} </li>
+                <li class="edit_right">
+                    <select id="zheou_max_height" name="zheou_max_height" class="edit_select" style="direction: inherit">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $heightArray $key $value}-->
+                        <option value="{$value}" <!--{if $__Xiangqin['zheou_max_height'] == $value}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+                <li style="font-size:.9em;">CM</li>
+            </ul>
+            <ul class="edit_change" style="display:none;">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_proince_area}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="zheou_province_id" id="zheou_province_id" onchange="getzheouCity();">
+                        <option value="0">{lang tom_xiangqin:edit_province}</option>
+                        <!--{loop $zheouprovinceList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['zheou_province_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change" style="display:none;">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edit_city_area}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select class="edit_select" name="zheou_city_id" id="zheou_city_id" onchange="getzheouArea();">
+                        <option value="0">{lang tom_xiangqin:edit_city}</option>
+                        <!--{loop $zheoucityList $key $value}-->
+                        <option value="{$value['id']}" <!--{if $__Xiangqin['zheou_city_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                        <!--{/loop}-->
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:martial}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="zheou_marital_id" id="zheou_marital_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $maritalArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['zheou_marital_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                        <option value="99" <!--{if $__Xiangqin['zheou_marital_id'] == 99}-->selected<!--{/if}-->>{lang tom_xiangqin:martial_99}</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:minzu}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="zheou_minzu_id" id="zheou_minzu_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $minzuArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['zheou_minzu_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                        <option value="99" <!--{if $__Xiangqin['zheou_minzu_id'] == 99}-->selected<!--{/if}-->>{lang tom_xiangqin:minzu_99}</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="edit_change select">
+                <li class="left">
+                    <label class="edit_label"><span style="color: red">*</span>{lang tom_xiangqin:edu}<i class="required-sign"></i></label>
+                </li>
+                <li class="edit_right">
+                    <select name="zheou_edu_id" id="zheou_edu_id" class="edit_select">
+                        <option value="0">{lang tom_xiangqin:qingxuanze}</option>
+                        <!--{loop $eduArray $key $value}-->
+                        <option value="{$key}" <!--{if $__Xiangqin['zheou_edu_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                        <!--{/loop}-->
+                        <option value="99" <!--{if $__Xiangqin['zheou_edu_id'] == 99}-->selected<!--{/if}-->>{lang tom_xiangqin:edu_99}</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="weui-cell">
+                <div class="weui-cell__bd" style="padding:10px;"> 
+                    <textarea class="edit_content" name="zheou_desc" id="zheou_desc" placeholder="{lang tom_xiangqin:edit_qita_yaoqiu}" style="height:70px;">{$__Xiangqin['zheou_desc']}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="edit_kongge"></div>
+        <div class="edit_border">
+            <div class="edit_info">{lang tom_xiangqin:edit_describe}</div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd" style="padding:10px;">
+                    <textarea class="edit_content" name="describe" id="describe" placeholder="{lang tom_xiangqin:edit_love_hobby}" style="height:70px;">{$__Xiangqin['describe']}</textarea>
+                    <ul class="edit_hobby clearfix" style="padding-bottom:80px;">
+                        <!--{loop $hobby_listTmpArr $key $value}-->
+                        <li class="edit_color_{$key}"><span><input class="edit_love_{$key}" type="button" name="Submit" onclick="AcceptData('{$value}')" value="{$value}" /></span></li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="act" value="saveInfo">
+        <input type="hidden" name="formhash" value="{$formhash}">
+        <div class="edit_border" style="margin-bottom:70px;">
+            <div class="edit_info">{lang tom_xiangqin:edit_yinsi}</div>
+            <div class="weui-cells weui-cells_checkbox" style="display: flex;background:none;padding-bottom: 10px;border-bottom: 1px solid rgb(0, 0, 0,0.07);margin: 0px 10px;">
+               <div class="edit_font">{lang tom_xiangqin:edit_isopen_contact}</div>
+               <label class="weui-cell weui-check__label" style="float:right;width:80px;">
+                   <div class="weui-cell__hd">
+                       <input type="radio" class="weui-check" name="is_open" id="is_open_1" <!--{if $__Xiangqin['is_open'] == 1}--> checked  <!--{/if}--> value="1">
+                       <i class="weui-icon-checked"></i>
+                   </div>
+                   <div class="weui-cell__bd">
+                       <p>{lang tom_xiangqin:edit_open_contact}</p>
+                   </div>
+               </label>
+               <label class="weui-cell weui-check__label" style="float:right;width:80px;margin-right:10px;">
+                   <div class="weui-cell__hd">
+                       <input type="radio" name="is_open" id="is_open_0" class="weui-check" <!--{if $__Xiangqin['is_open'] == 0}--> checked  <!--{/if}--> value="0">
+                       <i class="weui-icon-checked"></i>
+                   </div>
+                   <div class="weui-cell__bd">
+                       <p>{lang tom_xiangqin:edit_close_contact}</p>
+                   </div>
+               </label>
+           </div>
+            <div class="edit_xieyi">
+                <div class="xieyi_left">
+                    <span class="left">{lang tom_xiangqin:edit_xieyi}</span>
+                    <a class="search_pic open-popups" data-target="#xieyi-box" href="javascript:void(0);"><span class="right">{lang tom_xiangqin:edit_chakan}</span></a>
+                </div>
+                <div class="weui-cells weui-cells_checkbox" style="width:165px;background:#fff;">
+                    <label class="weui-cell weui-check__label" for="checked">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="checked" checked="checked">
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>{lang tom_xiangqin:edit_agree}</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="edit_footer" id="button_content">
+    {lang tom_xiangqin:edit_submit}
+</div>
+<div id="dialogs">
+    <!--{if $showMustPhoneRz == 1}-->
+    <div class="js_dialog" id="must_phone">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__bd">{lang tom_xiangqin:must_phone_rz_msg}</div>
+            <div class="weui-dialog__ft">
+                <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_primary"><font color="#fd0d0d">{lang tom_xiangqin:must_phone_rz_btn}</font></a>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+</div>
+<div class="must_xieyi none">
+    <div class="xieyi_quanbu">
+        <div class="xieyi_box">
+            <div class="xieyi_msg">{lang tom_xiangqin:edit_must_xieyi_msg}</div>
+        </div>
+        <div class="xieyi_quxiao">{lang tom_xiangqin:edit_know}</div>
+    </div>
+</div>
+<script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    $('input[type=radio][name=is_open]').change(function() {
+        if(this.value == '0') {
+            layer.open({
+                content: '<font color="#fd0d0d">{lang tom_xiangqin:edit_is_open_sure_msg}</font>'
+                ,btn: ['{lang tom_xiangqin:edit_is_open_sure_ok}', '{lang tom_xiangqin:edit_is_open_sure_no}']
+                ,yes: function(index){
+                    $("#is_open_0").prop("checked",false);
+                    $("#is_open_1").prop("checked",true);
+                    layer.close(index);
+                }
+            });
+        }
+    });
+});
+
+var max_photo_num   = "{$xiangqinConfig['pic_num']}";
+max_photo_num       = max_photo_num*1;
+var li_i = 1;
+
+ $("#button_content").click( function () { 
+    var xm                  = $("#xm").val();
+    var birthday            = $("#birthday").val();
+    var height              = $("#height").val();
+    var weight              = $("#weight").val();
+    var xingzuo_id          = $("#xingzuo_id").val();
+    var shuxiang_id         = $("#shuxiang_id").val();
+    var xuexing_id          = $("#xuexing_id").val();
+    var minzu_id            = $("#minzu_id").val();
+    var job                 = $("#job").val();
+    var tel                 = $("#tel").val();
+    var edu_id              = $("#edu_id").val();
+    var marital_id          = $("#marital_id").val();
+    var child_id            = $("#child_id").val();
+    var wx                  = $("#wx").val();
+    var qq                  = $("#qq").val();
+    var shouru              = $("#shouru").val();
+    var house_id            = $("#house_id").val();
+    var che_id              = $("#che_id").val();
+    var zheou_min_age       = $("#zheou_min_age").val();
+    var zheou_max_age       = $("#zheou_max_age").val();
+    var zheou_marital_id    = $("#zheou_marital_id").val();
+    var zheou_min_height    = $("#zheou_min_height").val();
+    var zheou_max_height    = $("#zheou_max_height").val();
+    var zheou_minzu_id      = $("#zheou_minzu_id").val();
+    var zheou_edu_id        = $("#zheou_edu_id").val();
+    var province_id         = $("#province_id").val();
+    var city_id             = $("#city_id").val();
+    var hjprovince_id       = $("#hjprovince_id").val();
+    var hjcity_id           = $("#hjcity_id").val();
+    var zheou_province_id   = $("#zheou_province_id").val();
+    var zheou_city_id       = $("#zheou_city_id").val();
+    var checked             =document.getElementById("checked");
+    if(checked.checked==true){
+    }else{
+        $('.must_xieyi').removeClass("none");
+        return false
+    }
+    
+    var p_length = $(".edit_upload #uploaderFiles li").length;
+    if(p_length < 1){
+        tusi("{lang tom_xiangqin:edit_must_photo_msg}");
+        return false;
+    }
+    
+    if(xm == ""){
+        tusi("{lang tom_xiangqin:edit_must_xm_msg}");
+        return false;
+    }
+    if(birthday == "0-0-0"){
+        tusi("{lang tom_xiangqin:edit_must_birthday_msg}");
+        return false;
+    }
+    if(height == 0){
+        tusi("{lang tom_xiangqin:edit_must_height_msg}");
+        return false;
+    }
+    if(weight == 0){
+        tusi("{lang tom_xiangqin:edit_must_weight_msg}");
+        return false;
+    }
+    if(minzu_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_minzu_msg}");
+        return false;
+    }
+    if(job == ""){
+        tusi("{lang tom_xiangqin:edit_must_job_msg}");
+        return false;
+    }
+    if(edu_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_edu_msg}");
+        return false;
+    }
+    if(marital_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_martial_msg}");
+        return false;
+    }
+    if(child_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_child_msg}");
+        return false;
+    }
+    if(tel == ""){
+        tusi("{lang tom_xiangqin:edit_must_tel_msg}");
+        return false;
+    }
+    if(wx == ""){
+        tusi("{lang tom_xiangqin:edit_must_wx_msg}");
+        return false;
+    }
+    if(qq == ""){
+        //tusi("{lang tom_xiangqin:edit_must_qq_msg}");
+        //return false;
+    }
+    if(shouru == ""){
+        tusi("{lang tom_xiangqin:edit_must_shouru_msg}");
+        return false;
+    }
+    if(house_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_house_msg}");
+        return false;
+    }
+    if(che_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_che_msg}");
+        return false;
+    }
+    if(zheou_min_age == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_age_msg}");
+        return false;
+    }
+    if(zheou_max_age == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_age_msg}");
+        return false;
+    }
+    if(zheou_marital_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_martial_msg}");
+        return false;
+    }
+    if(zheou_min_height == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_height_msg}");
+        return false;
+    }
+    if(zheou_max_height == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_height_msg}");
+        return false;
+    }
+    if(zheou_minzu_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_minzu_msg}");
+        return false;
+    }
+    if(zheou_edu_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_zheou_edu_msg}");
+        return false;
+    }
+    if(province_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_province_msg}");
+        return false;
+    }
+    if(city_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_city_msg}");
+        return false;
+    }
+    if(hjprovince_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_hjprovince_msg}");
+        return false;
+    }
+    if(hjcity_id == 0){
+        tusi("{lang tom_xiangqin:edit_must_hjcity_msg}");
+        return false;
+    }
+    if(zheou_province_id == 0){
+        //tusi("{lang tom_xiangqin:edit_must_zheou_province_msg}");
+        //return false;
+    }
+    if(zheou_city_id == 0){
+        //tusi("{lang tom_xiangqin:edit_must_zheou_city_msg}");
+        //return false;
+    }
+   
+     $.ajax({
+        type: "POST",
+        url: "{$saveUrl}",
+        data: $('#add_form').serialize(),
+        success: function(msg){
+            tusi("{lang tom_xiangqin:edit_add_success}");
+            setTimeout(function(){window.location.href='{$backUrl}';},188);
+        }
+    });
+});
+
+function getCity(){
+  var province_id = $("#province_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=city&pid="+province_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            
+            var cityHtml = '<option value="0">{lang tom_xiangqin:quanbu_city}</option>';
+            $.each(json,function(k,v){
+                cityHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#city_id").html(cityHtml);
+            $("#city_id").show();
+        }
+    });
+}   
+
+function getArea(){
+  var city_id = $("#city_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=area&pid="+city_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_xiangqin:quanbu_area}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#area_id").html(areaHtml);
+            $("#area_id").show();
+        }
+    });
+}
+
+
+function getTowns(){
+  var area_id = $("#area_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=towns&pid="+area_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_xiangqin:quanbu_towns}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#towns_id").html(areaHtml);
+            $("#towns_id").show();
+        }
+    });
+}
+
+function gethjCity(){
+  var province_id = $("#hjprovince_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=city&pid="+province_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var cityHtml = '<option value="0">{lang tom_xiangqin:quanbu_city}</option>';
+            $.each(json,function(k,v){
+                cityHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjcity_id").html(cityHtml);
+            $("#hjcity_id").show();
+        }
+    });
+}   
+
+function gethjArea(){
+  var city_id = $("#hjcity_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=area&pid="+city_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_xiangqin:quanbu_area}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjarea_id").html(areaHtml);
+            $("#hjarea_id").show();
+        }
+    });
+}
+
+function gethjTowns(){
+  var hjarea_id = $("#hjarea_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=towns&pid="+hjarea_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_xiangqin:quanbu_towns}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjtowns_id").html(areaHtml);
+            $("#hjtowns_id").show();
+        }
+    });
+}
+
+function getzheouCity(){
+  var zheou_province_id = $("#zheou_province_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=city&pid="+zheou_province_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            
+            var cityHtml = '<option value="0">{lang tom_xiangqin:quanbu_city}</option>';
+            $.each(json,function(k,v){
+                cityHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#zheou_city_id").html(cityHtml);
+            $("#zheou_city_id").show();
+        }
+    });
+}   
+
+function getzheouArea(){
+  var zheou_city_id = $("#zheou_city_id").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=area&pid="+city_id,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_xiangqin:quanbu_area}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#zheou_area_id").html(areaHtml);
+            $("#zheou_area_id").show();
+        }
+    });
+}
+
+$(".date").mobiscroll().date({
+    lang: "zh",
+    cancelText: "{lang tom_xiangqin:edit_quxiao}",
+    dateFormat: 'yyyy-mm-dd',
+    beginYear: '1949',
+    endYear: new Date().getFullYear() - 18
+});
+
+</script>
+<script>
+function del_picurl(photoId) {
+    $.ajax({
+        type: "GET",
+        url: "{$delPhotoUrl}",
+        data: { act:"del_photo",photoId:photoId,formhash:"{$formhash}"},
+        dataType:"JSON",
+        success: function (data) {
+            tusi("{lang tom_xiangqin:edit_picurl_del_succ_msg}");
+            $('#picurl-' + photoId ).remove();
+            setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+        }
+    });
+}
+
+function avatar(photoId) {
+    $.ajax({
+        type: "GET",
+        url: "{$setAvatarUrl}",
+        data: { act:"avatar",photoId:photoId,formhash:"{$formhash}"},
+        dataType:"JSON",
+        success: function (data) {
+            tusi("{lang tom_xiangqin:edit_set_avatar_ok}");
+            setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+        }
+    });
+}
+
+$('.edit_box1').on('click', function() { 
+    $('.edit_box1').addClass('color');
+    $('.edit_box2').removeClass('color');
+});
+$('.edit_box2').on('click', function() {
+    $('.edit_box2').addClass('color');
+    $('.edit_box1').removeClass('color');
+});
+
+$('.xieyi_quxiao').on('click', function(){ 
+    $('.must_xieyi').addClass('none');
+});
+</script>
+ <script language="javascript">
+ function AcceptData(msg){
+     if(document.getElementById("describe").value == ''){
+         document.getElementById("describe").value+=msg;
+     }else{
+         document.getElementById("describe").value+=','+msg;
+     }
+ }
+ 
+$('.edit_sex.man').on('click', function() { 
+    $(this).addClass('yanse');
+    $('.edit_sex.woman').removeClass('yanse');
+});
+$('.edit_sex.woman').on('click', function() { 
+    $(this).addClass('yanse');
+    $('.edit_sex.man').removeClass('yanse');
+});
+
+function phone_tishi(){
+    layer.open({
+        content: '{lang tom_xiangqin:edit_phone_msg}'
+        ,btn: '{lang tom_xiangqin:subscribe_ok}'
+    });
+}
+
+ </script>
+<!--{if $__IsWeixin == 1 && $xiangqinConfig['open_many_pic_upload'] == 1}-->
+{template tom_xiangqin:wx_upload}
+<!--{else}-->
+{template tom_xiangqin:upload}
+<!--{/if}-->
+</body>
+</html>

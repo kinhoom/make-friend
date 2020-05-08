@@ -1,0 +1,221 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_xiangqin:my_data}-{$xiangqinConfig['plugin_name']}</title>
+<script src="source/plugin/tom_xiangqin/images/jquery.js" type="text/javascript"></script>
+<link href="source/plugin/tom_xiangqin/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_xiangqin/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_xiangqin/images/mobiscroll.custom-2.16.1.min.css" rel="stylesheet">
+<link rel="stylesheet" href="source/plugin/tom_xiangqin/images/iconfont/iconfont.css?v={$cssJsVersion}" />
+<script src="source/plugin/tom_xiangqin/images/mobiscroll.custom-2.16.1.min.js" type="text/javascript"></script>
+<script src="source/plugin/tom_xiangqin/images/edit.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+body{background:#fff;}
+</style>
+</head>
+<body>
+<div class="my_top_avatar">
+    <div class="my_middle_left">
+        <div class="touxiang">
+            <!--{if $__Xiangqin['is_ok'] == 1}-->
+            <img src="{$pic_url}">
+            <!--{else}-->
+            <img src="{$__UserInfo['avatar']}">
+            <!--{/if}-->
+        </div>
+        <div class="my_middle_right">
+            <p>
+                <!--{if $__Xiangqin['is_ok'] == 1}-->
+                <span class="xm">{$__Xiangqin['xm']}</span>
+                <!--{else}-->
+                <span class="xm">{$__UserInfo['nickname']}</span>
+                <!--{/if}-->
+                <a href="plugin.php?id=tom_xiangqin&mod=edit"><span class="edit">{lang tom_xiangqin:my_edit}</span></a>
+            </p>
+            <!--{if $__Xiangqin['vip_id'] < 1}-->
+            <p class="grade">{lang tom_xiangqin:vip_ip_0}</p>
+            <!--{else}-->
+            <p class="grade">{$vipInfo['name']}</p>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>
+<div class="my_border" style="height:10px;background:#f7f7f7;"></div>
+<div class="my_list">
+	<ul>
+		<li class="wu">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_no" style="font-size: 18px;"></i></font>{lang tom_xiangqin:my_user_id}
+            <!--{if $__Xiangqin['is_ok'] == 1}-->
+            <span class="user_no">{$__Xiangqin['user_no']}</span>
+            <!--{else}-->
+            <span class="user_no">-</span>
+            <!--{/if}-->
+        </li>
+        <!--{if $jyConfig['open_tel_renzheng'] == 1}-->
+		<li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_photo" ></i></font>{lang tom_xiangqin:my_shouji_rz}<span></span>
+            <!--{if $__UserInfo['phone_renzheng'] == 1}-->
+            <a href="{$phoneUrl}"><span class="red right">{lang tom_xiangqin:my_yes_renzheng}</span></a>
+            <!--{else}-->
+            <a href="{$phoneUrl}"><span class="red right">{lang tom_xiangqin:my_no_renzheng}</span></a>
+            <!--{/if}-->
+        </li>
+        <!--{/if}-->
+        <!--{if $xiangqinConfig['open_sfz_renzheng'] == 1}-->
+		<li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_photo" ></i></font>{lang tom_xiangqin:my_sfz_rz}<span></span>
+            <!--{if $__UserInfo['renzheng'] == 1}-->
+            <a href="{$sfzUrl}"><span class="red right">{lang tom_xiangqin:my_yes_renzheng}</span></a>
+            <!--{else}-->
+            <a href="{$sfzUrl}"><span class="red right">{lang tom_xiangqin:my_no_renzheng}</span></a>
+            <!--{/if}-->
+        </li>
+        <!--{/if}-->
+		<li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_vip"></i></font>VIP
+            <a href="plugin.php?id=tom_xiangqin&mod=vip"><!--{if $vip_time < $now_time}--><span class='red right'>{lang tom_xiangqin:my_open_vip}</span><!--{else}--><span class="red right">{lang tom_xiangqin:my_expiration_date}{lang tom_xiangqin:fenhao} {$vip_time}<!--{/if}--></span></a>
+        </li>
+		<li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_top"></i></font>{lang tom_xiangqin:my_gotop}
+            <!--{if $__Xiangqin['is_ok'] == 1}-->
+            <a href="plugin.php?id=tom_xiangqin&mod=top"><!--{if $top_time < $now_time}--><span class="red">{lang tom_xiangqin:my_add_gailv}</span><!--{else}--><span class="red right">{lang tom_xiangqin:my_expiration_date}{lang tom_xiangqin:fenhao} {$top_time}<!--{/if}--></span></a>
+            <!--{else}-->
+            <a href="plugin.php?id=tom_xiangqin&mod=edit"><!--{if $top_time < $now_time}--><span class="red">{lang tom_xiangqin:my_add_gailv}</span><!--{else}--><span class="red right">{lang tom_xiangqin:my_expiration_date}{lang tom_xiangqin:fenhao} {$top_time}<!--{/if}--></span></a>
+            <!--{/if}-->
+        </li>
+        <li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-tcicon-xiangqin_my_card" style="font-size: 18px;"></i></font>{lang tom_xiangqin:my_xiangqin_card}
+            <!--{if $__Xiangqin['is_ok'] == 1}-->
+            <a href="plugin.php?id=tom_xiangqin&mod=mycard"><span class="red">{lang tom_xiangqin:my_shengcheng_card}</span></a>
+            <!--{else}-->
+            <a href="plugin.php?id=tom_xiangqin&mod=edit"><span class="red">{lang tom_xiangqin:my_shengcheng_card}</span></a>
+            <!--{/if}-->
+        </li>
+        <!--{if $xiangqinConfig['open_qianxian_pay'] == 1}-->
+        <li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_qianxian" style="font-size: 18px;"></i></font>{lang tom_xiangqin:qianxian_title}
+            <a href="plugin.php?id=tom_xiangqin&mod=qianxian"><span class="red">{lang tom_xiangqin:vip_money_sign}{$qianxian_moneyArr[0]}</span></a>
+        </li>
+        <!--{/if}-->
+	</ul>
+</div>
+<div class="my_border" style="height:10px;background:#f7f7f7;"></div>
+<div class="my_list">
+	<ul>
+        <li class="fuhao">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_edit"></i></font>{lang tom_xiangqin:my_information}
+            <a href="plugin.php?id=tom_xiangqin&mod=edit"><span class="content">{lang tom_xiangqin:my_edit_info}</span></a>
+        </li>
+        <!--{if $noReadTzNum > 0}-->
+		<li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_tz" ></i></font>{lang tom_xiangqin:my_noread_tz1}<font color="#fd0d0d">{$noReadTzNum}</font>{lang tom_xiangqin:my_noread_tz2}<span></span>
+            <a href="plugin.php?id=tom_love&mod=sms&act=tzlist&do_from=xiangqin"><span class="red right">{lang tom_xiangqin:my_noread_tz_btn}</span></a>
+        </li>
+        <!--{else}-->
+        <li class="color">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_tz" ></i></font>{lang tom_xiangqin:my_noread_tz}<span></span>
+            <a href="plugin.php?id=tom_love&mod=sms&act=tzlist&do_from=xiangqin"><span class="content">{lang tom_xiangqin:my_noread_tz_btn}</span></a>
+        </li>
+        <!--{/if}-->
+        <li class="fuhao">
+            <font class="iconfont" style="padding-right:5px;"><i class="tciconfont tcicon-xiangqin_my_shouchang"></i></font>{lang tom_xiangqin:my_collect}
+            <a href="plugin.php?id=tom_xiangqin&mod=collect"><span class="content">{lang tom_xiangqin:my_collect_gotop}</span></a>
+        </li>
+        <!--{if $xiangqinConfig['closed_all_tel'] == 0}-->
+        <li class="fuhao">
+            <font class="iconfont" style="padding-right:5px;">
+                <i class="tciconfont tcicon-xiangqin_my_yanjing" style="font-size: 11px;"></i>
+            </font>{lang tom_xiangqin:my_is_opentel}
+            <!--{if $__Xiangqin['closed'] == 1}-->
+            <span class="content" onClick="opend({$__Xiangqin['id']});">{lang tom_xiangqin:my_no_opentel}</span>
+            <!--{else}-->
+            <span class="content" onClick="closed({$__Xiangqin['id']});">{lang tom_xiangqin:my_yes_closetel}</span>
+            <!--{/if}-->
+        </li>
+        <!--{/if}-->
+    </ul>
+</div>
+{template tom_xiangqin:footer}
+<script>
+function opend(xiangqin_id) {
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxOpenUrl}",
+        data: {xiangqin_id:xiangqin_id,formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data.status == 200){
+               tusi("{lang tom_xiangqin:my_open_phone}");
+               setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else{
+               tusi("{lang tom_xiangqin:index_yichang_msg}");
+            }
+        }
+    });
+}
+
+function closed(xiangqin_id) {
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxCloseUrl}",
+        data: {xiangqin_id:xiangqin_id,formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data.status == 200){
+               tusi("{lang tom_xiangqin:my_closed_phone}");
+               setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }else{
+               tusi("{lang tom_xiangqin:index_yichang_msg}");
+            }
+        }
+    });
+}
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

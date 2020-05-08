@@ -1,0 +1,381 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/newstyle.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/swiper.min.css?v={$cssJsVersion}" rel="stylesheet" />
+<script type="text/javascript" src="source/plugin/tom_love/images/swiper.min.js"></script>
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">var commonjspath = 'source/plugin/tom_love/images';</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/global.js?v={$cssJsVersion}"></script>
+<style>
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+<!--{if $__Android == 1}-->
+.new-list .item .right .topInfo .name p{padding-top: 2px;}
+<!--{/if}-->
+</style>
+</head>
+<body id="index_body">
+<section id="header">
+    <!--{if $slideList}-->
+	<div class="slide-box swiper-container">
+		<div class="slide-list swiper-wrapper clearfix">
+            <!--{loop $slideList $key $value}-->
+			<div class="item-area swiper-slide">
+                <a href="{$value['link']}">
+                	<img src="{$value['picurl']}" title="{$value['title']}">
+                </a>
+            </div>
+            <!--{/loop}-->
+		</div>
+        <div class="swiper-pagination"></div>
+	</div>
+    <!--{/if}-->
+</section>
+<div class="information">
+    <img src="source/plugin/tom_love/images/data.gif">
+    <span class="mingchen">{lang tom_love:index_huiyuanshu}<span class="number">{$userNumTxt}<!--{if $userNum > 10000}-->{lang tom_love:index_wan}<!--{/if}--></span></span>
+    <span class="mingchen">{lang tom_love:index_liulanliang}<span class="number">{$clicksNumTxt}<!--{if $clicksNum > 10000}-->{lang tom_love:index_wan}<!--{/if}--></span></span>
+</div>
+<section id="nav">
+	<div class="nav-list clearfix">
+        <!--{if $__ShowXiangqin == 1}-->
+        <a href="plugin.php?id=tom_xiangqin&mod=index">
+			<img src="source/plugin/tom_love/images/nav_xiangqin.png">
+			<h6>{lang tom_xiangqin:love_nav_title}</h6>
+		</a>
+        <a href="plugin.php?id=tom_love&mod=list&sex=2">
+			<img src="source/plugin/tom_love/images/nav_s13_nv.png">
+			<h6>{lang tom_love:index_nav_nvyou}</h6>
+		</a>
+        <!--{else}-->
+        <a href="plugin.php?id=tom_love&mod=list&sex=2">
+			<img src="source/plugin/tom_love/images/nav_s13_nv.png">
+			<h6>{lang tom_love:index_nav_nvyou}</h6>
+		</a>
+		<a href="plugin.php?id=tom_love&mod=list&sex=1">
+			<img src="source/plugin/tom_love/images/nav_s13_nan.png">
+			<h6>{lang tom_love:index_nav_nanyou}</h6>
+		</a>
+        <!--{/if}-->
+		<a href="plugin.php?id=tom_love&mod=shuoshuo">
+			<img src="source/plugin/tom_love/images/nav_s13_gc.png">
+			<h6>{lang tom_love:index_nav_shuoshuo}</h6>
+		</a>
+		<!--{if $jyConfig['flowers_goods_switch'] == 0}-->
+        <!--{if $jyConfig['open_tel_renzheng'] == 1}-->
+        <a href="plugin.php?id=tom_love&mod=list&phone_renzheng=1">
+			<img src="source/plugin/tom_love/images/nav_s13_rz.png">
+			<h6>{lang tom_love:index_nav_vip}</h6>
+		</a>
+        <!--{else}-->
+        <a href="plugin.php?id=tom_love&mod=list&renzheng=1">
+			<img src="source/plugin/tom_love/images/nav_s13_rz.png">
+			<h6>{lang tom_love:index_nav_vip}</h6>
+		</a>
+        <!--{/if}-->
+        <!--{elseif $jyConfig['flowers_goods_switch'] == 1}-->
+		<a href="plugin.php?id=tom_love&mod=shop">
+			<img src="source/plugin/tom_love/images/nav_s13_flowers_shop.png">
+			<h6>{lang tom_love:index_nav_flowers_shop}</h6>
+		</a>
+        <!--{/if}-->
+		<a href="plugin.php?id=tom_love&mod=phb">
+			<img src="source/plugin/tom_love/images/nav_s13_phb.png">
+			<h6>{lang tom_love:index_nav_phb}</h6>
+		</a>
+	</div>
+</section>
+<section id="main">
+	<div class="marquee">
+		<div id="title">
+			<ul>  
+                <li><a href="plugin.php?id=tom_love&mod=article&aid=3">{$jyConfig['index_gonggao_msg']}</a></li>  
+                <li><a href="plugin.php?id=tom_love&mod=article&aid=1">{$jyConfig['love_aboutus']}</a></li>
+            </ul>  
+		</div>
+	</div>
+    <!--{if $jyConfig['index_adbox_1']}-->
+    <div class="guangao_list clearfix">
+        <div class="guangao_list_box clearfix">
+            {$jyConfig['index_adbox_1']}
+        </div>
+    </div>
+    <!--{/if}-->
+	<div class="wonderful">
+		<div class="wonder-title clearfix">
+			<span class="w-left">{lang tom_love:index_topic}</span>
+			<a href="plugin.php?id=tom_love&mod=shuoshuo" class="w-right">{lang tom_love:index_shuoshuo_more}</a>
+		</div>
+		<div class="wonder-content">
+			<!--{loop $ssList $key $value}-->
+            <div class="human-list clearfix">
+                <a href="plugin.php?id=tom_love&mod=shuoshuo">
+                    <div class="toux"><img src="{$value['userinfo']['avatar']}" class="lazy"></div>
+                    <div class="content">
+                        <div class="u-name">
+                            <!--{if $value['userinfo']['sex'] == 1}--><span class="man"> </span><!--{/if}-->
+                            <!--{if $value['userinfo']['sex'] == 2}--><span class="woman"> </span><!--{/if}-->
+                            <span class="nickname">{$value['userinfo']['nickname']}</span>&nbsp;
+                            <!--{if ($value['userinfo']['subscribe'] == 0) && ($jyConfig['open_subscribe'] == 1)}--><span class="online_no">{lang tom_love:online_no}</span><!--{elseif ($value['userinfo']['subscribe'] == 1) && ($jyConfig['open_subscribe'] == 1)}--> <span class="online_ok">{lang tom_love:online_ok}</span><!--{/if}-->
+                            <span class="date-time"><!--{date($value[ss_time], 'u')}--></span>
+                        </div>
+                        <div class="u-xy">{$value['content']}</div>
+                    </div>
+                </a>
+			</div>
+            <!--{/loop}-->
+		</div>
+	</div>
+	<!--{if $jyConfig['index_adbox_2']}-->
+    <section class="guangao_list clearfix">
+        <div class="guangao_list_box clearfix">
+            {$jyConfig['index_adbox_2']}
+        </div>
+    </section>
+    <!--{/if}-->
+	<div class="list">
+		<div class="list-title">
+            <ul>
+                <li class="on">{lang tom_love:index_remomed}</li>
+                <li>{lang tom_love:index_new}</li>
+                <li>{lang tom_love:index_flower}</li>
+                <li>{lang tom_love:index_anlian}</li>
+                <li>{lang tom_love:index_score}</li>
+            </ul>
+		</div>
+        <!--{if $jyConfig['open_index_biglist'] == 1}-->
+        <div class="new-list clearfix list_padding" id="index-list" style="min-height: 400px;"></div>
+        <!--{else}-->
+        <div class="new-list clearfix" id="index-list" style="min-height: 400px;"></div>
+        <!--{/if}-->
+        <div style="display: none;" id="load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_jiazaiing}</p></div>
+        <div style="display: none;" id="no-load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_more}</p></div>
+        <div style="display: none;" id="no-list-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_love:list_no_list}</p></div>
+	</div>    
+</section>
+<!--{if $show_guanzu_box == 1}-->
+<section id="subscribe">
+    <div class="subscribe_box">
+        <span>{lang tom_love:subscribe_title}</span>
+        <div class="right">
+            <div class="guanzu_show"><a href="javascript:void(0);" onClick="subscribe();">{lang tom_love:subscribe_guanzu}</a></div>
+            <div class="guanzu_close" onClick="closeSubscribe();">{lang tom_love:subscribe_close}</div>
+        </div>
+    </div>
+</section>
+<!--{/if}-->
+<div class="site-float">
+    <span class="img-dialog" onclick="dingyue();"> {lang tom_love:index_guanzu} <i></i> {lang tom_love:index_us} </span>
+</div>
+<!-- footer start-->
+{template tom_love:footer}
+<i id="go-top" style="display: none;"></i>
+<!-- footer end-->
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+});
+
+$(".list-title ul li").click(function(){
+    var index = $(this).index();
+    $(this).addClass('on').siblings(this).removeClass('on');
+    index = index + 1;
+    loadPage = 1;
+    loadList(1,index);
+});
+
+var loadPage = 1;
+var loadType = 1;
+function indexLoadList(){
+    loadPage = 1;
+    loadType = 1;
+    loadList(1,1);
+}
+
+var loadListStatus = 0;
+var no_list_html = $("#no-list-html").html();
+var load_html = $("#load-html").html();
+function loadList(Page,Type) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadType = Type;
+    loadListStatus = 1;
+    $("#index-list").html(load_html);
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadListUrl}",
+        data: {page:Page,index_type:Type},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#index-list").html(no_list_html);
+                return false;
+            }else{
+                loadPage += 1;
+                $("#index-list").html(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+   indexLoadList();
+});
+
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+        scrollLoadList();
+    }
+    if ((scrollTop + windowHeight) >= 1000) {
+        $('#go-top').show();
+    }else{
+        $('#go-top').hide();
+    }
+});
+
+$(document).on('click','#go-top', function () {
+    $('body,html').animate({scrollTop: 0}, 500);
+    return false;
+});
+
+function scrollLoadList() {
+    if(loadListStatus == 1){
+        return false;
+    }
+    if(loadPage > 50){
+        return false;
+    }
+    $('#load-html').show();
+	$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadListUrl}",
+        data: {page:loadPage,index_type:loadType},
+        success: function(msg){
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $("#index-list").append(data);
+            }
+        }
+    });
+}
+
+function closeSubscribe(){
+    $('#subscribe').hide();
+    $.get("{$subscribeUrl}");
+}
+
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:subscribe_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+function dingyue(){
+    layer.open({
+        content: '<img src="{$jyConfig['dingyue_qrcode']}"><p>{lang tom_love:dingyue_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.get("{$vipUpdateUrl}");
+  $.get("{$recUpdateUrl}");
+  $.get("{$ajaxClicksUrl}");
+});
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+<script>
+$(function() {
+    setInterval(function() {
+        var e = $("#title ul");
+        e.scrollTo({
+            to: e.find("li").eq(0).height(),
+            durTime: 800,
+            delay: 80,
+            callback: function() {
+                var a = e.find("li").eq(0),
+                i = a.clone(!0);
+                e.scrollTop(0),
+                a.remove(),
+                e.append(i)
+            }
+        })
+    },
+    2e3)
+});
+
+</script>
+</body>
+</html>

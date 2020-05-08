@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:phone_title}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+<!--{if $phone_from == 'xiangqin'}-->
+.header_style2{background-color: #2AD2BD;}
+.phone_form_btn a{background-color: #2AD2BD;}
+<!--{/if}-->
+</style>
+<base target="_self">
+</head>
+<body>
+<header class="header_style2 clearfix">
+    <!--{if $phone_from == 'xiangqin'}-->
+    <a href="{$phone_back}">{lang tom_love:back}</a>
+    <!--{else}-->
+    <a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+    <!--{/if}-->
+	<h1>{lang tom_love:phone_title}</h1>
+</header>
+<section class="renzheng_box clearfix">
+	<div class="renzheng_form_box from_class clearfix">
+    	<form id="phone_form">
+        <table>
+          <colgroup><col width="25%"><col><col width="75%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>{lang tom_love:phone_tel}</td>
+              <td>
+                  <input type="text" name="tel" id="tel" value="{$__UserInfo['tel']}" placeholder="{lang tom_love:phone_tel_msg}" class="input_text">
+              </td>
+          </tr>
+          <tr>
+              <td>{lang tom_love:phone_tel_code}</td>
+              <td>
+                  <input type="text" name="tel_code" id="tel_code"  placeholder="{lang tom_love:phone_tel_code_msg}" class="input_text">
+                  <span class="huoqu" id="receive">{lang tom_love:phone_tel_sms}</span>
+              </td>
+          </tr>
+          <input type="hidden" name="act" value="save">
+          <input type="hidden" name="formhash" value="{$formhash}">
+          </tbody>
+      </table>
+      </form>
+    </div>
+    
+    <div class="id_renzheng_form_btn phone_form_btn clearfix">
+        <!--{if $__UserInfo['phone_renzheng'] == 1}-->
+    	<a href="javascript:void(0);">{lang tom_love:phone_submit_succ}</a>
+        <!--{else}-->
+        <a href="javascript:void(0);">{lang tom_love:phone_submit}</a>
+        <!--{/if}-->
+    </div>
+</section>
+    
+<script type="text/javascript">
+var submintTelStatus = 0;
+var num = 60;
+$('#receive').click(function(){
+    var tel = $('#tel').val();       
+    if(tel == '' || !checkMobile(tel)){
+        tusi("{lang tom_love:renzheng_must_tel}");
+        return false;
+    }
+    if(submintTelStatus == 1){
+        return;
+    }
+    $(this).css('background','#ccc');
+    submintTelStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$phoneUrl}",
+        data: {act:"huoqu",tel:tel,formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data.status==201){
+                tusi("{lang tom_love:renzheng_tel_error_201}");
+                return false;
+            }else if(data.status==202){
+                tusi("{lang tom_love:renzheng_tel_error_202}");
+                return false;
+            }else{   
+                setTimeout(function(){ wait()},1000);
+                $('#tel').attr('readonly', 'true');
+                tusi("{lang tom_love:renzheng_tel_succes}");
+            }
+        }
+    });
+})
+
+function wait(){
+    num--;
+    if(num>0){
+        $('#receive').html(num+'s');
+        setTimeout(function(){wait()},1000);
+    }else{
+        num = 60;
+        submintTelStatus = 0;
+        $('#receive').html('{lang tom_love:renzheng_tel_sms}');
+        $('#receive').css('background','#14DAEA');
+    }
+}
+
+var submintStatus = 0;
+
+$(".id_renzheng_form_btn").click( function () { 
+    var tel = $("#tel").val();
+    var tel_code = $("#tel_code").val();
+    if(submintStatus == 1){
+        return false;
+    }
+    if(tel == '' || !checkMobile(tel)){
+        tusi("{lang tom_love:renzheng_must_tel}");
+        return false;
+    }
+    
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$phoneUrl}",
+        data: $('#phone_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==201){
+                tusi("{lang tom_love:phone_error_201}");
+                return false;
+            }else if(data.status==202){
+                tusi("{lang tom_love:phone_error_202}");
+                return false;
+            }else if(data.status==203){
+                tusi("{lang tom_love:phone_error_203}");
+                return false;
+            }else{
+                tusi("{lang tom_love:phone_success}");
+                <!--{if $phone_back }-->
+                setTimeout(function(){window.location.href='{$phone_back}';},1888);
+                <!--{else}-->
+                setTimeout(function(){document.location.reload();},1888);
+                <!--{/if}-->
+            }
+        }
+    });
+});
+    
+
+function checkMobile(s){
+	var regu =/^[1][0-9]{10}$/;
+	var re = new RegExp(regu);
+	if (re.test(s)) {
+		return true;
+	}else{
+		return false;
+	}
+}
+
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<section class="footer_block clearfix"></section>
+<footer class="footer_main clearfix">
+	<ul class="clearfix">
+        <!--{if $_GET['mod'] == 'index' }-->
+        <li class="footer_nav_index2">
+            <a class="on" href="plugin.php?id=tom_xiangqin&mod=index&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_shouye"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_xiangqin}</section>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_xiangqin&mod=index&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_shouye"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_xiangqin}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'hongniang' }-->
+        <li class="footer_nav_index2">
+            <a class="on" href="plugin.php?id=tom_xiangqin&mod=hongniang&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_hongniang"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_hongniang}</section>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_xiangqin&mod=hongniang&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_hongniang"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_hongniang}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'vip' }-->
+        <li class="footer_nav_index2">
+            <a class="on" href="plugin.php?id=tom_xiangqin&mod=vip&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_vip"></i>
+                </font>
+                <section class="text1">VIP</section>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_xiangqin&mod=vip&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_vip"></i>
+                </font>
+                <section class="text1">VIP</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $xiangqinConfig['footer_nav_mod'] == 1 }-->
+        <li class="footer_nav_index2">
+            <a href="{$footer_nav_content_link}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-nav_link"></i>
+                </font>
+                <section class="text1">{$footer_nav_content_name}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $xiangqinConfig['footer_nav_mod'] == 2 }-->
+        <!--{if $_GET['mod'] == 'collect' }-->
+        <li class="footer_nav_index2">
+            <a class="on" href="plugin.php?id=tom_xiangqin&mod=collect&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_shouchang"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_shoucang}</section>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_xiangqin&mod=collect&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_shouchang"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_shoucang}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{if $xiangqinConfig['footer_nav_mod'] == 3 }-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_love&mod=index&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_love"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_love}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $xiangqinConfig['footer_nav_mod'] == 4 }-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_tongcheng&mod=index&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_tc"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_tc}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+        <!--{if $_GET['mod'] == 'my' }-->
+        <li class="footer_nav_index2">
+            <a class="on" href="plugin.php?id=tom_xiangqin&mod=my&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_my"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_my}</section>
+            </a>
+        </li>
+        <!--{else}-->
+        <li class="footer_nav_index2">
+            <a href="plugin.php?id=tom_xiangqin&mod=my&prand={$prand}">
+                <font class="iconfont">
+                    <i class="tciconfont tcicon-xiangqin_my"></i>
+                </font>
+                <section class="text1">{lang tom_xiangqin:nav_my}</section>
+            </a>
+        </li>
+        <!--{/if}-->
+    </ul>
+</footer>

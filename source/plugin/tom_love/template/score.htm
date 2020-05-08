@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$jyConfig['plugin_name']}</title>
+<meta name="description" content=""/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+	<h1>{$jyConfig['score_name']}{lang tom_love:score_title}</h1>
+</header>
+<div class="score-menu">
+    <div class="item"><a  href="plugin.php?id=tom_love&mod=scorepay">{lang tom_love:my_scorepay_title}</a></div>
+    <div class="item"><a class="on" href="plugin.php?id=tom_love&mod=score">{lang tom_love:my_scorebbs_title}</a></div>
+</div>
+<header class="score_box clearfix">
+	<div class="score_top_box clearfix">
+    	<figure><img src="source/plugin/tom_love/images/jinbi_ico.png"></figure>
+        <article>
+        	<header>{lang tom_love:score_my}{$jyConfig['score_name']}:</header>
+            <footer>{$__UserInfo['score']} {$jyConfig['score_name']}</footer>
+        </article>
+    </div>
+    <div class="box_both clearfix"></div>
+
+    <!--{if $jyConfig['score_recharge'] }-->
+    <div class="score_recharge_box from_class clearfix">
+    <div class="score_recharge_msg clearfix">
+    	<p>{lang tom_love:score_bind_user}{lang tom_love:score_fg}<span>{$__UserInfo['bbs_username']}</span></p>
+        <p>{lang tom_love:score_my}{$scorename}{lang tom_love:score_fg}<span>{$userBbsScore}</span></p>
+        <p>{lang tom_love:score_bili}{lang tom_love:score_fg}<span>1{$scorename}={$jyConfig['bbs_score_scale']}{$jyConfig['score_name']}</span></p>
+    </div>
+    <form id="recharge_score_form">
+        <table>
+          <colgroup><col width="25%"><col><col width="75%"><col></colgroup>
+          <tbody>
+          <tr>
+              <td>{lang tom_love:score_title}{$jyConfig['score_name']}:</td>
+              <td>
+                    <select name="bbs_score">
+                        <!--{loop $scoreArr $key $val}-->
+                        <option value="{$key}">{$val}</option>
+                        <!--{/loop}-->
+                    </select>
+                  <input type="hidden" name="formhash" value="{$formhash}">
+                  <input type="hidden" name="act" value="recharge">
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      </form>
+    </div>
+    <div class="score_recharge_btn clearfix">
+    	<a href="javascript:void(0);" onclick="recharge();">{lang tom_love:score_recharge_btn}</a>
+    </div>
+    <!--{/if}-->
+    <div class="box_both clearfix"></div>
+    <div class="score_more_box clearfix">{$scoreString}</div>
+</header>
+<script>
+var rechargeProcess = 0;
+function recharge(){
+    if(rechargeProcess == 1){
+        return false;
+    }
+    rechargeProcess = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$rechargeUrl}",
+        data: $('#recharge_score_form').serialize(),
+        error : function(){
+            tusi("{lang tom_love:score_recharge_error}");
+            setTimeout(function(){document.location.reload();},1888);
+            return false; 
+        },
+        success: function(msg){
+            rechargeProcess = 0;
+            var data = eval('('+msg+')');
+            if(data.status==200){
+                tusi("{lang tom_love:score_recharge_succ}");
+                setTimeout(function(){document.location.reload();},1888);
+            }else if(data.status==201){
+                tusi("{lang tom_love:score_recharge_no_score}");
+                setTimeout(function(){document.location.reload();},1888);
+            }else{
+                tusi("{lang tom_love:score_recharge_error}");
+                setTimeout(function(){document.location.reload();},1888);
+            }
+            
+        }
+    });
+}
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

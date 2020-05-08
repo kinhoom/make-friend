@@ -1,0 +1,40 @@
+@charset "gb2312";
+/* CSS Document */
+/******************************************* reset ******************************************/
+body,h1,h2,h3,h4,dl,dt,dd,ul,ol,li,a,div,em,span,img,form,input,p,i{ padding:0px; margin:0px; border:none;}
+body{ min-width:320px;color:#363636; font-weight:400; text-rendering: optimizelegibility; font-family:"Microsoft YaHei", Arial; background-color: #f6f6f6; }
+em,i{word-wrap: break-word;font-style:normal;}
+a{ color:#464646; text-decoration:none; }
+a:link,a:visited,a:active{color:#464646; text-decoration:none;}
+a,button,span,i,div,h2,aside{/* -webkit-user-select: none; */ -webkit-tap-highlight-color:rgba(0,0,0,0);}
+input, button, textarea, select {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+ul, ol, dl,li {list-style: none ;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block; margin:0; padding:0;}
+img{border:none; max-width:100%;vertical-align: middle;}
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+input[type="button"], input[type="text"], input[type="submit"], input[type="search"], input[type="email"], input[type="number"], input[type="phone"], button { 
+-webkit-appearance: none; -moz-appearance: none; -webkit-border-image: none; border-image: none; -webkit-border-radius: 0; border-radius: 0; }
+.clearfix:after { content: ""; display: block; height: 0; overflow: hidden; clear: both; visibility: hidden; }
+
+
+.pay_header{ background:#f7f7f7;}
+.pay_header h2{ font-size:1.2em; font-weight:500; height:45px; line-height:45px; text-align:center; position:relative; color:#000000;}
+.pay_header h2 a{ font-size:0.9em; position:absolute;top:0; left:10px; padding-left:6px; width:45px; height:45px; line-height:45px; color:#666666; background:url(back2.png) no-repeat 2px center; background-size:10px auto;}
+
+.container{ min-height: 600px; width: 100%; margin-right: auto; margin-left: auto; }
+.logo_box{ width: 100%; height: 60px; margin-right: auto; margin-left: auto; text-align: center; padding-top: 10px; padding-bottom: 10px; }
+.goods_box{ width: 100%; min-height: 150px; margin-right: auto; margin-left: auto; }
+.pay_box{ width: 100%; min-height: 50px; margin-right: auto; margin-left: auto;}
+.btn_box{ width: 90%; min-height: 50px; margin-right: auto; margin-left: auto; margin-top: 30px; }
+
+.success_box{ width: 100%; min-height: 150px; margin-right: auto; margin-left: auto;}
+.success_box_logo{ width: 90%; text-align: center; margin-right: auto; margin-left: auto; margin-top: 40px; }
+.success_box_msg{ width: 90%; text-align: center; margin-right: auto; margin-left: auto; color: #009D00; }
+.success_box_btn{ width: 60%; text-align: center; margin-right: auto; margin-left: auto; margin-top: 100px; }
+
+.fail_box{ width: 100%; min-height: 150px; margin-right: auto; margin-left: auto;}
+.fail_box_logo{ width: 90%; text-align: center; margin-right: auto; margin-left: auto; margin-top: 40px; }
+.fail_box_msg{ width: 90%; text-align: center; margin-right: auto; margin-left: auto; color: #f90000; }
+.fail_box_btn{ width: 60%; text-align: center; margin-right: auto; margin-left: auto; margin-top: 100px; }
+
+.footer_box{ width: 100%; min-height: 50px; margin-right: auto; margin-left: auto;margin-top: 50px;}

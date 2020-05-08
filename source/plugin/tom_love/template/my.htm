@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:info_title}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+    .layui-m-layer0 .layui-m-layerchild{width: 70%;}
+    .layui-m-layercont{padding: 5px 3px;}
+</style>
+</head>
+<body>
+<!--{if $myBox == 1}-->
+<header class="header_style2 clearfix" style="display:none;">
+	<h1>{lang tom_love:info_title}</h1>
+</header>
+<section class="my_box clearfix">
+	<div class="my_top_box clearfix">
+        <span class="avatar"><a href="plugin.php?id=tom_love&mod=avatar">{lang tom_love:info_avatar}</a></span>
+    	<figure><a href="plugin.php?id=tom_love&mod=avatar"><img src="{$__UserInfo['avatar']}"/></a></figure>
+        <article>
+            <header>
+                <h1 class="woman"></h1>
+                <h2>
+                    <!--{if $__UserInfo['nickname'] == ''}-->{lang tom_love:no_nickname}<!--{else}-->{$__UserInfo['nickname']}<!--{/if}-->
+                    <span class="userid">{lang tom_love:my_id_msg1}{$__UserInfo['id']}{lang tom_love:my_id_msg2}</span>
+                    <!--{if $__UserInfo['subscribe'] == 0 && $jyConfig['open_subscribe'] == 1}--><span class="online_no">{lang tom_love:online_no}</span><!--{elseif ($__UserInfo['subscribe'] == 1) && ($jyConfig['open_subscribe'] == 1)}--><span class="online_ok">{lang tom_love:online_ok}</span><!--{/if}-->
+                </h2>
+                <!--{if $__UserInfo['renzheng'] == 1}--><img src="source/plugin/tom_love/images/info_rengzheng.png" width="auto" height="16"><!--{/if}-->
+                <!--{if $__UserInfo['vip_id'] == 1}--><img src="source/plugin/tom_love/images/info_vip.png" width="16" height="auto"><!--{/if}-->
+                <!--{if $jyConfig['open_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] == 1}--><img src="source/plugin/tom_love/images/info_phone.png" width="16" height="auto"><!--{/if}-->
+            </header>
+            <section>
+                <p>{lang tom_love:sex2}<!--{if $__UserInfo['sex'] == 1}-->{lang tom_love:man},<!--{/if}--><!--{if $__UserInfo['sex'] == 2}-->{lang tom_love:woman},<!--{/if}--><!--{if $age}--> {lang tom_love:age2}{$age}<!--{/if}--></p>
+                <p>{$__UserInfo['area']}</p>
+            </section>
+            <footer>
+                <span class="home"><a href="plugin.php?id=tom_love&mod=info&uid={$__UserInfo['id']}">{lang tom_love:info_home}</a></span>
+            	<span class="edit"><a href="plugin.php?id=tom_love&mod=my&act=info">{lang tom_love:info_edit}</a></span>
+            </footer>
+        </article>
+    </div>
+    <!--{if $showWanshanBtn == 1}-->
+    <div class="wanshan_info_btn  clearfix">
+    	<a href="plugin.php?id=tom_love&mod=my&act=info">{lang tom_love:wanshan_info_title}{$jyConfig['zl_reward_score']}{$jyConfig['score_name']}</a>
+    </div>
+    <!--{/if}-->
+    <div class="box_both clearfix"></div>
+    <div class="my_sign_box">
+    	<div class="my_sign_box_left">{lang tom_love:my_sign_tianshu_msg1}<span>{$signCount}</span>{lang tom_love:my_sign_tianshu_msg2}</div>
+        <div class="my_sign_box_right">
+            <!--{if $isTodaySignCount > 0 }-->
+            <div class="my_sign_box_btn2">{lang tom_love:my_sign_yiqiandao_btn}</div>
+            <!--{else}-->
+            <div class="my_sign_box_btn1" onclick="signInfo();">+&nbsp;{lang tom_love:my_sign_qiandao_btn}</div>
+            <!--{/if}-->
+        </div>
+    </div>
+    <section class="my_tongji_box clearfix">
+      <ul class="clearfix">
+          <li>
+              <a href="plugin.php?id=tom_love&mod=guanxi&act=meanlian">
+              <p class="num"><font color="#FE4C6E">{$meanlianCount}</font></p>
+              <p class="title">{lang tom_love:info_me_anlian}</p>
+              </a>
+          </li>
+          <li>
+              <a href="plugin.php?id=tom_love&mod=guanxi&act=anlianme">
+              <p class="num"><font color="#FE4C6E">{$anlianmeCount}</font></p>
+              <p class="title">{lang tom_love:info_anlian_me}</p>
+              </a>
+          </li>
+          <li>
+              <a href="plugin.php?id=tom_love&mod=guanxi&act=mechakan">
+              <p class="num"><font color="#FE4C6E">{$meChakanCount}</font></p>
+        	  <p class="title">{lang tom_love:info_me_chakan}</p>
+              </a>
+          </li>
+          <li>
+              <a href="plugin.php?id=tom_love&mod=guanxi&act=chakanme">
+              <p class="num"><font color="#FE4C6E">{$chakanMeCount}</font></p>
+        	  <p class="title">{lang tom_love:info_chakan_me}</p>
+              </a>
+          </li>
+    </ul>
+    </section>
+    <div class="my_menu_box clearfix">
+    	<ul>
+            <!--{if $jyConfig['open_tongcheng'] == 1 }-->
+            <li><a href="plugin.php?id=tom_love&mod=sms">{lang tom_love:my_sms_title}<span class="go"><!--{if $noReadNum > 0}--><span class="smsnum">{$noReadNum}</span><!--{/if}--></a></li>
+            <!--{/if}-->
+            <li><a href="plugin.php?id=tom_love&mod=scorepay">{lang tom_love:score_my}{$jyConfig['score_name']}<span class="msg">({$__UserInfo['score']}{$jyConfig['score_name']})</span><span class="go">{lang tom_love:go_chongzhi}</span></a></li>
+            <li><a href="plugin.php?id=tom_love&mod=vippay">{lang tom_love:my_vippay_title}<span class="msg">(<!--{if $__UserInfo['vip_id'] == 1}-->{lang tom_love:vip_pay_grade_gold}<!--{else}-->{lang tom_love:vip_pay_grade_normal}<!--{/if}-->)</span><span class="go">{lang tom_love:go_chongzhi}</span></a></li>
+            <li><a href="plugin.php?id=tom_love&mod=flowerslog">{lang tom_love:my_flowers_title}<span class="msg">({$__UserInfo['flowers']}{lang tom_love:my_flowers_duo})</span><span class="go">{lang tom_love:go_chakan}</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="my_menu_box clearfix">
+    	<ul>
+            <!--{if $__UserInfo['subscribe'] == 0 && $jyConfig['open_subscribe'] == 1}-->
+            <li>
+                <a href="javascript:void(0);" onclick="online();"><font color="#0894fb">{lang tom_love:my_online_title}</font>
+                    <span class="go">{lang tom_love:my_online_btn}</span>
+                </a>
+            </li>
+            <!--{/if}-->
+            <li>
+                <a href="plugin.php?id=tom_love&mod=rec">{lang tom_love:info_rec}
+                    <!--{if $__UserInfo['recommend_time'] > 0 && $__UserInfo['recommend'] == 1}-->
+                    <span class="msg">({$recommendTime})</span>
+                    <!--{/if}-->
+                    <span class="go">{lang tom_love:go_shenqing}</span>
+                </a>
+            </li>
+            <li>
+                <a href="plugin.php?id=tom_love&mod=photo">{lang tom_love:info_pic}
+                    <span class="msg">({$__UserInfo['pic_num']}{lang tom_love:info_pic_zhang})</span>
+                    <span class="go">{lang tom_love:go_shangchuan}</span>
+                </a>
+            </li>
+            <!--{if $jyConfig['open_tel_renzheng'] == 1}-->
+            <li><a href="plugin.php?id=tom_love&mod=phone">{lang tom_love:info_phone}<!--{if $__UserInfo['phone_renzheng'] == 1}--><span class="msg">({lang tom_love:info_phone_renzheng_1})</span><!--{/if}--><span class="go">{lang tom_love:go_shenqing}</span></a></li>
+            <!--{/if}-->
+            <li>
+                <a href="plugin.php?id=tom_love&mod=renzheng">{lang tom_love:info_renzheng}
+                    <!--{if $renzhengStatus == 0}-->
+                    <!--{elseif $renzhengStatus == 1}-->
+                    <span class="msg">({lang tom_love:info_renzheng_status2})</span>
+                    <!--{elseif $renzhengStatus == 2}-->
+                    <span class="msg">({lang tom_love:info_renzheng_status1})</span>
+                    <!--{/if}-->
+                    <span class="go">{lang tom_love:go_shenqing}</span>
+                </a>
+            </li>
+            <!--{if $jyConfig['closed_tel_qq']==0 }-->
+            <!--{if $__UserInfo['closed'] == 1}-->
+            <li>
+                <a href="javascript:void(0);" onclick="closeInfo(0);">{lang tom_love:info_contact}
+                    <span class="msg">({lang tom_love:my_has_close})</span><span class="go">{lang tom_love:info_open}</span>
+                </a>
+            </li>
+            <!--{else}-->
+            <li><a href="javascript:void(0);" onclick="closeInfo(1);">{lang tom_love:info_contact}
+                    <span class="msg">({lang tom_love:my_has_open})</span><span class="go">{lang tom_love:info_close}</span>
+                </a>
+            </li>
+            <!--{/if}-->
+            <!--{/if}-->
+            <!--{if $__UserInfo['smstp_open'] == 1}-->
+            <li>
+                <a href="javascript:void(0);" onclick="closeSmstp(0);">{lang tom_love:my_smstp_open}
+                    <span class="msg">({lang tom_love:my_has_open})</span><span class="go">{lang tom_love:info_close}</span>
+                </a>
+            </li>
+            <!--{else}-->
+            <li>
+                <a href="javascript:void(0);" onclick="closeSmstp(1);">{lang tom_love:my_smstp_open}
+                    <span class="msg">({lang tom_love:my_has_close})</span><span class="go">{lang tom_love:my_online_btn}</span>
+                </a>
+            </li>
+            <!--{/if}-->
+            <li><a href="plugin.php?id=tom_love&mod=theme">{lang tom_love:info_theme}<span class="go">{lang tom_love:go_shangchuan}</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="my_menu_box clearfix">
+    	<ul>
+            <li><a href="plugin.php?id=tom_love&mod=article&aid=1">{lang tom_love:my_aboutus_title}<span class="go"></span></a></li>
+            <li><a href="plugin.php?id=tom_love&mod=article&aid=2">{lang tom_love:my_xieyi_title}<span class="go"></span></a></li>
+        </ul>
+    </div>
+    <!--{if $jyConfig['open_ucenter'] == 1}-->
+    <!--{else}-->
+    <div class="edit_form_btn  id_close_info clearfix">
+    	<a href="plugin.php?id=tom_love:register&act=loginOut">{lang tom_love:login_out}</a>
+    </div>
+    <!--{/if}-->
+</section>
+{template tom_love:footer}
+<!--{/if}-->
+<!--{if $infoBox == 1}-->
+<header class="header_style2 clearfix">
+	<a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+	<h1>{lang tom_love:edit_info}</h1>
+</header>
+<section class="edit_box clearfix">
+	<div class="edit_form_box from_class clearfix">
+    	<form id="info_base" method="post" action="" onsubmit="return false;">
+            <table>
+                <colgroup><col width="30%"><col><col width="70%"><col></colgroup>
+                <tbody>
+                <tr>
+                    <td>{lang tom_love:add_nickname}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td><input type="text" id="nickname" name="nickname" value="{$__UserInfo['nickname']}" placeholder="{lang tom_love:add_user_place}" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_jy_type}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <label class="input_checkbox"><input type="checkbox" name="friend" id="friend" value="1" <!--{if $__UserInfo['friend'] == 1}-->checked<!--{/if}-->>{lang tom_love:friend}</label>
+                        <label class="input_checkbox"><input type="checkbox" name="marriage" id="marriage" value="1" <!--{if $__UserInfo['marriage'] == 1}-->checked<!--{/if}-->>{lang tom_love:marriage}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_sex}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <select id="sex" name="sex">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <option value="1" <!--{if $__UserInfo['sex'] == 1}-->selected<!--{/if}-->>{lang tom_love:man}</option>
+                            <option value="2" <!--{if $__UserInfo['sex'] == 2}-->selected<!--{/if}-->>{lang tom_love:woman}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_year}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <select id="year" name="year">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <!--{loop $yearArray $key $val}-->
+                            <option value="{$val}" <!--{if $__UserInfo['year'] == $val}-->selected<!--{/if}-->>{$val}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_marital}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <select id="marital" name="marital">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <!--{loop $maritalArray $key $value}-->
+                            <option value="{$key}" <!--{if $__UserInfo['marital_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_height}</td>
+                    <td><input type="number" name="height" value="{$__UserInfo['height']}" placeholder="{lang tom_love:add_height_place}" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_weight}</td>
+                    <td><input type="number" name="weight" value="{$__UserInfo['weight']}" placeholder="{lang tom_love:add_weight_place}" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_area}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <select name="country" id="country" style="display: none;">
+                            <option value="0">{lang tom_love:china}</option>
+                        </select>
+                        <select name="province" id="province" onchange="getCity();"  style="margin-top: 5px; display: inline-block;">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $provinceList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['province_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="city" id="city" onchange="getArea();" style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['province_id'] == 0 }-->display: none;<!--{/if}-->">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $cityList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['city_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="area" id="area"  onchange="getTowns();" style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['city_id'] == 0 }-->display: none;<!--{/if}--> ">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $areaList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['area_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <!--{if $jyConfig['open_four_district'] == 1}-->
+						<select name="towns" id="towns" style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['area_id'] == 0 }-->display: none;<!--{/if}-->" >
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $townsList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['towns_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <!--{/if}-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_hjarea}</td>
+                    <td>
+                        <select name="hjcountry" id="hjcountry" style="display: none;">
+                            <option value="0">{lang tom_love:china}</option>
+                        </select>
+                        <select name="hjprovince" id="hjprovince" onchange="gethjCity();"  style="margin-top: 5px; display: inline-block;">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $hjprovinceList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['hjprovince_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="hjcity" id="hjcity" onchange="gethjArea();" style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['hjprovince_id'] == 0 }-->display: none;<!--{/if}--> ">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $hjcityList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['hjcity_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <select name="hjarea" id="hjarea" onchange="gethjTowns();"  style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['hjcity_id'] == 0 }-->display: none;<!--{/if}--> ">
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $hjareaList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['hjarea_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <!--{if $jyConfig['open_four_district'] == 1}-->
+						<select name="hjtowns" id="hjtowns" style="margin-top: 5px; display: inline-block; <!--{if $__UserInfo['hjarea_id'] == 0 }-->display: none;<!--{/if}-->" >
+                            <option value="0">{lang tom_love:quanbu}</option>
+                            <!--{loop $hjtownsList $key $value}-->
+                            <option value="{$value['id']}" <!--{if $__UserInfo['hjtowns_id'] == $value['id']}-->selected<!--{/if}-->>{$value['name']}</option>
+                            <!--{/loop}-->
+                        </select>
+                        <!--{/if}-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_job}</td>
+                    <td>
+                        <select name="job">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <!--{loop $worksArray $key $value}-->
+                            <option value="{$key}" <!--{if $__UserInfo['work_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_edu}</td>
+                    <td>
+                        <select name="edu">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <!--{loop $eduArray $key $value}-->
+                            <option value="{$key}" <!--{if $__UserInfo['edu_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_pay}</td>
+                    <td>
+                        <select name="pay">
+                            <option value="0">{lang tom_love:add_select}</option>
+                            <!--{loop $payArray $key $value}-->
+                            <option value="{$key}" <!--{if $__UserInfo['pay_id'] == $key}-->selected<!--{/if}-->>{$value}</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:contact_wx}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td><input type="text" name="wx" id="wx" value="{$__UserInfo['wx']}" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:contact_qq}</td>
+                    <td><input type="text" name="qq" id="qq" value="{$__UserInfo['qq']}" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:contact_tel}</td>
+                    <td><input type="text" name="tel" value="{$__UserInfo['tel']}" class="input_text" <!--{if $__UserInfo['phone_renzheng'] == 1}-->readonly<!--{/if}-->></td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_describe}<font color="#F60">{lang tom_love:add_must}</font></td>
+                    <td>
+                        <textarea name="describe" id="describe" rows="4" placeholder="{lang tom_love:add_desc_place}">{$__UserInfo['describe']}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{lang tom_love:add_mate_demands}</td>
+                    <td>
+                        <textarea name="mate_demands" id="mate_demands" rows="4" placeholder="{lang tom_love:add_mate_demands_place}">{$__UserInfo['mate_demands']}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="hidden" name="act" value="saveInfo">
+                        <input type="hidden" name="formhash" value="{$formhash}">
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="id_edit_form_btn edit_form_btn clearfix">
+    	<a href="javascript:void(0);">{lang tom_love:add_submit}</a>
+    </div>
+</section>
+<!-- info end -->
+<!--{/if}-->
+<script>
+function online(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:my_online_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+
+function closeInfo(closeId){
+    $.ajax({
+        type: "GET",
+        url: "{$closeUrl}",
+        data: "close="+closeId,
+        success: function(msg){
+            if(closeId == 0){
+                tusi("{lang tom_love:open_success}");
+            }else{
+                tusi("{lang tom_love:close_success}");
+            }
+            setTimeout(function(){document.location.reload();},1888);
+        }
+    });
+}
+function closeSmstp(smstp_openId){
+    $.ajax({
+        type: "GET",
+        url: "{$opensmstpUrl}",
+        data: "smstp_open="+smstp_openId,
+        success: function(msg){
+            if(smstp_openId == 1){
+                tusi("{lang tom_love:open_success}");
+            }else{
+                tusi("{lang tom_love:close_success}");
+            }
+            setTimeout(function(){document.location.reload();},1888);
+        }
+    });
+}
+
+var signFlag = 0;
+function signInfo(){
+    if(signFlag == 1){
+        return false;
+    }
+    signFlag = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$signUrl}",
+        data: "xxxxx="+1,
+        success: function(msg){
+            tusi("{lang tom_love:my_sign_success}{$jyConfig['sign_score']}{$jyConfig['score_name']}");
+            setTimeout(function(){window.location.href=window.location.href+"&p=1";},1888);
+        }
+    });
+}
+
+$(document).ready(function(){
+    <!--{if $__UserInfo['status'] == 2}-->
+    tusi("{lang tom_love:fenghao_my_msg}");
+    <!--{/if}-->
+    <!--{if $jyConfig['open_user_shenhe'] == 1 && $__UserInfo['shenhe_status'] == 1}-->
+    tusi("{lang tom_love:shenhe_status_1}");
+    <!--{/if}-->
+    <!--{if $jyConfig['open_user_shenhe'] == 1 && $__UserInfo['shenhe_status'] == 3}-->
+    tusi("{lang tom_love:shenhe_status_3}");
+    <!--{/if}-->
+    <!--{if $_GET['mustinfo'] == 1}-->
+    tusi("{lang tom_love:mustinfo_my_msg}");
+    <!--{/if}-->
+    $.get("{$ajaxClicksUrl}");
+});
+
+$(".id_edit_form_btn").click( function () { 
+    var nickname    = $("#nickname").val();
+    var sex         = $("#sex").val();
+    var year        = $("#year").val();
+    var marital     = $("#marital").val();
+    var province    = $("#province").val();
+    var city        = $("#city").val();
+    var area        = $("#area").val();
+    var hjprovince    = $("#hjprovince").val();
+    var hjcity        = $("#hjcity").val();
+    var hjarea        = $("#hjarea").val();
+    var wx          = $("#wx").val();
+    var qq          = $("#qq").val();
+    var describe    = $("#describe").val();
+    var mate_demands = $("#mate_demands").val();
+    
+    if($('#friend').is(':checked')){
+    }else if($('#marriage').is(':checked')){
+    }else{
+        tusi("{lang tom_love:must_type}");
+        return false;
+    }
+
+    if(nickname == ""){
+        tusi("{lang tom_love:must_nickname}");
+        return false;
+    }
+    if(sex == 0){
+        tusi("{lang tom_love:must_sex}");
+        return false;
+    }
+    if(year == 0){
+        tusi("{lang tom_love:must_year}");
+        return false;
+    }
+    if(marital == 0){
+        tusi("{lang tom_love:must_marital}");
+        return false;
+    }
+    if(province == 0){
+        tusi("{lang tom_love:must_province}");
+        return false;
+    }
+    if(city == 0){
+        tusi("{lang tom_love:must_city}");
+        return false;
+    }
+    if(hjprovince == 0){
+        //tusi("{lang tom_love:must_hjprovince}");
+        //return false;
+    }
+    if(hjcity == 0){
+        //tusi("{lang tom_love:must_hjcity}");
+        //return false;
+    }
+    <!--{if $jyConfig['open_four_district'] == 1}-->
+    if(area == 0){
+        tusi("{lang tom_love:must_area}");
+        return false;
+    }
+    if(hjarea == 0){
+        //tusi("{lang tom_love:must_hjarea}");
+        //return false;
+    }
+    <!--{/if}-->
+    if(wx == ""){
+        tusi("{lang tom_love:must_wx}");
+        return false;
+    }
+    if(qq == ""){
+        //tusi("{lang tom_love:must_qq}");
+        //return false;
+    }
+    if(describe == ""){
+        tusi("{lang tom_love:must_describe}");
+        return false;
+    }
+    $.ajax({
+        type: "POST",
+        url: "{$saveUrl}",
+        data: $('#info_base').serialize(),
+        success: function(msg){
+            if(msg == '201'){
+                tusi("{lang tom_love:nickname_repeat}");
+            }else if(msg == '202'){
+                tusi("{lang tom_love:nickname_repeat_202}");
+            }else{
+                tusi("{lang tom_love:add_success}");
+                setTimeout(function(){window.location.href='{$backUrl}';},1888);
+            }
+        }
+    });
+});
+
+function getCity(){
+  var province = $("#province").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=city&pid="+province,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            
+            var cityHtml = '<option value="0">{lang tom_love:quanbu_city}</option>';
+            $.each(json,function(k,v){
+                cityHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#city").html(cityHtml);
+            $("#city").show();
+        }
+    });
+}   
+
+function getArea(){
+  var city = $("#city").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=area&pid="+city,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_love:quanbu_area}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#area").html(areaHtml);
+            $("#area").show();
+        }
+    });
+}
+
+function getTowns(){
+  var area = $("#area").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=towns&pid="+area,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_love:quanbu_towns}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#towns").html(areaHtml);
+            $("#towns").show();
+        }
+    });
+}
+
+function gethjCity(){
+  var province = $("#hjprovince").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=city&pid="+province,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var cityHtml = '<option value="0">{lang tom_love:quanbu_city}</option>';
+            $.each(json,function(k,v){
+                cityHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjcity").html(cityHtml);
+            $("#hjcity").show();
+        }
+    });
+}   
+
+function gethjArea(){
+  var city = $("#hjcity").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=area&pid="+city,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_love:quanbu_area}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjarea").html(areaHtml);
+            $("#hjarea").show();
+        }
+    });
+}
+
+function gethjTowns(){
+  var hjarea = $("#hjarea").val();
+  $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=towns&pid="+hjarea,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var areaHtml = '<option value="0">{lang tom_love:quanbu_towns}</option>';
+            $.each(json,function(k,v){
+                areaHtml+= '<option value="'+v.id+'">'+v.name+'</option>';
+            })
+            $("#hjtowns").html(areaHtml);
+            $("#hjtowns").show();
+        }
+    });
+}
+
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

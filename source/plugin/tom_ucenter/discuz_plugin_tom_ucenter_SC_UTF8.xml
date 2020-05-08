@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3.1]]></item>
+	<item id="Time"><![CDATA[2018-02-25 17:52]]></item>
+	<item id="From"><![CDATA[坏蛋网络www.huaidanwangluo.com]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[[点微]用户中心]]></item>
+			<item id="identifier"><![CDATA[tom_ucenter]]></item>
+			<item id="description"><![CDATA[点微系列插件用户中心]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[tom_ucenter/]]></item>
+			<item id="copyright"><![CDATA[坏蛋网络bbs.huaidanwangluo.com]]></item>
+			<item id="version"><![CDATA[3.2]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=member]]></item>
+					<item id="menu"><![CDATA[会员管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=district]]></item>
+					<item id="menu"><![CDATA[地区管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=addon]]></item>
+					<item id="menu"><![CDATA[微信营销专区]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2,X3.3,X3.4]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[应用名称]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[plugin_name]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[用户中心]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[用户登录方式]]></item>
+				<item id="description"><![CDATA[特别说明：
+方式一：只支持微信打开和使用微信授权直接登录；
+方式二：微信里面打开直接微信登录，手机版打开使用手机号登录；
+方式三：直接使用DZ的登录系统登录（慎重选择）；
+方式四：微信里面打开使用微信登录，手机里面打开使用论坛登录。]]></item>
+				<item id="variable"><![CDATA[login_type]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[2]]></item>
+				<item id="extra"><![CDATA[1 = [方式一]仅微信登录
+2 = [方式二]微信登录+手机号登录
+3 = [方式三]直接通过论坛登录
+4 = [方式四]仅手机版通过论坛登录]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[开启APP原生登录]]></item>
+				<item id="description"><![CDATA[开启后，APP内访问调用原生登录，直接登录
+仅支持：千帆APP、马甲APP、小云APP、魔苹APP。其他APP暂时不支持]]></item>
+				<item id="variable"><![CDATA[open_app_login]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[11]]></item>
+				<item id="title"><![CDATA[[微信支付]绑定支付的APPID]]></item>
+				<item id="description"><![CDATA[绑定支付的APPID（必须配置，开户邮件中可查看）]]></item>
+				<item id="variable"><![CDATA[wxpay_appid]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[12]]></item>
+				<item id="title"><![CDATA[[微信支付]APPSECRET]]></item>
+				<item id="description"><![CDATA[公众帐号secert（仅JSAPI支付的时候需要配置， 登录公众平台，进入开发者中心可设置），
+获取教程：http://www.dasuhlai.com/index.php?m=help&t=wechat&faqid=39]]></item>
+				<item id="variable"><![CDATA[wxpay_appsecret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="5">
+				<item id="displayorder"><![CDATA[13]]></item>
+				<item id="title"><![CDATA[[微信支付]网页授权域名]]></item>
+				<item id="description"><![CDATA[1、不设置留空
+2、如果你的论坛所在域名和你认证服务号设置的网页授权域名不一致，你就需要修改此设置。（前提是，你要有已经设置的那个域名服务器上传文件的权限，并且能执行php）
+3、设置教程：http://www.dasuhlai.com/index.php?m=help&t=wechat&faqid=156]]></item>
+				<item id="variable"><![CDATA[oauth_hosts]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="6">
+				<item id="displayorder"><![CDATA[20]]></item>
+				<item id="title"><![CDATA[网页授权借权协议]]></item>
+				<item id="description"><![CDATA[【设置网页借权是借权域名是https还是http】]]></item>
+				<item id="variable"><![CDATA[oauth_http]]></item>
+				<item id="type"><![CDATA[select]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[1 = http
+2 = https]]></item>
+			</item>
+			<item id="7">
+				<item id="displayorder"><![CDATA[99]]></item>
+				<item id="title"><![CDATA[登录页面LOGO]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[logo_url]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[source/plugin/tom_ucenter/images/logo.png]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="8">
+				<item id="displayorder"><![CDATA[100]]></item>
+				<item id="title"><![CDATA[注册协议]]></item>
+				<item id="description"><![CDATA[填写注册协议，支持DISCUZ代码
+DISCUZ代码教程：http://www.dasuhlai.com/index.php?m=help&t=faq&faqid=29]]></item>
+				<item id="variable"><![CDATA[xieyi_text]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[这里填写注册协议]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="handle"><![CDATA[操作]]></item>
+				<item id="delete"><![CDATA[彻底删除]]></item>
+				<item id="fenhao"><![CDATA[封号]]></item>
+				<item id="recover"><![CDATA[恢复]]></item>
+				<item id="act_success"><![CDATA[操作成功]]></item>
+				<item id="duihuan"><![CDATA[兑换]]></item>
+				<item id="status"><![CDATA[状态]]></item>
+				<item id="status_delete"><![CDATA[<font color="#FF0000">删除</font>]]></item>
+				<item id="status_fenhao"><![CDATA[<font color="#FF0000">封号</font>]]></item>
+				<item id="status_normal"><![CDATA[<font color="#009900">正常</font>]]></item>
+				<item id="paixu"><![CDATA[排序]]></item>
+				<item id="open"><![CDATA[开启]]></item>
+				<item id="close"><![CDATA[关闭]]></item>
+				<item id="makesure_del_msg"><![CDATA[你确定要删除选择内容？删除后不可恢复！]]></item>
+				<item id="url_title"><![CDATA[活动地址]]></item>
+				<item id="url_title_msg"><![CDATA[你可以复制此地址放到自定义菜单或者自动回复里]]></item>
+				<item id="fenghao"><![CDATA[：]]></item>
+				<item id="checkall"><![CDATA[全选]]></item>
+				<item id="batch_make_sure"><![CDATA[你确定批量执行吗？执行后不能返回]]></item>
+				<item id="batch_btn"><![CDATA[提交]]></item>
+				<item id="ucenter_help_title"><![CDATA[使用帮助]]></item>
+				<item id="ucenter_help_3"><![CDATA[升级后出现数据库错误：<a target="_blank" href="{SITEURL}plugin.php?id=tom_ucenter:updb">点此处理</a>（操作之前先备份数据库）]]></item>
+				<item id="member_search_list"><![CDATA[会员搜索]]></item>
+				<item id="member_list_title"><![CDATA[会员管理]]></item>
+				<item id="member_uid"><![CDATA[会员UID]]></item>
+				<item id="member_openid"><![CDATA[会员OPENID]]></item>
+				<item id="member_nickname"><![CDATA[会员名]]></item>
+				<item id="member_picurl"><![CDATA[会员头像]]></item>
+				<item id="member_xm"><![CDATA[姓名]]></item>
+				<item id="member_tel"><![CDATA[手机号]]></item>
+				<item id="member_score"><![CDATA[会员积分]]></item>
+				<item id="member_address"><![CDATA[收货地址]]></item>
+				<item id="address_title"><![CDATA[收货地址]]></item>
+				<item id="address_xm"><![CDATA[联系人]]></item>
+				<item id="address_tel"><![CDATA[电话]]></item>
+				<item id="address_str"><![CDATA[详细地址]]></item>
+				<item id="scorelog_title"><![CDATA[积分变动日志]]></item>
+				<item id="scorelog_add_score"><![CDATA[增加积分]]></item>
+				<item id="scorelog_reduce_score"><![CDATA[减少积分]]></item>
+				<item id="scorelog_old_score"><![CDATA[变动前积分]]></item>
+				<item id="scorelog_message"><![CDATA[变动原因]]></item>
+				<item id="scorelog_log_time"><![CDATA[变动时间]]></item>
+				<item id="district_importall"><![CDATA[点击导入系统全部地区（此操作会清空现有地区数据）导入时间需要几分钟，请等待...]]></item>
+				<item id="district_importall_success"><![CDATA[导入成功]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="open_in_wx"><![CDATA[请在微信中打开本页面]]></item>
+				<item id="pre_page"><![CDATA[上一页]]></item>
+				<item id="next_page"><![CDATA[下一页]]></item>
+				<item id="yuan_ico"><![CDATA[￥]]></item>
+				<item id="yuan"><![CDATA[元]]></item>
+				<item id="back"><![CDATA[返回]]></item>
+				<item id="login_title"><![CDATA[用户登录]]></item>
+				<item id="login_tel"><![CDATA[请输入手机号]]></item>
+				<item id="login_pwd"><![CDATA[请输入密码]]></item>
+				<item id="login_getpwd"><![CDATA[忘记密码？]]></item>
+				<item id="login_btn"><![CDATA[登 录]]></item>
+				<item id="reg_btn"><![CDATA[注 册]]></item>
+				<item id="login_refresh_btn"><![CDATA[已经登录，点击刷新]]></item>
+				<item id="login_must_tel"><![CDATA[手机号格式错误]]></item>
+				<item id="login_must_pwd"><![CDATA[必须填写密码]]></item>
+				<item id="login_succ"><![CDATA[登录成功]]></item>
+				<item id="login_error"><![CDATA[登录出错]]></item>
+				<item id="login_error301"><![CDATA[用户不存在]]></item>
+				<item id="login_error302"><![CDATA[密码错误]]></item>
+				<item id="reg_title"><![CDATA[用户注册]]></item>
+				<item id="xieyi_title"><![CDATA[注册协议]]></item>
+				<item id="reg_tel"><![CDATA[手机号]]></item>
+				<item id="reg_tel_msg"><![CDATA[请输入手机号]]></item>
+				<item id="reg_nickname"><![CDATA[昵称]]></item>
+				<item id="reg_nickname_msg"><![CDATA[请输入昵称]]></item>
+				<item id="reg_pwd"><![CDATA[密码]]></item>
+				<item id="reg_pwd_msg"><![CDATA[请牢记输入密码]]></item>
+				<item id="reg_tel_code"><![CDATA[手机验证]]></item>
+				<item id="reg_tel_code_msg"><![CDATA[输入手机验证码]]></item>
+				<item id="reg_tel_code_btn"><![CDATA[获取验证码]]></item>
+				<item id="reg_agree_title"><![CDATA[阅读并同意]]></item>
+				<item id="reg_agree_txt"><![CDATA[《相关条款》]]></item>
+				<item id="sms_must_tel"><![CDATA[手机号格式错误]]></item>
+				<item id="sms_succ"><![CDATA[验证码发送成功]]></item>
+				<item id="sms_error301"><![CDATA[没有安装短信接口插件]]></item>
+				<item id="sms_error404"><![CDATA[发送验证码失败]]></item>
+				<item id="sms_error"><![CDATA[发送错误]]></item>
+				<item id="reg_must_agree_xieyi"><![CDATA[必须同意注册协议]]></item>
+				<item id="reg_must_tel"><![CDATA[必须填写手机号]]></item>
+				<item id="reg_must_nickname"><![CDATA[必须填写昵称]]></item>
+				<item id="reg_must_pwd"><![CDATA[密码不能为空]]></item>
+				<item id="reg_must_tel_code"><![CDATA[短信验证码错误]]></item>
+				<item id="reg_succ"><![CDATA[注册成功，请登录]]></item>
+				<item id="reg_error301"><![CDATA[验证码不正确]]></item>
+				<item id="reg_error302"><![CDATA[手机号错误]]></item>
+				<item id="reg_error303"><![CDATA[手机号已注册过，请登录]]></item>
+				<item id="reg_error304"><![CDATA[密码不能为空]]></item>
+				<item id="reg_error"><![CDATA[注册失败]]></item>
+				<item id="reg_weixin_tel_msg"><![CDATA[特别说明：如果你使用微信登录过本平台，请到微信里面绑定手机号后，再用手机号登录；否则将会创建新用户。]]></item>
+				<item id="getpwd_title"><![CDATA[找回密码]]></item>
+				<item id="getpwd_btn"><![CDATA[修改密码]]></item>
+				<item id="getpwd_must_tel"><![CDATA[必须填写手机号]]></item>
+				<item id="getpwd_must_pwd"><![CDATA[密码不能为空]]></item>
+				<item id="getpwd_must_tel_code"><![CDATA[短信验证码错误]]></item>
+				<item id="getpwd_succ"><![CDATA[密码修改成功，请登录]]></item>
+				<item id="getpwd_error301"><![CDATA[验证码不正确]]></item>
+				<item id="getpwd_error302"><![CDATA[手机号错误]]></item>
+				<item id="getpwd_error303"><![CDATA[手机号没有注册]]></item>
+				<item id="getpwd_error"><![CDATA[找回失败]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:manage_add_user_xx}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/manage.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<base target="_self">
+</head>
+<body id="adminrg">
+<div class="biaoti">
+        <h1>{lang tom_love:manage_add_love_xx}</h1>
+</div>
+<div class="step">
+	<div class="bg bc">{lang tom_love:manage_edit_add_one}</div>
+	<div class="bg bd">&gt;&gt;</div>
+	<div class="bg">{lang tom_love:manage_edit_add_two}</div>
+</div>
+<div class="from_box">
+	<form id="add_form">
+		<table>
+			<tr>
+				<th>{lang tom_love:manage_add_nickname}</th>
+                <td>
+                    <input type="text" id="nickname" name="nickname" placeholder="{lang tom_love:manage_add_nickname_msg}">
+                    <input type="hidden" name="formhash" value="{$formhash}">
+                    <input type="hidden" name="act" value="add">
+                </td>
+			</tr>
+		</table>
+	</form>
+	<div class="button" onClick="reg();">{lang tom_love:manage_add_lj_submint}</div>
+</div>
+<script>
+var regProcess = 0;
+function reg(){
+    if(regProcess == 1){
+        return false;
+    }
+    var username = $('#username').val();
+    if(username == ''){
+        tusi("{lang tom_love:reg_must_username}");
+        return false;
+    }
+    regProcess = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$manageUrl}",
+        data: $('#add_form').serialize(),
+        success: function(msg){
+            regProcess = 0;
+            var data = eval('('+msg+')');
+            if(data.status==200){
+                tusi("{lang tom_love:reg_success}");
+                setTimeout(function(){window.location="{$editUrl}"+data.id+"";},1888);
+            }else{
+                tusi("{lang tom_love:reg_error}");
+            }
+        }
+    });
+}
+</script>
+</body>
+</html>

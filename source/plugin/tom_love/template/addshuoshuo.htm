@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html><head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:gb_fb_btn}-{$jyConfig['plugin_name']}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/add.css?v={$cssJsVersion}" rel="stylesheet" type="text/css"> 
+<link href="source/plugin/tom_love/images/guangc.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.qp_lodediv img{display: inline;}
+</style>
+<base target="_self">
+</head>
+<body>
+<section class="top_tab_nav clearfix">
+	<div class="top_tab_nav_main clearfix">
+    	<a href="plugin.php?id=tom_love&mod=shuoshuo&prand={$prand}" class="left">{lang tom_love:nav_gb}</a><a href="plugin.php?id=tom_love&mod=shuoshuo&act=addshuoshuo&prand={$prand}" class="right current">{lang tom_love:gb_fb_btn}</a>
+    </div>
+</section>
+<div class="rd " style="margin-top: 10px;">
+    <form id="gaibai_form">
+    <textarea id="describe" name="describe" placeholder="{lang tom_love:gb_placeholder}" style="padding:2%;width:100%;height:130px;"></textarea>
+    <div id="imgList" class="uploader-list clearfix" >
+        <div class="file-item thumbnail sspic_list_box" id="addimg">
+            <ul class="clearfix" id="photolist">
+            </ul>
+        </div>
+    </div>
+    <div class="btnboxlist" >
+        <a href="javascript:;" class="btnboxa" id="imgPicker"  >
+            <em class="btnimgemimg"><input type="file" name="Filedata" id="filedata" style="width:25px;opacity: 0;"></em>{lang tom_love:shuoshuo_add_pic_title}
+        </a>
+        <input type="hidden" name="act" value="save">
+        <input type="hidden" name="formhash" value="{$formhash}">
+        <input value="{lang tom_love:shuoshuo_add_fabiao_title}" id="addTopicTo" type="button"  class="btn-addart">
+    </div>
+    </form>
+</div>
+<section class="rechange">
+    <div class="rechange-box">
+        <div class="box">
+            <div class="box-img"><img src="source/plugin/tom_love/images/rechange_s13_logo.png"></div>
+            <div class="box-content">
+                <p class="content-title">{lang tom_love:rechange_title_1}{$jyConfig['score_name']}{lang tom_love:rechange_title_2}</p>
+                <p id="have">{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+                <p id="need">{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+            </div>
+            <div class="box-button"><a href="plugin.php?id=tom_love&mod=scorepay"><img src="source/plugin/tom_love/images/rechange_s13_link.png"></a></div>
+        </div>
+        <div class="button" onClick="$('.rechange').hide();"><a href="javascript:;"><img src="source/plugin/tom_love/images/rechange_s13_hide.png"></a></div>
+    </div>
+</section>
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:must_phone_popup_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:must_phone_popup_content}</div>
+        <div class="weui-dialog__ft">
+            <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_love:must_phone_popup_go}</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:must_phone_popup_cancel}</a>
+        </div>
+    </div>
+</div>
+<script language="javascript" src="source/plugin/tom_love/images/localResizeIMG4/dist/lrz.bundle.js"></script>
+<script>
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+var li_i = 1;
+var count = 0;
+$(document).on('change', '#filedata', function() {
+    if(count >= 2){
+        tusi('{lang tom_love:shuoshuo_add_max_pic_msg}');
+        return false;
+    }
+    loading('{lang tom_love:upload_doing}');
+    lrz(this.files[0], {width:720,quality:0.8,fieldName:"Filedata"})
+        .then(function (rst) {
+            return rst;
+        })
+        .then(function (rst) {
+            rst.formData.append('fileLen', rst.fileLen);
+            $.ajax({
+                url: '{$uploadUrl}',
+                data: rst.formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if(data == '') {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                    var dataarr = data.split('|');
+                    dataarr[0] = $.trim(dataarr[0]);
+                    if(dataarr[0] == 'OK') {
+                        loading(false);
+                        $('#photolist').append('<li class="li_'+li_i+'"><input type="hidden" name="bmpicli_'+li_i+'" value="'+dataarr[2]+'"><figure><span><a href="javascript:void(0);" onclick="myremove('+li_i+');"></a></span><img src="'+dataarr[1]+'" alt=""></figure></li>');
+                        li_i++;
+                        count++;
+                    }else if(dataarr[0] == 'SIZE'){
+                        loading(false);
+                        tusi('{lang tom_love:upload_size_error}');
+                    } else {
+                        loading(false);
+                        tusi('{lang tom_love:upload_error}');
+                    }
+                }
+            });
+            return rst;
+        })
+        .catch(function (err) {
+			loading(false);
+            //alert(err);
+        })
+        .always(function () {
+        });
+});
+
+function myremove(i){
+    $(".li_"+i).remove();
+    count--;
+}
+</script>
+<script>
+$(document).ready(function(){
+  $.get("{$ajaxClicksUrl}");
+});
+
+var submintStatus = 0;
+$("#addTopicTo").click( function () { 
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+
+    var content = $("#describe").val();
+    if(content == ""){
+        tusi("{lang tom_love:must_content}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "POST",
+        url: "{$shuoshuoUrl}",
+        data: $('#gaibai_form').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==101){
+                
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;{$__UserInfo['score']}");
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;{$jyConfig['shuoshuo_score']}");
+                $('.rechange').show();
+                //tusi("{$jyConfig['score_name']}{lang tom_love:no_gb_score}");
+                return false;
+            }else{
+                tusi("{lang tom_love:gb_success}");
+                setTimeout(function(){window.location.href="{$shuoshuoUrl}";},1888);
+            }
+            
+        }
+    });
+});
+
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+});
+</script>
+
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsapiList: [
+      'onMenuShareTimeline',
+      'onMenuShareappMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareajaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareappMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareajaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

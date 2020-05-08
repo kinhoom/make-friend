@@ -1,0 +1,1670 @@
+@font-face {
+	font-family: icons_mobiscroll;
+	src: url(icons_mobiscroll.eot?#iefixcvwy2l) format("embedded-opentype"), url(icons_mobiscroll.ttf?cvwy2l) format("truetype"), url(icons_mobiscroll.woff?cvwy2l) format("woff"), url(icons_mobiscroll.woff) format("woff"), url(icons_mobiscroll.svg?cvwy2l#icons_mobiscroll) format("svg");
+	font-style: normal;
+}
+.mbsc-ic::before {
+	text-transform: none; font-family: "icons_mobiscroll"; font-style: normal; font-variant: normal; font-weight: normal; speak: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.mbsc-ic-aid::before {
+	content: "\f100";
+}
+.mbsc-ic-airplane::before {
+	content: "\f101";
+}
+.mbsc-ic-alarm2::before {
+	content: "\f102";
+}
+.mbsc-ic-arrow-down5::before {
+	content: "\f103";
+}
+.mbsc-ic-arrow-down6::before {
+	content: "\f104";
+}
+.mbsc-ic-arrow-left5::before {
+	content: "\f105";
+}
+.mbsc-ic-arrow-left6::before {
+	content: "\f106";
+}
+.mbsc-ic-arrow-right5::before {
+	content: "\f107";
+}
+.mbsc-ic-arrow-right6::before {
+	content: "\f108";
+}
+.mbsc-ic-arrow-up5::before {
+	content: "\f109";
+}
+.mbsc-ic-arrow-up6::before {
+	content: "\f10a";
+}
+.mbsc-ic-attachment::before {
+	content: "\f10b";
+}
+.mbsc-ic-bars::before {
+	content: "\f10c";
+}
+.mbsc-ic-book::before {
+	content: "\f10d";
+}
+.mbsc-ic-bubble::before {
+	content: "\f10e";
+}
+.mbsc-ic-bubbles::before {
+	content: "\f10f";
+}
+.mbsc-ic-bullhorn::before {
+	content: "\f110";
+}
+.mbsc-ic-calendar::before {
+	content: "\f111";
+}
+.mbsc-ic-camera::before {
+	content: "\f112";
+}
+.mbsc-ic-cart::before {
+	content: "\f113";
+}
+.mbsc-ic-checkmark::before {
+	content: "\f114";
+}
+.mbsc-ic-clock::before {
+	content: "\f115";
+}
+.mbsc-ic-close::before {
+	content: "\f116";
+}
+.mbsc-ic-cloud-download::before {
+	content: "\f117";
+}
+.mbsc-ic-cloud-upload::before {
+	content: "\f118";
+}
+.mbsc-ic-cogs::before {
+	content: "\f119";
+}
+.mbsc-ic-connection::before {
+	content: "\f11a";
+}
+.mbsc-ic-copy2::before {
+	content: "\f11b";
+}
+.mbsc-ic-copy3::before {
+	content: "\f11c";
+}
+.mbsc-ic-credit::before {
+	content: "\f11d";
+}
+.mbsc-ic-disk::before {
+	content: "\f11e";
+}
+.mbsc-ic-download::before {
+	content: "\f11f";
+}
+.mbsc-ic-drawer::before {
+	content: "\f120";
+}
+.mbsc-ic-droplet::before {
+	content: "\f121";
+}
+.mbsc-ic-earth::before {
+	content: "\f122";
+}
+.mbsc-ic-eye::before {
+	content: "\f123";
+}
+.mbsc-ic-eye-blocked::before {
+	content: "\f124";
+}
+.mbsc-ic-fa-leaf::before {
+	content: "\f125";
+}
+.mbsc-ic-fa-rotate-left::before {
+	content: "\f126";
+}
+.mbsc-ic-file4::before {
+	content: "\f127";
+}
+.mbsc-ic-flag::before {
+	content: "\f128";
+}
+.mbsc-ic-folder::before {
+	content: "\f129";
+}
+.mbsc-ic-forward::before {
+	content: "\f12a";
+}
+.mbsc-ic-foundation-minus-circle::before {
+	content: "\f12b";
+}
+.mbsc-ic-globe::before {
+	content: "\f12c";
+}
+.mbsc-ic-heart::before {
+	content: "\f12d";
+}
+.mbsc-ic-history::before {
+	content: "\f12e";
+}
+.mbsc-ic-home::before {
+	content: "\f12f";
+}
+.mbsc-ic-image2::before {
+	content: "\f130";
+}
+.mbsc-ic-ion-android-system-windows::before {
+	content: "\f131";
+}
+.mbsc-ic-ion-bluetooth::before {
+	content: "\f132";
+}
+.mbsc-ic-key2::before {
+	content: "\f133";
+}
+.mbsc-ic-library::before {
+	content: "\f134";
+}
+.mbsc-ic-link::before {
+	content: "\f135";
+}
+.mbsc-ic-location::before {
+	content: "\f136";
+}
+.mbsc-ic-lock2::before {
+	content: "\f137";
+}
+.mbsc-ic-loop2::before {
+	content: "\f138";
+}
+.mbsc-ic-map::before {
+	content: "\f139";
+}
+.mbsc-ic-minus::before {
+	content: "\f13a";
+}
+.mbsc-ic-mobile::before {
+	content: "\f13b";
+}
+.mbsc-ic-newspaper::before {
+	content: "\f13c";
+}
+.mbsc-ic-office::before {
+	content: "\f13d";
+}
+.mbsc-ic-pencil::before {
+	content: "\f13e";
+}
+.mbsc-ic-phone::before {
+	content: "\f13f";
+}
+.mbsc-ic-play::before {
+	content: "\f140";
+}
+.mbsc-ic-plus::before {
+	content: "\f141";
+}
+.mbsc-ic-redo2::before {
+	content: "\f142";
+}
+.mbsc-ic-remove::before {
+	content: "\f143";
+}
+.mbsc-ic-reply::before {
+	content: "\f144";
+}
+.mbsc-ic-sad2::before {
+	content: "\f145";
+}
+.mbsc-ic-smiley2::before {
+	content: "\f146";
+}
+.mbsc-ic-stack::before {
+	content: "\f147";
+}
+.mbsc-ic-star3::before {
+	content: "\f148";
+}
+.mbsc-ic-stopwatch::before {
+	content: "\f149";
+}
+.mbsc-ic-support::before {
+	content: "\f14a";
+}
+.mbsc-ic-tag::before {
+	content: "\f14b";
+}
+.mbsc-ic-thumbs-up::before {
+	content: "\f14c";
+}
+.mbsc-ic-thumbs-up2::before {
+	content: "\f14d";
+}
+.mbsc-ic-undo2::before {
+	content: "\f14e";
+}
+.mbsc-ic-unlocked::before {
+	content: "\f14f";
+}
+.mbsc-ic-upload::before {
+	content: "\f150";
+}
+.mbsc-ic-user4::before {
+	content: "\f151";
+}
+.mbsc-ic-volume-medium::before {
+	content: "\f152";
+}
+.dw {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-font-smoothing: antialiased;
+}
+.dwo {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-font-smoothing: antialiased;
+}
+.dw {
+	left: 0px; top: 0px; font-size: 12px; position: absolute; z-index: 2; max-width: 98%; text-shadow: none; -ms-user-select: none; -ms-touch-action: none; -webkit-user-select: none; -moz-user-select: none; user-select: none;
+}
+.dw:focus {
+	outline: 0px;
+}
+.dw:focus {
+	outline-offset: -2px;
+}
+.dw-rtl {
+	direction: rtl;
+}
+.dw {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dwbc {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dwwr {
+	text-align: center; overflow: hidden; font-family: arial, verdana, sans-serif; -ms-zoom: 1; min-width: 200px;
+}
+.dw-persp {
+	left: 0px; top: 0px; width: 100%; height: 100%; position: absolute;
+}
+.dwo {
+	left: 0px; top: 0px; width: 100%; height: 100%; position: absolute;
+}
+.dw-persp {
+	z-index: 99998; pointer-events: auto;
+}
+.dwo {
+	background: rgba(0, 0, 0, 0.7); z-index: 1;
+}
+.dw-liq .dw {
+	max-width: 100%;
+}
+.dw-top .dw {
+	width: 100%; max-width: 100%;
+}
+.dw-bottom .dw {
+	width: 100%; max-width: 100%;
+}
+.dw-inline .dw {
+	display: inline-block; position: static; max-width: 100%;
+}
+.dw-inline.dw-liq .dw-persp .dw {
+	display: block;
+}
+.dw-inline .dw-persp {
+	position: static;
+}
+.dw-bubble .dw {
+	margin: 20px 0px;
+}
+.dw-bubble .dw-arrw {
+	left: 0px; width: 100%; position: absolute;
+}
+.dw-bubble-top .dw-arrw {
+	bottom: -36px;
+}
+.dw-bubble-bottom .dw-arrw {
+	top: -36px;
+}
+.dw-bubble .dw-arrw-i {
+	margin: 0px 30px; height: 36px; position: relative;
+}
+.dw-bubble .dw-arr {
+	display: block;
+}
+.dw-arr {
+	border-width: 18px; border-style: solid; left: 0px; width: 0px; height: 0px; margin-left: -18px; display: none; position: absolute;
+}
+.dw-bubble-bottom .dw-arr {
+	top: 0px;
+}
+.dw-bubble-top .dw-arr {
+	bottom: 0px;
+}
+.dw-hidden {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 0px; height: 0px; overflow: hidden;
+}
+.dwv {
+	overflow: hidden; -ms-text-overflow: ellipsis;
+}
+.dwb {
+	overflow: hidden; text-decoration: none; vertical-align: top; display: block; white-space: nowrap; -ms-text-overflow: ellipsis;
+}
+.dwb-e {
+	cursor: pointer;
+}
+.dwb-d {
+	cursor: default;
+}
+.dwbc {
+	width: 100%; text-align: center; display: table;
+}
+.dwbc .dwb-d {
+	opacity: 0.3;
+}
+.dwbw {
+	vertical-align: top; display: table-cell; position: relative; z-index: 5;
+}
+.dwbw .dwb::before {
+	padding: 0.37em;
+}
+.mbsc-wdg .dwcc {
+	padding: 1em; text-align: left; font-size: 14px; white-space: normal; position: relative; z-index: 0;
+}
+.mbsc-mobiscroll .dwwr {
+	background: rgb(247, 247, 247); color: rgb(69, 69, 69); font-size: 16px; min-width: 16em;
+}
+.mbsc-mobiscroll .dwv {
+	padding: 0.66em 0.66em 0px; color: rgb(78, 204, 196); text-transform: uppercase; line-height: 2em; font-size: 0.75em; min-height: 2em;
+}
+.mbsc-mobiscroll .dwbc {
+	padding: 0px 0.5em 0.5em; text-align: right; overflow: hidden; display: block;
+}
+.mbsc-mobiscroll .dwbw {
+	float: right; display: block;
+}
+.mbsc-mobiscroll .dw-rtl .dwbw {
+	float: left;
+}
+.mbsc-mobiscroll .dwb {
+	padding: 0px 1em; height: 2.5em; color: rgb(78, 204, 196); text-transform: uppercase; line-height: 2.5em;
+}
+.mbsc-mobiscroll .dwb-a {
+	background: rgba(78, 204, 196, 0.3);
+}
+.mbsc-mobiscroll .dw-bubble-bottom .dw-arr {
+	border-color: transparent transparent rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-bubble-top .dw-arr {
+	border-color: rgb(247, 247, 247) transparent transparent;
+}
+.mbsc-android-holo .dwwr {
+	background: rgb(41, 40, 41); border-radius: 0.18em; color: rgb(255, 255, 255); font-size: 16px;
+}
+.mbsc-android-holo .dwv {
+	padding: 0px 0.5em; color: rgb(49, 182, 231); line-height: 2em; font-size: 1.12em; border-bottom-color: rgb(49, 182, 231); border-bottom-width: 2px; border-bottom-style: solid; min-height: 2em;
+}
+.mbsc-android-holo .dwbc {
+	border-top-color: rgb(66, 69, 66); border-top-width: 1px; border-top-style: solid;
+}
+.mbsc-android-holo .dwb {
+	height: 2.6em; color: rgb(255, 255, 255); line-height: 2.6em; font-size: 0.87em;
+}
+.mbsc-android-holo .dwb-a {
+	background: rgb(41, 121, 156);
+}
+.mbsc-android-holo .dwbw .dwb {
+	border-left-color: rgb(66, 69, 66); border-left-width: 1px; border-left-style: solid;
+}
+.mbsc-android-holo :first-child.dwbw .dwb {
+	border-radius: 0px 0px 0px 0.18em; border: 0px currentColor; border-image: none; color: rgb(153, 153, 153);
+}
+.mbsc-android-holo :last-child.dwbw .dwb {
+	border-radius: 0px 0px 0.18em; color: rgb(0, 172, 255);
+}
+.mbsc-android-holo .dw-rtl .dwbw .dwb {
+	border-width: 0px 1px 0px 0px; border-style: none solid none none; border-color: currentColor rgb(66, 69, 66) currentColor currentColor; border-image: none;
+}
+.mbsc-android-holo .dw-rtl :last-child.dwbw .dwb {
+	border-radius: 0px 0px 0px 0.18em;
+}
+.mbsc-android-holo .dw-rtl :first-child.dwbw .dwb {
+	border-radius: 0px 0px 0.18em; border: 0px currentColor; border-image: none;
+}
+.mbsc-android-holo.dw-liq .dwwr {
+	border-radius: 0px;
+}
+.mbsc-android-holo.dw-top .dwwr {
+	border-radius: 0px;
+}
+.mbsc-android-holo.dw-bottom .dwwr {
+	border-radius: 0px;
+}
+.mbsc-android-holo.dw-liq .dwbw .dwb {
+	border-radius: 0px;
+}
+.mbsc-android-holo.dw-top .dwbw .dwb {
+	border-radius: 0px;
+}
+.mbsc-android-holo.dw-bottom .dwbw .dwb {
+	border-radius: 0px;
+}
+.mbsc-android-holo .dw-bubble-bottom .dw-arr {
+	border-color: transparent transparent rgb(41, 40, 41);
+}
+.mbsc-android-holo .dw-bubble-top .dw-arr {
+	border-color: rgb(41, 40, 41) transparent transparent;
+}
+.dwwb {
+	-webkit-transform: translateZ(0);
+}
+.dwwo {
+	-webkit-transform: translateZ(0);
+}
+.dwwol {
+	-webkit-transform: translateZ(0);
+}
+.dwc {
+	overflow: hidden; vertical-align: middle; display: inline-block; max-width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dwl {
+	left: 0px; top: -30px; width: 100%; height: 30px; text-align: center; line-height: 30px; white-space: nowrap; position: absolute;
+}
+.dwwc {
+	margin: 0px auto; display: flex; position: relative; -ms-zoom: 1; justify-content: center; -webkit-box-pack: center; -webkit-justify-content: center;
+}
+.dwfl {
+	flex:1 1 auto; max-width: 100%; -webkit-box-flex: 1; -webkit-flex: 1 auto;
+}
+.dwwl {
+	position: relative; z-index: 5;
+}
+.dwww {
+	padding: 1px; position: relative;
+}
+.dww {
+	border-radius: 1px; overflow: hidden; position: relative;
+}
+.dw-bf {
+	perspective: 1000px; backface-visibility: hidden; -webkit-backface-visibility: hidden; -webkit-perspective: 1000px;
+}
+.dw-ul {
+	position: relative; z-index: 3;
+}
+.dw-li {
+	padding: 0px 5px; transition:opacity 0.2s ease-out; text-align: center; vertical-align: bottom; white-space: nowrap; position: relative; cursor: pointer; opacity: 0.3; -webkit-transition: opacity .2s ease-out; -moz-transition: opacity .2s ease-out;
+}
+.dw-li.dw-v {
+	opacity: 1;
+}
+.dw-li.dw-fv {
+	opacity: 1;
+}
+.dw-li.dw-h {
+	visibility: hidden;
+}
+.dw-i {
+	height: 100%; overflow: hidden; position: relative; -ms-text-overflow: ellipsis;
+}
+.dwwb {
+	transition:opacity 0.2s linear; left: 0px; width: 100%; text-align: center; text-decoration: none; position: absolute; z-index: 4; cursor: pointer; opacity: 1; -webkit-transition: opacity .2s linear;
+}
+.dwa .dwwb {
+	opacity: 0;
+}
+.dwpm .dwwbp {
+	top: 0px;
+}
+.dwpm .dwwbm {
+	bottom: 0px;
+}
+.dwpm .dwwol {
+	display: none;
+}
+.dwwo {
+	left: 0px; top: 0px; width: 100%; height: 100%; position: absolute; z-index: 3; pointer-events: none;
+}
+.dwwol {
+	left: 0px; top: 50%; width: 100%; position: absolute; z-index: 1; pointer-events: none;
+}
+.dw-liq .dwc {
+	display: block;
+}
+.dw-liq .dw-tbl {
+	width: 100%; table-layout: fixed;
+}
+.dwhl .dwl {
+	display: none;
+}
+.dw-hsel {
+	left: 0px; width: 1px; height: 1px; overflow: hidden; position: absolute; clip: rect(1px, 1px, 1px, 1px);
+}
+.dw-ml .dw-li {
+	overflow: hidden;
+}
+.dw-ml .dw-li .dw-i {
+	width: 100%; height: auto; vertical-align: middle; display: inline-block; white-space: normal;
+}
+.dwwms .dw-li {
+	padding: 0px 40px;
+}
+.dwwms .dwwol {
+	display: none;
+}
+.dw-msel::before {
+	left: 0px; top: 0px; width: 40px; text-align: center; position: absolute;
+}
+.dww .dw-w-gr {
+	padding: 0px 5px; text-align: left; font-weight: bold; opacity: 1;
+}
+.mbsc-mobiscroll .dwc {
+	padding: 2em 0.25em 0px;
+}
+.mbsc-mobiscroll .dwl {
+	color: rgb(78, 204, 196); text-transform: uppercase; font-size: 0.75em;
+}
+.mbsc-mobiscroll .dwhl {
+	padding-top: 0px;
+}
+.mbsc-mobiscroll .dwfl {
+	padding: 0.5em 0.25em;
+}
+.mbsc-mobiscroll .dw-li {
+	font-size: 1.37em;
+}
+.mbsc-mobiscroll .dw-hl {
+	background: rgba(78, 204, 196, 0.3);
+}
+.mbsc-mobiscroll .dwwol {
+	border-top-color: rgb(78, 204, 196); border-bottom-color: rgb(78, 204, 196); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.mbsc-mobiscroll .dwpm .dwwol {
+	display: block;
+}
+.mbsc-mobiscroll .dwwb {
+	background: rgb(247, 247, 247); color: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dwwbp {
+	top: auto; bottom: 0px;
+}
+.mbsc-mobiscroll .dwwbm {
+	top: 0px; bottom: auto;
+}
+.mbsc-mobiscroll .dwwb span {
+	display: none;
+}
+.mbsc-mobiscroll .dwwb::before {
+	left: 0px; top: 0px; width: 100%; text-align: center; font-size: 24px; position: absolute;
+}
+.mbsc-mobiscroll .dwwb.dwb-a::before {
+	background: rgba(78, 204, 196, 0.3);
+}
+.mbsc-mobiscroll .dw-w-gr {
+	font-size: 1.12em;
+}
+.mbsc-mobiscroll .dw-msel::before {
+	color: rgb(78, 204, 196); font-size: 40px;
+}
+.mbsc-mobiscroll .dwwms .dwwol {
+	display: none;
+}
+.mbsc-android-holo .dwc {
+	padding: 1.87em 0.62em 0.06em;
+}
+.mbsc-android-holo .dwl {
+	font-size: 0.75em;
+}
+.mbsc-android-holo .dwhl {
+	padding: 0.06em 0.62em;
+}
+.mbsc-android-holo .dw-li {
+	color: rgb(255, 255, 255); font-size: 1.12em;
+}
+.mbsc-android-holo .dw-hl {
+	background: rgba(49, 182, 231, 0.5);
+}
+.mbsc-android-holo .dwwo {
+	background: linear-gradient(rgb(40, 40, 40), rgba(40, 40, 40, 0) 52%, rgba(40, 40, 40, 0) 48%, rgb(40, 40, 40));
+}
+.mbsc-android-holo .dwwb {
+	background: rgb(41, 40, 41); color: rgb(126, 126, 126);
+}
+.mbsc-android-holo .dwwb span {
+	display: none;
+}
+.mbsc-android-holo .dwwb::before {
+	left: 0px; top: 0px; width: 100%; text-align: center; font-size: 1.62em; position: absolute;
+}
+.mbsc-android-holo .dwwbm {
+	top: 0px; bottom: auto;
+}
+.mbsc-android-holo .dwwbp {
+	top: auto; bottom: 0px;
+}
+.mbsc-android-holo .dwwl .dwb-a {
+	background: rgb(41, 40, 41); color: rgb(49, 154, 189);
+}
+.mbsc-android-holo .dwwol {
+	left: 20%; width: 60%; border-top-color: rgb(49, 182, 231); border-bottom-color: rgb(49, 182, 231); border-top-width: 2px; border-bottom-width: 2px; border-top-style: solid; border-bottom-style: solid; display: block;
+}
+.mbsc-android-holo .dwwms .dwwo {
+	display: none;
+}
+.mbsc-android-holo .dwwms .dwwol {
+	display: none;
+}
+.mbsc-android-holo .dwwms .dw-li {
+	padding: 0px 2.25em;
+}
+.mbsc-android-holo .dwwms .dw-li::after {
+	border: 1px solid rgb(66, 69, 66); border-image: none; left: auto; top: 50%; width: 0.87em; height: 0.87em; right: 0.62em; margin-top: -0.56em; position: absolute; z-index: 1; content: "";
+}
+.mbsc-android-holo .dw-msel::before {
+	left: auto; top: 50%; width: 0.87em; right: 0.62em; color: rgb(49, 182, 231); line-height: 0.87em; margin-top: -0.62em; z-index: 2; text-shadow: 0px 0px 0.37em #29799c;
+}
+.mbsc-android-holo .dww .dw-w-gr {
+	padding: 0px 0.37em; font-size: 1em; font-weight: normal;
+}
+.mbsc-android-holo .dww .dw-w-gr::after {
+	display: none;
+}
+.dw-cal-sc-m-cell {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-days {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-slide {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-row {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-day {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-day-fg {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-week-nr {
+	box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.dw-cal-sc-c {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-week-nrs-c {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-cal-c {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-cal-anim-c {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-cal-slide {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-cal-tab .dw-i {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-cal-sc .dw-i {
+	backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.dw-calendar .dwcc {
+	margin: 0px auto; position: relative;
+}
+.dw-calendar .dwc-hh {
+	margin: 0px; padding: 0px; width: 0px; height: 0px; overflow: hidden; display: none;
+}
+.dw-cal-c {
+	position: relative;
+}
+.dw-cal-pnl {
+	vertical-align: middle; display: inline-block;
+}
+.dw-cal-tabbed .dw-cal-pnl {
+	left: 0px; top: 0px; width: 100%; height: 100%; display: table; position: absolute;
+}
+.dw-cal-tabbed .dw-cal-pnl-h {
+	display: none;
+}
+.dw-cal-tabbed .dw-cal-pnl-i {
+	vertical-align: middle; display: table-cell;
+}
+.dw-cal-tabbed .dw-cal {
+	width: auto !important;
+}
+.dw-trans .dw-persp .dw-cal-c {
+	backface-visibility: visible; -webkit-backface-visibility: visible;
+}
+.dw-cal-anim-c {
+	overflow: hidden; position: relative;
+}
+.dw-cal-anim {
+	height: 100%; position: relative; transform: translate3d(0px, 0px, 0px); -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0);
+}
+.dw-cal-no3d .dw-cal-anim {
+	margin: 0px;
+}
+.dw-cal-slide {
+	left: 0px; top: 0px; width: 100%; height: 100%; position: absolute; opacity: 0.5; perspective: 1000px; -webkit-perspective: 1000px; -webkit-transition: opacity 300ms;
+}
+:first-child.dw-cal-slide {
+	position: relative;
+}
+.dw-cal-slide-a {
+	opacity: 1;
+}
+.dw-cal-header {
+	line-height: 40px;
+}
+.dw-cal table {
+	width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed;
+}
+.dw-cal th {
+	text-align: center; line-height: 30px;
+}
+.dw-cal-nb {
+	border: 0px currentColor; border-image: none;
+}
+.dw-cal-body {
+	position: relative;
+}
+.dw-cal-table {
+	width: 100%; height: 100%; display: table; table-layout: fixed;
+}
+.dw-cal-row {
+	display: table-row; white-space: nowrap;
+}
+.dw-cal-day {
+	width: 14.28%; height: 16.66%; text-align: right; line-height: 2.5em; vertical-align: middle; display: table-cell; position: relative; cursor: default;
+}
+.dw-cal-day-v {
+	cursor: pointer;
+}
+.dw-cal-day .dw-i {
+	overflow: visible;
+}
+.dw-cal-day-diff .dw-i {
+	opacity: 0.3;
+}
+.dw-cal-day-diff.dw-sel .dw-i {
+	opacity: 1;
+}
+.dw-hide-diff .dw-cal-day-diff .dw-i {
+	visibility: hidden;
+}
+.dw-cal-day-fg {
+	padding: 5px; position: relative; z-index: 2;
+}
+.dw-weeks .dw-cal-days-c {
+	padding-left: 26px;
+}
+.dw-weeks .dw-cal-anim-c {
+	padding-left: 26px;
+}
+.dw-week-nrs-c {
+	left: 0px; width: 26px; height: 100%; display: none; position: absolute; z-index: 3;
+}
+.dw-week-nrs {
+	width: 100%; height: 100%; display: table;
+}
+.dw-week-nr {
+	height: 16.66%; text-align: center; font-weight: bold; display: none; position: relative;
+}
+.dw-week-nr-i {
+	padding-top: 1px; vertical-align: middle; display: table-cell;
+}
+.dw-weeks .dw-week-nrs-c {
+	display: block;
+}
+.dw-week-nrs .dw-week-nr {
+	display: table-row;
+}
+.dw-rtl .dw-weeks .dw-cal-days-c {
+	padding-right: 26px; padding-left: 0px;
+}
+.dw-rtl .dw-weeks .dw-cal-anim-c {
+	padding-right: 26px; padding-left: 0px;
+}
+.dw-rtl .dw-week-nrs-c {
+	left: auto; right: 0px;
+}
+.dw-cal-sc-c {
+	left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; position: absolute; z-index: 5;
+}
+.dw-cal-h {
+	visibility: hidden;
+}
+.dw-cal-p-out {
+	animation:dw-f-out 200ms ease-in; -webkit-animation: 200ms dw-f-out ease-in; -moz-animation: 200ms dw-f-out ease-in;
+}
+.dw-cal-p-in {
+	animation:dw-f-in 200ms ease-out; -webkit-animation: 200ms dw-f-in ease-out; -moz-animation: 200ms dw-f-in ease-out;
+}
+.mbsc-old .dw-cal-p-in {
+	animation:none; -webkit-animation: none; -moz-animation: none;
+}
+.mbsc-old .dw-cal-p-out {
+	animation:none; -webkit-animation: none; -moz-animation: none;
+}
+.dw-cal-sc {
+	height: 100%; font-size: 1.33em; white-space: nowrap; position: relative;
+}
+.dw-cal-sc-p {
+	left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; position: absolute; -webkit-transform: translate3d(0, 0, 0);
+}
+.dw-cal-sc-tbl {
+	width: 100%; height: 100%; display: table; table-layout: fixed;
+}
+.dw-cal-sc-row {
+	display: table-row;
+}
+.dw-cal-sc-cell {
+	text-align: center; vertical-align: middle; display: table-cell; cursor: pointer;
+}
+.dw-cal-sc-m-cell {
+	height: 25%;
+}
+.dw-cal-btnc {
+	font-size: 1.5em; position: relative;
+}
+.dw-cal-btnw {
+	height: 40px; position: relative;
+}
+.dw-cal .dw-cal-btn {
+	margin: 0px; padding: 0px; top: 0px; width: 36px; height: 40px; position: absolute; cursor: pointer;
+}
+.dw-cal .dwb-d {
+	opacity: 0.3;
+}
+.dw-cal-prev {
+	left: 0px;
+}
+.dw-cal-next {
+	right: 0px;
+}
+.dw-cal-month {
+	cursor: pointer;
+}
+.dw-cal-year {
+	cursor: pointer;
+}
+.dw-cal-btnc-ym .dw-cal-month {
+	margin: 0px 36px; overflow: hidden; display: block; -ms-text-overflow: ellipsis;
+}
+.dw-cal-btnc-ym .dw-cal-year {
+	margin: 0px 36px; overflow: hidden; display: block; -ms-text-overflow: ellipsis;
+}
+.dw-cal-btnc-ym .dw-cal-btnw {
+	width: 50%; vertical-align: top; display: inline-block; white-space: nowrap;
+}
+.dw-cal-btn-txt {
+	overflow: hidden;
+}
+.dw-cal-btn-txt::before {
+	display: block;
+}
+.dw-cal-liq .dw {
+	display: block;
+}
+.dw-cal-liq .dw-cal-pnl {
+	width: 100%;
+}
+.dw-cal-liq .dw-cal {
+	width: auto;
+}
+.dw-cal-liq.dw-modal .dw {
+	left: 0px; top: 0px; width: 100%;
+}
+.dw-cal-liq.dw-modal .dwo {
+	display: none;
+}
+.dw-cal-liq.dw-modal .dwwr {
+	width: auto !important;
+}
+.dw-cal-tabs {
+	color: rgb(0, 0, 0); line-height: 40px; display: none;
+}
+.dw-cal-tabbed .dw-cal-tabs {
+	display: block;
+}
+.dw-cal-tabbed .dwwr {
+	width: auto !important;
+}
+.dw-cal-tabs ul {
+	list-style: none; margin: 0px; padding: 0px;
+}
+.dw-cal-tabs li {
+	list-style: none; margin: 0px; padding: 0px;
+}
+.dw-cal-tabs ul {
+	width: 100%; display: table;
+}
+.dw-cal-tab {
+	width: 33.33%; display: table-cell; cursor: pointer;
+}
+.dw-cal-tab .dw-i {
+	text-decoration: none; display: block;
+}
+.dw-cal-multi .dw-cal-slide {
+	padding-left: 8px;
+}
+.dw-ltr .dw-cal-multi .dw-cal-anim-c {
+	margin-right: -8px;
+}
+.dw-rtl .dw-cal-multi .dw-cal-anim-c {
+	margin-left: -8px;
+}
+.dw-cal-multi .dw-cal-anim {
+	margin-left: -8px;
+}
+.dw-cal-multi .dw-cal-btnw {
+	width: auto; display: block;
+}
+.dw-cal-multi .dw-cal-btnw-m {
+	vertical-align: top; display: inline-block; white-space: nowrap;
+}
+.dw-cal-multi .dw-cal-days-c {
+	overflow: hidden;
+}
+.dw-cal-multi .dw-cal-days {
+	float: left;
+}
+.mbsc-cal-m .dw-cal {
+	font-size: 1.2em;
+}
+.mbsc-cal-l .dw-cal {
+	font-size: 1.4em;
+}
+.mbsc-mobiscroll .dw-cal-c {
+	padding: 0.5em;
+}
+.mbsc-mobiscroll .dw-cal-sc {
+	font-size: 1em;
+}
+.mbsc-mobiscroll .dw-cal-sc-c {
+	background: rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-cal-btnc {
+	font-size: 1.12em;
+}
+.mbsc-mobiscroll .dw-cal-btn-txt {
+	color: rgb(78, 204, 196); line-height: 40px; font-size: 1em;
+}
+.mbsc-mobiscroll .dw-cal-days {
+	color: rgb(78, 204, 196); border-bottom-color: rgb(78, 204, 196); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.mbsc-mobiscroll .dw-cal-days th {
+	font-size: 0.68em; font-weight: normal;
+}
+.mbsc-mobiscroll .dw-cal-day {
+	text-align: center; line-height: 1.87em;
+}
+.mbsc-mobiscroll .dw-cal-day-fg {
+	font-size: 0.81em;
+}
+.mbsc-mobiscroll .dw-cal-day-inv .dw-cal-day-fg {
+	opacity: 0.3;
+}
+.mbsc-mobiscroll .dw-cal .dw-sel .dw-i {
+	background: rgb(78, 204, 196); color: rgb(255, 255, 255);
+}
+.mbsc-mobiscroll .dw-cal-day-hl .dw-i {
+	border-color: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dw-week-nrs-c {
+	background: rgb(247, 247, 247); color: rgb(78, 204, 196); font-size: 0.68em;
+}
+.mbsc-mobiscroll .dw-week-nr-i {
+	padding-top: 0px; font-weight: normal;
+}
+.mbsc-mobiscroll .dw-cal-tabs {
+	padding: 0.5em 0.5em 0px; text-transform: uppercase; line-height: 1.87em;
+}
+.mbsc-mobiscroll .dw-cal-tabbed .dwwr {
+	padding-top: 0.5em;
+}
+.mbsc-mobiscroll .dw-cal-tabbed .dwv {
+	padding-top: 0px;
+}
+.mbsc-mobiscroll .dw-cal-tab {
+	border: 1px solid rgb(78, 204, 196); border-image: none; font-size: 0.7em;
+}
+.mbsc-mobiscroll .dw-cal-tabs ul {
+	margin: 0px auto; width: auto;
+}
+.mbsc-mobiscroll .dw-cal-tab .dw-i {
+	padding: 0px 1.2em; color: rgb(69, 69, 69);
+}
+.mbsc-mobiscroll .dw-ltr :first-child.dw-cal-tab {
+	border-right-color: currentColor; border-right-width: 0px; border-right-style: none;
+}
+.mbsc-mobiscroll .dw-ltr :last-child.dw-cal-tab {
+	border-left-color: currentColor; border-left-width: 0px; border-left-style: none;
+}
+.mbsc-mobiscroll .dw-rtl :last-child.dw-cal-tab {
+	border-right-color: currentColor; border-right-width: 0px; border-right-style: none;
+}
+.mbsc-mobiscroll .dw-rtl :first-child.dw-cal-tab {
+	border-left-color: currentColor; border-left-width: 0px; border-left-style: none;
+}
+.mbsc-mobiscroll .dw-cal-tabs .dw-sel {
+	background: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dw-cal-tabs .dw-sel .dw-i {
+	color: rgb(247, 247, 247);
+}
+.mbsc-android-holo .dw-cal-sc-c {
+	background: rgb(41, 40, 41);
+}
+.mbsc-android-holo .dw-cal-sc-m-cell {
+	border-top-color: rgb(68, 68, 68); border-top-width: 1px; border-top-style: solid;
+}
+.mbsc-android-holo .dw-cal-btn.dwb-a {
+	background: 0px;
+}
+.mbsc-android-holo .dw-week-nrs-c {
+	background: rgb(41, 40, 41);
+}
+.mbsc-android-holo .dw-week-nr-i {
+	padding: 0px; color: rgb(85, 85, 85); border-top-color: rgb(68, 68, 68); border-top-width: 1px; border-top-style: solid;
+}
+.mbsc-android-holo .dw-cal {
+	padding: 0.83em; font-size: 0.75em;
+}
+.mbsc-android-holo .dw-cal-header {
+	line-height: 3em;
+}
+.mbsc-android-holo .dw-cal-btnw {
+	height: 2em;
+}
+.mbsc-android-holo .dw-cal-btn {
+	height: 2.25em; line-height: 2.25em;
+}
+.mbsc-android-holo .dw-cal-btn-txt {
+	color: rgb(126, 126, 126); font-size: 1.87em;
+}
+.mbsc-android-holo .dwb-a .dw-cal-btn-txt {
+	color: rgb(49, 154, 189);
+}
+.mbsc-android-holo .dw-cal th {
+	color: rgb(85, 85, 85);
+}
+.mbsc-android-holo .dw-cal-day {
+	text-align: center; border-top-color: rgb(68, 68, 68); border-top-width: 1px; border-top-style: solid;
+}
+.mbsc-android-holo .dw-cal-day-inv .dw-cal-day-fg {
+	opacity: 0.3;
+}
+.mbsc-android-holo .dw-cal .dw-sel .dw-i {
+	background: rgba(49, 182, 231, 0.5);
+}
+.mbsc-android-holo .dw-cal .dw-cal-day-hl .dw-i {
+	background: rgb(49, 182, 231);
+}
+.mbsc-android-holo.dw-cal-liq .dw-cal {
+	padding: 0px;
+}
+.mbsc-android-holo .dw-cal-tabs {
+	background: rgb(51, 51, 51); color: rgb(255, 255, 255); text-transform: uppercase; line-height: 1.4em; font-size: 0.62em; font-weight: bold;
+}
+.mbsc-android-holo .dw-cal-tab {
+	border-width: 5px 0px; border-style: solid none; border-color: rgb(51, 51, 51) currentColor; border-image: none;
+}
+.mbsc-android-holo :first-child.dw-cal-tab .dw-i {
+	border-color: transparent;
+}
+.mbsc-android-holo .dw-cal-tabs .dw-i {
+	margin: 0.8em 0px; color: rgb(255, 255, 255); border-left-color: rgb(68, 68, 68); border-left-width: 1px; border-left-style: solid;
+}
+.mbsc-android-holo .dw-rtl .dw-cal-tabs .dw-i {
+	border-right-color: rgb(68, 68, 68); border-left-color: currentColor; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-left-style: none;
+}
+.mbsc-android-holo .dw-cal-tabs .dw-sel {
+	border-bottom-color: rgb(49, 182, 231); border-bottom-width: 5px; border-bottom-style: solid;
+}
+.dw-cal-ev .dw-cal-day-fg {
+	padding-bottom: 20px;
+}
+.dw-cal-day-m {
+	border: 5px solid black; border-image: none; top: 1px; width: 0px; height: 0px; right: 1px; position: absolute; background-clip: padding-box;
+}
+.dw-cal-day-m-t {
+	width: 100%; height: 100%; display: table; table-layout: fixed;
+}
+.dw-cal-day-m-c {
+	display: table-cell;
+}
+.dw-cal-m-bottom .dw-cal-day .dw-cal-day-m {
+	margin: 0px; border: 0px currentColor; border-image: none; left: 0px; top: auto; width: auto; height: 3px; right: 0px; bottom: 0px;
+}
+.dw-cal-day-ic-c {
+	left: 0px; right: 0px; bottom: 0px; overflow: hidden; position: absolute;
+}
+.dw-cal-day-txt-c {
+	left: 0px; right: 0px; bottom: 0px; overflow: hidden; position: absolute;
+}
+.dw-cal-day-ic-c {
+	padding: 0px 5px; line-height: 20px; font-size: 1em; -ms-text-overflow: ellipsis; text-shadow: none;
+}
+.dw-cal-day-txt {
+	padding: 0px 2px; text-align: center; line-height: 19px; overflow: hidden; font-size: 0.83em; font-weight: normal; margin-top: 2px; white-space: nowrap; -ms-text-overflow: ellipsis; text-shadow: none;
+}
+.dw-cal-events {
+	padding: 5px; left: 0px; right: 0px; display: none; position: absolute; z-index: 4;
+}
+.dw-cal-events-t {
+	visibility: hidden;
+}
+.dw-cal-events-i {
+	overflow: hidden;
+}
+.dw-cal-events-sc {
+	position: relative; -webkit-backface-visibility: hidden;
+}
+.dw-cal-events-v {
+	display: block;
+}
+.dw-cal-event-list {
+	margin: 0px; padding: 0px;
+}
+.dw-cal-event {
+	list-style: none; padding: 5px 60px 5px 10px; text-align: left; line-height: 20px; font-size: 1em; margin-top: 5px; white-space: nowrap; position: relative;
+}
+:first-child.dw-cal-event {
+	margin: 0px;
+}
+.dw-cal-event-color {
+	left: 0px; top: 0px; width: 5px; height: 100%; position: absolute;
+}
+.dw-cal-event-text {
+	overflow: hidden; -ms-text-overflow: ellipsis;
+}
+.dw-cal-event-time {
+	width: 5em; display: inline-block;
+}
+.dw-cal-event-dur {
+	top: 50%; height: 20px; right: 5px; line-height: 20px; margin-top: -10px; position: absolute;
+}
+.dw-cal-events-arr {
+	border-width: 7px; border-style: solid; border-color: rgb(255, 255, 255) transparent transparent; border-image: none; left: 50%; width: 0px; height: 0px; bottom: -14px; margin-left: -7px; position: absolute;
+}
+.dw-cal-events-b .dw-cal-events-arr {
+	border-color: transparent transparent rgb(255, 255, 255); top: -14px; bottom: auto;
+}
+.mbsc-mobiscroll .dw-cal-day-m {
+	background: rgb(69, 69, 69); border-radius: 3px; border: 0px currentColor; border-image: none; left: 50%; top: auto; width: 4px; height: 4px; bottom: 4px; margin-left: -2px;
+}
+.mbsc-mobiscroll .dw-sel .dw-cal-day-m {
+	background: rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-cal-c .dw-cal-m-bottom .dw-cal-day-m {
+	background: 0px; bottom: 4px;
+}
+.mbsc-mobiscroll .dw-cal-day-m-t {
+	height: 4px; overflow: hidden; display: block; white-space: normal;
+}
+.mbsc-mobiscroll .dw-cal-day-m-c {
+	background: rgb(78, 204, 196); margin: 0px 1px; border-radius: 3px; width: 4px; height: 4px; vertical-align: top; display: inline-block;
+}
+.mbsc-mobiscroll .dw-sel .dw-cal-day-m-c {
+	background: rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-cal-day-txt {
+	background: rgb(69, 69, 69); color: rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-cal-day-txt {
+	font-size: 0.62em;
+}
+.mbsc-mobiscroll .dw-cal-day-ic-c {
+	font-size: 0.62em;
+}
+.mbsc-mobiscroll .dw-cal-events {
+	background: rgb(133, 133, 133); margin: 0px 0px 5px; padding: 0px; color: rgb(247, 247, 247);
+}
+.mbsc-mobiscroll .dw-cal-events-b {
+	margin: 10px 0px 0px;
+}
+.mbsc-mobiscroll .dw-cal-event {
+	margin: 0px; padding: 10px 60px 10px 15px; font-size: 0.75em;
+}
+.mbsc-mobiscroll .dw-cal-event-color {
+	background: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dw-cal-event-time {
+	color: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dw-cal-event-dur {
+	color: rgb(78, 204, 196);
+}
+.mbsc-mobiscroll .dw-cal-events-arr {
+	border-color: rgb(133, 133, 133) transparent transparent;
+}
+.mbsc-mobiscroll .dw-cal-events-b .dw-cal-events-arr {
+	border-color: transparent transparent rgb(133, 133, 133);
+}
+.mbsc-android-holo .dw-cal-day-m {
+	border-color: rgb(49, 182, 231) rgb(49, 182, 231) transparent transparent;
+}
+.mbsc-android-holo .dw-cal-m-bottom .dw-cal-day-m {
+	background: rgb(49, 182, 231);
+}
+.mbsc-android-holo .dw-cal-events {
+	background: rgb(255, 255, 255); margin: 0.37em 0.37em 0.5em;
+}
+.mbsc-android-holo .dw-cal-events-b {
+	margin: 0.5em 0.37em 0.37em;
+}
+.mbsc-android-holo .dw-cal-event {
+	background: rgb(126, 126, 126); font-size: 0.75em;
+}
+.mbsc-android-holo .dw-cal-event-color {
+	background: rgb(49, 182, 231);
+}
+.mbsc-android-holo .dw-cal-day-txt {
+	background: rgb(68, 68, 68); color: rgb(255, 255, 255);
+}
+.dw-trans .dw-persp {
+	overflow: hidden; perspective: 1000px; -webkit-perspective: 1000px; -moz-perspective: 1000px;
+}
+.dw-trans .dw {
+	animation-duration: 200ms; animation-fill-mode: forwards; -webkit-animation-fill-mode: forwards; -webkit-animation-duration: 200ms; -moz-animation-fill-mode: forwards; -moz-animation-duration: 200ms;
+}
+.dw-trans .dwo {
+	animation-duration: 200ms; animation-fill-mode: forwards; -webkit-animation-fill-mode: forwards; -webkit-animation-duration: 200ms; -moz-animation-fill-mode: forwards; -moz-animation-duration: 200ms;
+}
+.dw-trans .dwo {
+	-webkit-backface-visibility: hidden;
+}
+.dw-in .dw {
+	animation-timing-function: ease-out; -webkit-animation-timing-function: ease-out; -moz-animation-timing-function: ease-out;
+}
+.dw-out .dw {
+	animation-timing-function: ease-in; -webkit-animation-timing-function: ease-in; -moz-animation-timing-function: ease-in;
+}
+.dw-in .dwo {
+	animation-name: dw-f-in; -webkit-animation-name: dw-f-in; -moz-animation-name: dw-f-in;
+}
+.dw-out .dwo {
+	animation-name: dw-f-out; -webkit-animation-name: dw-f-out; -moz-animation-name: dw-f-out;
+}
+.dw-flip {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-swing {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-slidehorizontal {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-slidevertical {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-slidedown {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-slideup {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-fade {
+	transform: translateX(0px); backface-visibility: hidden; -webkit-transform: translateX(0); -webkit-backface-visibility: hidden; -moz-transform: translateX(0); -moz-backface-visibility: hidden;
+}
+.dw-swing {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-slidehorizontal {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-slidevertical {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-slidedown {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-slideup {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-fade {
+	transform-origin: 0% 0%; -webkit-transform-origin: 0 0; -moz-transform-origin: 0 0;
+}
+.dw-flip {
+	transform-origin: 50% 50%; -webkit-transform-origin: 50% 50%; -moz-transform-origin: 50% 50%;
+}
+.dw-pop {
+	transform-origin: 50% 50%; -webkit-transform-origin: 50% 50%; -moz-transform-origin: 50% 50%;
+}
+.dw-in .dw-pop {
+	opacity: 1; transform: scale(1); animation-name: dw-p-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-p-in; -moz-animation-name: dw-p-in;
+}
+.dw-out .dw-pop {
+	opacity: 0; animation-name: dw-p-out; -webkit-animation-name: dw-p-out; -moz-animation-name: dw-p-out;
+}
+.dw-in .dw-flip {
+	opacity: 1; transform: scale(1); animation-name: dw-fl-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-fl-in; -moz-animation-name: dw-fl-in;
+}
+.dw-out .dw-flip {
+	opacity: 0; animation-name: dw-fl-out; -webkit-animation-name: dw-fl-out; -moz-animation-name: dw-fl-out;
+}
+.dw-in .dw-swing {
+	opacity: 1; transform: scale(1); animation-name: dw-sw-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-sw-in; -moz-animation-name: dw-sw-in;
+}
+.dw-out .dw-swing {
+	opacity: 0; animation-name: dw-sw-out; -webkit-animation-name: dw-sw-out; -moz-animation-name: dw-sw-out;
+}
+.dw-in .dw-slidehorizontal {
+	opacity: 1; transform: scale(1); animation-name: dw-sh-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-sh-in; -moz-animation-name: dw-sh-in;
+}
+.dw-out .dw-slidehorizontal {
+	opacity: 0; animation-name: dw-sh-out; -webkit-animation-name: dw-sh-out; -moz-animation-name: dw-sh-out;
+}
+.dw-in .dw-slidevertical {
+	opacity: 1; transform: scale(1); animation-name: dw-sv-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-sv-in; -moz-animation-name: dw-sv-in;
+}
+.dw-out .dw-slidevertical {
+	opacity: 0; animation-name: dw-sv-out; -webkit-animation-name: dw-sv-out; -moz-animation-name: dw-sv-out;
+}
+.dw-in .dw-slidedown {
+	transform: scale(1); animation-name: dw-sd-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-sd-in; -moz-animation-name: dw-sd-in;
+}
+.dw-out .dw-slidedown {
+	animation-name: dw-sd-out; -webkit-transform: translateY(-100%); -moz-transform: translateY(-100%); -webkit-animation-name: dw-sd-out; -moz-animation-name: dw-sd-out;
+}
+.dw-in .dw-slideup {
+	transform: scale(1); animation-name: dw-su-in; -webkit-transform: scale(1); -moz-transform: scale(1); -webkit-animation-name: dw-su-in; -moz-animation-name: dw-su-in;
+}
+.dw-out .dw-slideup {
+	animation-name: dw-su-out; -webkit-transform: translateY(100%); -moz-transform: translateY(100%); -webkit-animation-name: dw-su-out; -moz-animation-name: dw-su-out;
+}
+.dw-in .dw-fade {
+	opacity: 1; animation-name: dw-f-in; -webkit-animation-name: dw-f-in; -moz-animation-name: dw-f-in;
+}
+.dw-out .dw-fade {
+	opacity: 0; animation-name: dw-f-out; -webkit-animation-name: dw-f-out; -moz-animation-name: dw-f-out;
+}
+.mbsc-android-holo-light .dwwr {
+	background: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .dw-cal-sc-c {
+	background: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .dwwr {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .dwb {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .dw-li {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .dw-dr {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .dw-cal-tabs .dw-i {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .dwv {
+	color: rgb(0, 172, 255); border-bottom-color: rgb(0, 172, 255); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.mbsc-android-holo-light .dw-hl {
+	background: rgba(49, 183, 232, 0.5);
+}
+.mbsc-android-holo-light .dwwb {
+	background: rgb(245, 245, 245); color: rgb(125, 125, 125);
+}
+.mbsc-android-holo-light .dwwl .dwb-a {
+	background: rgb(245, 245, 245); color: rgb(49, 154, 189);
+}
+.mbsc-android-holo-light .dwwol {
+	border-top-color: rgb(0, 172, 255); border-bottom-color: rgb(0, 172, 255); border-top-width: 2px; border-bottom-width: 2px; border-top-style: solid; border-bottom-style: solid;
+}
+.mbsc-android-holo-light .dwb-a {
+	background: rgb(238, 238, 238); color: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .dwwms .dw-li::after {
+	border-color: rgb(217, 213, 217);
+}
+.mbsc-android-holo-light .dw-msel::before {
+	color: rgb(0, 172, 255); text-shadow: 0px 0px 5px #eee;
+}
+.mbsc-android-holo-light .dwwo {
+	background: linear-gradient(rgb(255, 255, 255), rgba(245, 245, 245, 0) 52%, rgba(245, 245, 245, 0) 48%, rgb(255, 255, 255));
+}
+.mbsc-android-holo-light .dwbc {
+	border-color: rgb(217, 213, 217);
+}
+.mbsc-android-holo-light .dwbw .dwb {
+	border-color: rgb(217, 213, 217);
+}
+.mbsc-android-holo-light .dw-bubble-bottom .dw-arr {
+	border-color: transparent transparent rgb(245, 245, 245);
+}
+.mbsc-android-holo-light .dw-bubble-top .dw-arr {
+	border-color: rgb(245, 245, 245) transparent transparent;
+}
+.mbsc-android-holo-light .dw-cal-day-m {
+	border-color: rgb(0, 172, 255) rgb(0, 172, 255) transparent transparent;
+}
+.mbsc-android-holo-light .dw-cal-m-bottom .dw-cal-day-m {
+	background: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .dw-cal .dw-sel .dw-i {
+	background: rgba(49, 183, 232, 0.5);
+}
+.mbsc-android-holo-light .dwb-a .dw-cal-btn-txt {
+	color: rgb(49, 154, 189);
+}
+.mbsc-android-holo-light .dw-cal-tabs .dw-sel {
+	border-bottom-color: rgb(0, 172, 255); border-bottom-width: 5px; border-bottom-style: solid;
+}
+.mbsc-android-holo-light .dw-cal-event-color {
+	background: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .dw-cal .dw-cal-day-hl .dw-i {
+	background: rgb(0, 172, 255); color: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .dw-cal-tabs {
+	background: rgb(230, 230, 230);
+}
+.mbsc-android-holo-light .dw-cal-tab {
+	border-color: rgb(230, 230, 230);
+}
+.mbsc-android-holo-light .dw-cal-tabs .dw-i {
+	border-color: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .dw-cal-day {
+	border-color: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .dw-cal-sc-m-cell {
+	border-color: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .dw-cal-btn-txt {
+	color: rgb(125, 125, 125);
+}
+.mbsc-android-holo-light .dw-week-nrs-c {
+	background: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light .dw-week-nr-i {
+	border-color: rgb(217, 217, 217); color: rgb(125, 125, 125);
+}
+.mbsc-android-holo-light .dw-cal th {
+	color: rgb(125, 125, 125);
+}
+.mbsc-android-holo-light .dw-cal-events {
+	background: rgba(0, 0, 0, 0.8);
+}
+.mbsc-android-holo-light .dw-cal-events-arr {
+	border-color: rgba(0, 0, 0, 0.8) transparent transparent;
+}
+.mbsc-android-holo-light .dw-cal-events-b .dw-cal-events-arr {
+	border-color: transparent transparent rgba(0, 0, 0, 0.8);
+}
+.mbsc-android-holo-light .dw-cal-event {
+	background: rgb(125, 125, 125); color: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .dw-dr {
+	background: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .dw-sel .dw-dr {
+	background: rgb(0, 172, 255); color: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light.dw-timer .dwl {
+	color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-rating-icon {
+	color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-np-hdr {
+	border-color: rgb(217, 217, 217);
+}
+.mbsc-lv-android-holo-light .mbsc-lv {
+	background: rgb(219, 219, 219);
+}
+.mbsc-lv-android-holo-light .mbsc-lv .mbsc-lv-item.mbsc-lv-item-dragging {
+	background: rgba(49, 183, 232, 0.5); border-color: rgba(49, 183, 232, 0.5);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-item {
+	background: rgb(245, 245, 245); color: rgb(0, 0, 0);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-gr-title {
+	background: rgb(245, 245, 245); color: rgb(0, 0, 0);
+}
+.mbsc-lv-android-holo-light.mbsc-lv-alt-row :nth-child(2n).mbsc-lv-item {
+	background: rgb(237, 237, 237);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-item {
+	border-color: rgb(219, 219, 219);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-gr-title {
+	border-color: rgb(219, 219, 219);
+}
+.mbsc-lv-android-holo-light .mbsc-lv .mbsc-lv-item.mbsc-lv-item-active {
+	background: rgb(219, 219, 219);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-handle-bar-c {
+	border-color: rgb(178, 178, 178);
+}
+.mbsc-lv-android-holo-light.mbsc-lv-handle-left .mbsc-lv-handle-bar-c {
+	border-color: rgb(178, 178, 178);
+}
+.mbsc-lv-android-holo-light .mbsc-lv-handle-bar {
+	background: rgb(178, 178, 178);
+}
+.mbsc-android-holo-light.mbsc-ms-c {
+	background: rgb(245, 245, 245); color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light.mbsc-ms-a .mbsc-ms-item-sel .mbsc-ms-item-i {
+	color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light.mbsc-ms-b.mbsc-ms-top {
+	border-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light.mbsc-ms-b.mbsc-ms-bottom {
+	border-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light.mbsc-ms-b .mbsc-ms-item-sel .mbsc-ms-item-i {
+	border-bottom-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light.mbsc-ms-b.mbsc-ms-bottom .mbsc-ms-item-sel .mbsc-ms-item-i {
+	border-top-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light.mbsc-ms-b .mbsc-ms-item-i-c {
+	border-color: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .mbsc-btn-a .mbsc-ms-item-i {
+	background: rgb(238, 238, 238);
+}
+.mbsc-android-holo-light.mbsc-form {
+	background: rgb(245, 245, 245); color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .mbsc-desc {
+	color: rgb(161, 161, 161);
+}
+.mbsc-android-holo-light .mbsc-input select {
+	background: rgb(245, 245, 245); border-color: rgb(168, 168, 168); color: rgb(0, 0, 0); outline-color: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light .mbsc-input textarea {
+	background: rgb(245, 245, 245); border-color: rgb(168, 168, 168); color: rgb(0, 0, 0); outline-color: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light .mbsc-input input {
+	background: rgb(245, 245, 245); border-color: rgb(168, 168, 168); color: rgb(0, 0, 0); outline-color: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light.mbsc-wdg .mbsc-input textarea {
+	background: rgb(245, 245, 245); outline-color: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light.mbsc-wdg .mbsc-input input {
+	background: rgb(245, 245, 245); outline-color: rgb(245, 245, 245);
+}
+.mbsc-lv-android-holo-light .mbsc-input textarea {
+	background: rgb(245, 245, 245); outline-color: rgb(245, 245, 245);
+}
+.mbsc-lv-android-holo-light .mbsc-input input {
+	background: rgb(245, 245, 245); outline-color: rgb(245, 245, 245);
+}
+.mbsc-android-holo-light .mbsc-select .mbsc-input-wrap .mbsc-select-ic {
+	border-color: transparent rgb(168, 168, 168) rgb(168, 168, 168) transparent;
+}
+.mbsc-android-holo-light .mbsc-radio-box {
+	border-color: rgb(76, 76, 76);
+}
+.mbsc-android-holo-light .mbsc-checkbox-box {
+	border-color: rgb(76, 76, 76);
+}
+.mbsc-android-holo-light .mbsc-switch-handle {
+	color: rgb(255, 255, 255);
+}
+.mbsc-android-holo-light .mbsc-switch .mbsc-switch-track {
+	background: rgb(217, 217, 217);
+}
+.mbsc-android-holo-light .mbsc-switch .mbsc-switch-handle {
+	background: rgb(201, 201, 201);
+}
+.mbsc-android-holo-light .mbsc-switch input:checked:not(:disabled) + .mbsc-switch-track .mbsc-switch-handle {
+	background: rgba(49, 183, 232, 0.7);
+}
+.mbsc-android-holo-light .mbsc-checkbox input.mbsc-active + .mbsc-checkbox-box::before {
+	background: rgba(150, 150, 150, 0.2);
+}
+.mbsc-android-holo-light .mbsc-radio input.mbsc-active + .mbsc-radio-box::before {
+	background: rgba(150, 150, 150, 0.2);
+}
+.mbsc-android-holo-light .mbsc-btn {
+	background: rgb(212, 212, 212); border-color: currentColor rgb(212, 212, 212) rgb(212, 212, 212); color: rgb(0, 0, 0); border-top-width: 0px; border-top-style: none;
+}
+.mbsc-android-holo-light .mbsc-btn.mbsc-active {
+	background: rgb(194, 194, 194);
+}
+.mbsc-android-holo-light .mbsc-btn-flat {
+	background: none; border-color: transparent; color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light .mbsc-btn-flat.mbsc-active {
+	background: none; border-color: transparent;
+}
+.mbsc-android-holo-light :disabled.mbsc-btn-flat {
+	color: rgb(0, 0, 0);
+}
+.mbsc-android-holo-light.mbsc-form *::selection {
+	background: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-divider {
+	color: rgb(0, 172, 255); border-bottom-color: rgb(0, 172, 255); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.mbsc-android-holo-light a {
+	color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-input select:focus + input {
+	border-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-input textarea:focus {
+	border-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-input input:focus {
+	border-color: rgb(0, 172, 255);
+}
+.mbsc-android-holo-light .mbsc-input .mbsc-control:focus ~ .mbsc-select-ic {
+	border-color: transparent rgb(0, 172, 255) rgb(0, 172, 255) transparent;
+}
+.mbsc-android-holo-light .mbsc-checkbox-box::after {
+	border-width: 0px 0px 3px 3px; border-style: none none solid solid; border-color: currentColor currentColor rgb(0, 172, 255) rgb(0, 172, 255); border-image: none;
+}
+.mbsc-android-holo-light .mbsc-radio-box::after {
+	background: rgb(0, 172, 255);
+}

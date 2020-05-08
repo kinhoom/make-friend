@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3.1]]></item>
+	<item id="Time"><![CDATA[2018-02-05 02:09]]></item>
+	<item id="From"><![CDATA[www.huaidanwangluo.com]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[[点微]链接转换工具]]></item>
+			<item id="identifier"><![CDATA[tom_link]]></item>
+			<item id="description"><![CDATA[微信系列插件链接入口和插件标示转换工具]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[tom_link/]]></item>
+			<item id="copyright"><![CDATA[bbs.huaidanwangluo.com]]></item>
+			<item id="version"><![CDATA[2.1]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=index]]></item>
+					<item id="menu"><![CDATA[转换管理]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[admin]]></item>
+					<item id="param"><![CDATA[tmod=addon]]></item>
+					<item id="menu"><![CDATA[微信营销专区]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2,X3.3,X3.4]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[应用名称]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[plugin_name]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[链接转换工具]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[关闭默认访问入口]]></item>
+				<item id="description"><![CDATA[该功能目前只支持【同城】红包入口，其他模块目前还不支持
+开启本功能，原来默认访问入口，无法打开页面]]></item>
+				<item id="variable"><![CDATA[close_default]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[0]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="handle"><![CDATA[操作]]></item>
+				<item id="delete"><![CDATA[删除]]></item>
+				<item id="fenhao"><![CDATA[封号]]></item>
+				<item id="recover"><![CDATA[恢复]]></item>
+				<item id="act_success"><![CDATA[操作成功]]></item>
+				<item id="duihuan"><![CDATA[兑换]]></item>
+				<item id="status"><![CDATA[状态]]></item>
+				<item id="status_delete"><![CDATA[<font color="#FF0000">删除</font>]]></item>
+				<item id="status_fenhao"><![CDATA[<font color="#FF0000">封号</font>]]></item>
+				<item id="status_normal"><![CDATA[<font color="#009900">正常</font>]]></item>
+				<item id="paixu"><![CDATA[排序]]></item>
+				<item id="open"><![CDATA[开启]]></item>
+				<item id="close"><![CDATA[关闭]]></item>
+				<item id="makesure_del_msg"><![CDATA[你确定要删除选择内容？删除后不可恢复！]]></item>
+				<item id="url_title"><![CDATA[活动地址]]></item>
+				<item id="url_title_msg"><![CDATA[你可以复制此地址放到自定义菜单或者自动回复里]]></item>
+				<item id="link_help_title"><![CDATA[使用帮助]]></item>
+				<item id="link_help_1_a"><![CDATA[<b>链接转换工具设置教程：</b>]]></item>
+				<item id="link_help_1_b"><![CDATA[点击查看教程]]></item>
+				<item id="link_help_2"><![CDATA[<font color="#FF0000"><b>入口文件安装：</b></font>复制 source/plugin/tom_link/ 目录下 indexa.php 文件复制放到论坛根目录下（如果你要自定义入口文件，可以复制修改indexa.php这个文件改名为自定义文件名）<br/><font color="#FF0000"><b>（入口文件名建议更改为自己的专有文件名，减少和其他用户的雷同）</b></font>]]></item>
+				<item id="link_help_3"><![CDATA[<font color="#FF0000"><b>特别说明：</b></font>活动入口文件名和应用标示格式必须是：<font color="#0894fb">数字或字母或“_”下划线</font>]]></item>
+				<item id="link_help_4"><![CDATA[<font color="#FF0000"><b>黄金搭档：</b></font>推荐“<b>TOM链接转换工具</b>”配合“<a href="http://addon.discuz.com/?@tom_hosts.plugin" target="_blank"><font color="#FF0000">TOM微信域名工具</font></a>”同时使用效果最佳。]]></item>
+				<item id="link_plugin_name"><![CDATA[应用名称]]></item>
+				<item id="link_rukou"><![CDATA[活动入口文件]]></item>
+				<item id="link_biaoshi"><![CDATA[应用标示]]></item>
+				<item id="link_status1"><![CDATA[<font color="#009900">开启</font>]]></item>
+				<item id="save_error301"><![CDATA[活动入口和应用标示格式必须是：数字或字母或“_”下划线]]></item>
+				<item id="save_error302"><![CDATA[入口文件名不能包含：admin,api,connect,cp,forum,group,home,index,member,misc,plugin,portal,search,userapp]]></item>
+				<item id="save_error303"><![CDATA[应用标示不允许包含“tom_”]]></item>
+				<item id="no_rukou_file_str"><![CDATA[<font color="#FF0000">（{FILENAME}不存在）</font>]]></item>
+				<item id="link_submit"><![CDATA[保存]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="open_in_wx"><![CDATA[请在微信中打开本页面]]></item>
+				<item id="pre_page"><![CDATA[上一页]]></item>
+				<item id="next_page"><![CDATA[下一页]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

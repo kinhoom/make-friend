@@ -1,0 +1,48 @@
+{template common/header}
+<link href="source/plugin/tom_love/images/pc/style.css" rel="stylesheet" type="text/css">
+<div id="pt" class="bm cl">
+    <div class="z">
+        <a href="./" class="nvhm">{$_G['setting']['bbname']}</a><em>&#187;</em><a href="plugin.php?id=tom_love:pc">{$jyConfig['plugin_name']}</a>
+    </div>
+    <div class="z"></div>
+</div>
+<div class="tom_jy_ads"><a href="{$jyConfig['ads_link']}" target="_blank"><img src="{$jyConfig['ads_picurl']}" width="100%" height="60" alt="{$jyConfig['ads_title']}" /></a></div>
+<div class="tom_jy_tabs">
+	<div class="tom_jy_tabs_l">
+    	<a href="plugin.php?id=tom_love:pc" <!--{if $recid == 0}-->class="cur"<!--{/if}-->>{lang tom_love:new_title}</a><a href="plugin.php?id=tom_love:pc&recid=1" <!--{if $recid == 1}-->class="cur"<!--{/if}-->>{lang tom_love:rec_title}</a>
+    </div>
+    <div class="tom_jy_tabs_r">
+    	<a href="javascript:;" onclick="showWindow('tom_love_wx','plugin.php?id=tom_love:pc&mod=weixin','get',0);return false;"></a>
+    </div>
+</div>
+
+<div class="tom_jy_tabs_main">
+	<div class="tom_jy_tabs_main_box">
+    	<ul>
+            <!--{loop $userList $key $value}-->
+        	<li>
+            <a href="javascript:;" title="{$value['nickname']}" onclick="showWindow('tom_love_wx','plugin.php?id=tom_love:pc&mod=weixin','get',0);return false;">
+                <div class="tom_jy_tabs_main_item_pic"><img src="{$value['first_pic']}" alt="{$value['username']}" /></div>
+                <div class="clear"></div>
+                <div class="tom_jy_tabs_main_item_title">
+                    <h1>{$value['nickname']}</h1>
+                    <span><!--{if $value['sex'] == 1}-->{lang tom_love:man}/<!--{/if}--><!--{if $value['sex'] == 2}-->{lang tom_love:woman}/<!--{/if}--><!--{if $value['age']}-->{$value['age']}{lang tom_love:sui}<!--{/if}--></span>
+                </div>
+                <div class="clear"></div>
+                <div class="tom_jy_tabs_main_item_desc">{$value['describe']}</div>
+                <div class="tom_jy_tabs_main_item_more">
+                    <span class="time">{$value['time']}</span>
+                    <span class="btn"></span>
+                </div>
+            </a>
+            </li>
+            <!--{/loop}-->
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div class="tom_jy_tabs_main_page">{$paging}</div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{template common/footer}

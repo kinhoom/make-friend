@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_love:flowerslog_title}-{$jyConfig['plugin_name']}</title>
+<meta name="description" content=""/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body>
+<header class="header_style2 clearfix">
+	<a href="plugin.php?id=tom_love&mod=my">{lang tom_love:back}</a>
+	<h1>{lang tom_love:flowerslog_title}</h1>
+</header>
+<header class="score_box clearfix">
+    <div class="score_log clearfix">
+        <section>
+            <!--{if $flowerslogList}-->
+            <ul class="clearfix">
+            <!--{loop $flowerslogList $key $value}-->    
+            	<li>{$value['txt']} <span>{date($value['log_time'],'u')}</span></li>
+            <!--{/loop}-->    
+            </ul>
+            <!--{/if}-->
+        </section>
+    </div>
+    <div class="pages clearfix">
+    	<ul class="clearfix">
+          <li><!--{if $page > 1}--><a href="{$prePageUrl}">{lang tom_love:pre_page}</a><!--{else}--><span>{lang tom_love:pre_page}</span><!--{/if}--></li>
+          <li><!--{if $showNextPage == 1}--><a href="{$nextPageUrl}">{lang tom_love:next_page}</a><!--{else}--><span>{lang tom_love:next_page}</span><!--{/if}--></li>
+      </ul>
+    </div>
+</header>
+
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

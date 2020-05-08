@@ -1,0 +1,325 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$xiangqinConfig['plugin_name']}</title>
+<script src="source/plugin/tom_xiangqin/images/jquery.js" type="text/javascript"></script>
+<link href="source/plugin/tom_xiangqin/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="source/plugin/tom_xiangqin/images/iconfont/iconfont.css?v={$cssJsVersion}" />
+<link href="source/plugin/tom_love/images/swiper.min.css?v={$cssJsVersion}" rel="stylesheet" />
+<script type="text/javascript" src="source/plugin/tom_love/images/swiper.min.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+.none{display:none;}
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+body{background:#f0f0f0;}
+.color{background: #2AD2BD;border: 1px solid #1AC6B0;color: #fff;}
+</style>
+</head>
+<body>
+<div class="index_list">
+    <!--{if $focuspicList}-->
+	<div class="focuspic-box swiper-container focuspic-swiper-container">
+		<div class="swiper-wrapper clearfix">
+            <!--{loop $focuspicList $key $value}-->
+			<div class="swiper-slide">
+                <a href="{$value['link']}">
+                	<img src="{$value['picurl']}" title="{$value['title']}">
+                </a>
+            </div>
+            <!--{/loop}-->
+		</div>
+        <div class="swiper-pagination focuspic-swiper-pagination"></div>
+	</div>
+    <!--{/if}-->
+	<div class="list-title" id="id-list-title">
+		<ul class="clearfix">
+			<li class="on">
+				<a href="plugin.php?id=tom_xiangqin&mod=index">{lang tom_xiangqin:index_zuixin}</a>
+			</li>
+			<li>
+				<a href="plugin.php?id=tom_xiangqin&mod=match">{lang tom_xiangqin:index_pipei}</a>
+			</li>
+			<li>
+				<a href="plugin.php?id=tom_xiangqin&mod=top">{lang tom_xiangqin:index_top}</a>
+			</li>
+			<li>
+				<a href="plugin.php?id=tom_xiangqin&mod=search">{lang tom_xiangqin:index_search}</a>
+			</li>
+		</ul>
+	</div>
+    <div class="index_search">
+        <div class='index_huiyuan'>
+            <p>{lang tom_xiangqin:index_zuixin_user}</p>
+            <span>New Members</span>
+        </div>
+        <a href="plugin.php?id=tom_xiangqin&mod=index&sex=1">
+            <!--{if $sex == 1}-->
+            <div class="index_boy color">{lang tom_xiangqin:index_only_man}</div>
+            <!--{else}-->
+            <div class="index_boy">{lang tom_xiangqin:index_only_man}</div>
+            <!--{/if}-->
+        </a>
+        <a href="plugin.php?id=tom_xiangqin&mod=index&sex=2">
+            <!--{if $sex == 2}-->
+            <div class="index_girl color">{lang tom_xiangqin:index_only_woman}</div>
+            <!--{else}-->
+            <div class="index_girl">{lang tom_xiangqin:index_only_woman}</div>
+            <!--{/if}-->
+        </a>
+       
+    </div>
+	<div class="new-list clearfix list_padding" id="index-list" style="min-height: 400px;"></div>
+    <div style="display: none;" id="load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_xiangqin:list_jiazaiing}</p></div>
+    <div style="display: none;" id="no-load-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_xiangqin:list_no_more}</p></div>
+    <div style="display: none;" id="no-list-html"><p style="height: 50px;line-height: 50px;text-align: center;color: #a5a19f;">{lang tom_xiangqin:list_no_list}</p></div>
+</div>
+<div class="info_wanshan none">
+    <div class="wanshan_box">
+        <div class="box">
+            <p style="padding: 40px 10px 40px 10px;text-align:center;">{$xiangqinConfig['no_ok_msg']}</p>
+        </div>
+        <div class="wanshan_bottom clearfix">
+            <div class="button cancel">{lang tom_xiangqin:index_quxiao}</div>
+            <div class="button wanshan"><a href="plugin.php?id=tom_xiangqin&mod=edit">{lang tom_xiangqin:index_is_ok}</a></div>
+        </div>
+    </div>
+</div>
+<!--{if $__Xiangqin['id'] > 0 }-->
+<div class="info_tishi <!--{if $__Xiangqin['agree_safe'] == 1 || $xiangqinConfig['open_agree_safe'] == 0 }--> none <!--{/if}-->">
+    <div class="tishi_box">
+        <div class='tishi_header'>{lang tom_xiangqin:index_tixing}</div>
+        <div class='tishi_content'>
+            {$agree_safe_msg}
+        </div>
+        <div class='tishi_true' onClick="agree({$__Xiangqin['id']});">{lang tom_xiangqin:index_agree}</div>
+    </div>
+</div>
+<!--{/if}-->
+{template tom_xiangqin:footer}
+<i class="gotop" id="go-top" style="display: none;"></i>
+<a href="javascript:void(0);" onClick="kefu();">
+    <div class="kefu">
+        <img src="source/plugin/tom_xiangqin/images/kefu.png">
+    </div>
+</a>
+<script type="text/javascript">
+$(document).ready(function(){
+  <!--{if $focuspicList}-->
+  var swiper = new Swiper('.focuspic-swiper-container', {
+        pagination: '.focuspic-swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+  <!--{/if}-->
+  $.get("{$vipUpdateUrl}");
+  $.get("{$topUpdateUrl}");
+});
+
+var loadPage = 1;
+function indexLoadList(){
+    loadPage = 1;
+    loadList(1);
+}
+
+var loadListStatus = 0;
+var no_list_html = $("#no-list-html").html();
+var load_html = $("#load-html").html();
+function loadList(Page) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadListStatus = 1;
+    $("#index-list").html(load_html);
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadListUrl}",
+        data: {page:Page,sex:"{$sex}"},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#index-list").html(no_list_html);
+                return false;
+            }else{
+                loadPage += 1;
+                $("#index-list").html(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+   indexLoadList();
+});
+
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+        scrollLoadList();
+    }
+    if ((scrollTop + windowHeight) >= 1000) {
+        $('#go-top').show();
+    }else{
+        $('#go-top').hide();
+    }
+    <!--{if $focuspicList}-->
+    var focuspicHeight = $('.focuspic-box').height()
+    <!--{else}-->
+    var focuspicHeight = 0;
+    <!--{/if}-->
+    if(scrollTop > focuspicHeight){
+        $('#id-list-title').css({'position':'fixed'})
+    }else{
+        $('#id-list-title').css({'position':'relative'})
+    }
+});
+
+$(document).on('click','#go-top', function () {
+    $('body,html').animate({scrollTop: 0}, 500);
+    return false;
+});
+
+function scrollLoadList() {
+    if(loadListStatus == 1){
+        return false;
+    }
+    if(loadPage > 50){
+        return false;
+    }
+    $('#load-html').show();
+	$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxLoadListUrl}",
+        data: {page:loadPage,sex:"{$sex}"},
+        success: function(msg){
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $("#index-list").append(data);
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+    $(".list-title ul li.in").click(function(){
+        $(".list-title ul li.in").addClass('on');
+    });
+});
+
+$('.index_boy').on('click', function() { 
+    $('.index_boy').addClass('color');
+    $('.index_girl').removeClass('color');
+});
+$('.index_girl').on('click', function() { 
+    $('.index_girl').addClass('color');
+    $('.index_boy').removeClass('color');
+});
+
+function wanshan(){
+    $('.info_wanshan').removeClass("none");
+} 
+
+function agree(xiangqin_id) {
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxAgreeUrl}",
+        data: {xiangqin_id:xiangqin_id,formhash:"{$formhash}"},
+    });
+}
+
+$('.button.cancel').on('click', function() { 
+    $('.info_wanshan').addClass('none');
+});
+$('.tishi_true').on('click', function() { 
+    $('.info_tishi').addClass('none');
+});
+
+function kefu(){
+    layer.open({
+        content: '<img src="{$xiangqinConfig['kefu_qrcode']}"><p>{lang tom_xiangqin:kefu_msg}<p/>'
+        ,btn: '{lang tom_xiangqin:subscribe_ok}'
+    });
+}
+
+function shoucang(xiangqin_id) {
+    $.ajax({
+        type: "GET",
+        url: "{$ajaxAddShoucangUrl}",
+        data: {xiangqin_id:xiangqin_id,formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data.status == 200){
+                tusi("{lang tom_xiangqin:index_shoucang_succ_msg}");
+            }else if(data.status == 101){
+                tusi("{lang tom_xiangqin:index_yishoucang_succ_msg}");
+            }else{
+                tusi("{lang tom_xiangqin:index_yichang_msg}");
+            }
+        }
+    });
+}
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

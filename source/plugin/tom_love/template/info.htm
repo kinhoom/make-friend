@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{$shareTitle}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="source/plugin/tom_love/images/weui.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/guangc.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_love/images/newstyle.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script src="source/plugin/tom_love/images/jquery.js"></script>
+<script type="text/javascript" src="source/plugin/tom_love/images/layer_mobile/layer.js?v={$cssJsVersion}"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<base target="_self">
+<style>
+.layui-m-layer0 .layui-m-layerchild{width: 70%;}
+.layui-m-layercont{padding: 5px 3px;}
+.none{display:none !important;}
+.color{border-bottom:2px solid #FE6985; color:#FE6985 !important;}
+</style>
+</head>
+<body id="personal">
+<section id="head_portrait">
+    <div class="bg"><img src="{$themeSrc}"></div>
+	<div class="portrait">
+		<div class="head-t"><img src="{$info['avatar']}"/></div>
+		<div class="user-xq">
+			<p class="clearfix">
+				<span class="user-name">{$info['nickname']}</span>
+                <!--{if ($info['subscribe'] == 0) && ($jyConfig['open_subscribe'] == 1)}--><span class="online_no">{lang tom_love:online_no}</span><!--{elseif ($info['subscribe'] == 1) && ($jyConfig['open_subscribe'] == 1)}--> <span class="online_ok">{lang tom_love:online_ok}</span><!--{/if}-->
+                <!--{if $info['renzheng'] == 1}-->
+				<i class="shield"><span class="renzheng"></span></i>
+                <!--{/if}-->
+                <!--{if $info['vip_id'] == 1}-->
+				<i class="shield"><span class="vp"></span></i>
+                <!--{/if}-->
+                <!--{if $jyConfig['open_tel_renzheng'] == 1 && $info['phone_renzheng'] == 1}--><i class="shield"><span class="phone_renzheng"></span></i><!--{/if}-->
+                <span></span>
+			</p>
+            <p>
+                <!--{if $info['sex'] == 1}-->{lang tom_love:info_man}<!--{/if}--><!--{if $info['sex'] == 2}-->{lang tom_love:info_woman}<!--{/if}-->
+                <!--{if $age > 0}-->{lang tom_love:info_dian}{$age}<!--{/if}-->
+                <!--{if $info['friend'] == 1}-->{lang tom_love:info_dian}{lang tom_love:friend}<!--{/if}-->
+                <!--{if $info['marriage'] == 1}-->{lang tom_love:info_dian}{lang tom_love:marriage}<!--{/if}-->
+            </p>
+            <p>{lang tom_love:info_collect_msg_1}{$info['flowers']}{lang tom_love:info_collect_msg_2}{$info['anlians']}{lang tom_love:info_collect_msg_3}{$info['clicks']}</p>
+		</div>
+        <div class="water" style="bottom:0px">
+            <div class="water-c">
+                <div class="water-1"></div>
+                <div class="water-2"></div>
+            </div>
+        </div>
+	</div>
+	<div class="hua-lian clearfix">
+        <ul>
+            <li>
+                <a href="plugin.php?id=tom_love&mod=sms&act=create&to_user_id={$info['id']}&formhash={$formhash}">
+                    <i class="icon-chat"></i>
+                    <p>{lang tom_love:info_icon_chat}</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onClick="hello();">
+                    <i class="icon-hello"></i>
+                    <p>{lang tom_love:info_icon_hello}</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onClick="$('#gift_shop').show(500);">
+                    <i class="icon-gift"></i>
+                    <p>{lang tom_love:info_icon_gift}</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);"  onclick="anlian();" >
+                    <i class="icon-anlian"></i>
+                    <p>{lang tom_love:info_icon_anlian}</p>
+                </a>
+            </li>
+            <li class="last">
+                <a href="plugin.php?id=tom_love&mod=report&report_user_id={$info['id']}">
+                    <i class="icon-report"></i>
+                    <p>{lang tom_love:info_icon_report}</p>
+                </a>
+            </li>
+        </ul>
+	</div>
+    <!--{if $picList}-->
+	<div class="album">
+		<ul class="album-list clearfix">
+            <!--{loop $picList $key $value}-->
+			<li>
+                <!--{if $__IsWeixin == 1}-->
+                <a href="javascript:void(0);" onclick="wxLoadPic('{$value['pic_url']}');">
+                <!--{else}-->
+                <a href="javascript:void(0);" onclick="loadPic({$info['id']},{$info['pic_num']});">
+                <!--{/if}-->
+                    <img src="{$value['pic_url']}">
+                    <!--{if $info['pic_num'] > 4 && $value['i'] == 4}-->
+                    <div class="more-pic">{lang tom_love:info_show_pic_more1}<br/>{lang tom_love:info_show_pic_more2}({$info['pic_num']})</div>
+                    <!--{/if}-->
+                </a>
+            </li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+    <!--{else}-->
+    <div class="tishi">{lang tom_love:info_no_shangchuan}</div>
+    <!--{/if}-->
+    <div class="box_both clearfix"></div>
+</section>
+
+<section id="gift">
+    <!--{if $giftCountList}-->
+    <h4>{lang tom_love:info_my_gift_1}{$giftCount}{lang tom_love:info_my_gift_2}</h4>
+    <div class="gift_box clearfix">
+        <!--{loop $giftCountList $key $value}-->
+        <div class="trem">
+            <div class="content">
+                <img src="{$value['gift_picurl']}">
+                <p class="title">{$value['gift_name']}{lang tom_love:info_my_gift_kouhu_1}{$value['gift_num']}{lang tom_love:info_my_gift_kouhu_2}</p>
+            </div>
+        </div>
+        <!--{/loop}-->
+    </div>
+    <!--{else}-->
+    <div class="notice">{lang tom_love:info_my_gift_notice}</div>
+    <!--{/if}-->
+</section>
+<div class="info_nav">
+    <div class="infoziliao jieshao"><a class="color">{lang tom_love:info_jieshao}</a></div>
+    <div class="infoziliao dongtai"><a>{lang tom_love:info_dongtai}</a></div>
+</div>
+<section id="information" class="informations">
+    <div class="info_box">
+        <!--{if $mate_demands}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_mate_demands}</li>
+            <li class="info-right">{$mate_demands}</li>
+        </ul>
+        <!--{/if}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_dubai}</li>
+            <li class="info-right">{$describe}</li>
+        </ul>
+        <!--{if $jyConfig['closed_tel_qq'] == 0}-->
+        <!--{if $info['closed'] == 0}-->
+        <!--{if $info['qq'] != '' || $info['wx'] != '' || $info['tel'] != ''}-->
+        <!--{if $contactTag == 1}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_contact_qq}</li>
+            <li class="info-right">{$info['qq']}</li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_contact_wx}</li>
+            <li class="info-right">{$info['wx']}</li>
+        </ul>
+        <!--{if $jyConfig['open_contact_tel'] == 1}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_contact_tel}</li>
+            <li class="info-right">{$info['tel']}</li>
+        </ul>
+        <!--{/if}-->
+        <!--{else}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_contact}</li>
+            <li class="info-right"><a class="lyfx" onclick="contact();" href="javascript:void;"><!--{if $__UserInfo['vip_id'] == 1}-->{lang tom_love:info_show_contact_btn_1}<!--{else}-->{lang tom_love:info_show_contact_btn}{$jyConfig['contact_score']}{$jyConfig['score_name']}<!--{/if}--></a></li>
+        </ul>
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{/if}-->
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_marital}</li>
+            <li class="info-right"><!--{if $info['marital_id'] > 0}-->{$maritalArray[$info['marital_id']]}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_height1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang tom_love:info_show_height2}</li>
+            <li class="info-right"><!--{if $info['height'] > 0}-->{$info['height']}{lang tom_love:info_show_limi}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_weight1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang tom_love:info_show_weight2}</li>
+            <li class="info-right"><!--{if $info['weight'] > 0}-->{$info['weight']}{lang tom_love:info_show_kg}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_edu1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang tom_love:info_show_edu2}</li>
+            <li class="info-right"><!--{if $info['edu_id'] > 0}-->{$eduArray[$info['edu_id']]}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_pay1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang tom_love:info_show_pay2}</li>
+            <li class="info-right"><!--{if $info['pay_id'] > 0}-->{$payArray[$info['pay_id']]}/{lang tom_love:info_show_yue}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_work1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang tom_love:info_show_work2}</li>
+            <li class="info-right"><!--{if $info['work_id'] > 0}-->{$worksArray[$info['work_id']]}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_area}</li>
+            <li class="info-right"><!--{if $info['area'] != ''}-->{$info['area']}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        <ul class="clearfix ">
+            <li class="info-left">{lang tom_love:info_show_hjarea}</li>
+            <li class="info-right"><!--{if $info['hjarea'] != ''}-->{$info['hjarea']}<!--{else}-->{lang tom_love:info_show_baomi}<!--{/if}--></li>
+        </ul>
+        
+    </div>
+    
+</section>
+    
+<div id="art-content" class="art-content none"></div>
+<section class="pic_shuoshuoinfo id-shuoshuopic-tip box_hide clearfix" style="z-index: 9999999;height: 2000px;position: fixed;">
+	<div class="pic_shuoshuoinfo_in id-shuoshuopic-tip-in" style="top: 0px; height: 550px; background-image: url();"></div>
+</section>
+<input id="hidName" type="hidden" value="{$__UserInfo['nickname']}">
+<input id="hidUserId" type="hidden" value="{$__UserInfo['id']}"> 
+<input id="hidUserPic" type="hidden" value="{$__UserInfo['avatar']}">
+<!--{if $shuoshuolistStatus == 0}-->
+<!--{if $ssCount <= 5}--><!--{else}-->
+<div id="jiazai" class="jiazai none" onclick="clickloadlist();" style="text-align:center;color:#a5a19f;line-height: 35px;font-size: 15px;cursor: pointer;background-color: #fff;">{lang tom_love:click_more_list}</div>
+<!--{/if}-->
+<div style="display: none;" id="load-html"><p style="line-height: 35px;text-align: center;color: #a5a19f;font-size: 15px;">{lang tom_love:list_jiazaiing}</p></div>
+<div style="display: none;" id="no-list-html">
+    <p style="line-height: 50px;text-align: center;color: #a5a19f;padding-top:90px;">{$info['nickname']}{lang tom_love:info_have_no_dongtai}</p>
+    <a href="plugin.php?id=tom_love&mod=shuoshuo&act=addshuoshuo&prand={$prand}" class="right"><div class='fabu'>{lang tom_love:info_go_addshuoshuo}</div></a>
+</div>
+<div style="display: none;" class="no-load-html" id="no-load-html"><p style="line-height: 35px;text-align: center;color: #a5a19f;font-size: 15px;">{lang tom_love:list_no_more}</p></div>
+<!--{else}-->
+<!--{/if}-->
+<section class="pic_info id-pic-tip box_hide clearfix" style="z-index: 999;height: 100%; position:fixed">
+	<div class="pic_info_in id-pic-tip-in" style="top: 0px; height: 100%; background-image: url();">
+        <div class="pic_info_nav">
+            <a class="id-pic-prev">{lang tom_love:pre_pic}</a>
+            <a class="id-pic-tip-close">{lang tom_love:close_pic}</a>
+            <a class="id-pic-next">{lang tom_love:next_pic}</a>
+        </div>
+        <div class="pic_info_count">
+            <span class="id-pic_now">1</span>/<span class="id-pic_count">1</span>
+        </div>
+	</div>
+</section>
+<!--{if $jyConfig['info_adbox_1']}-->
+<section class="guangao_list clearfix">
+	<div class="guangao_list_box clearfix">
+        {$jyConfig['info_adbox_1']}
+    </div>
+</section>
+<!--{/if}-->  
+
+<!--{if $show_guanzu_box == 1}-->
+<section id="subscribe">
+    <div class="subscribe_box">
+        <span>{lang tom_love:subscribe_title}</span>
+        <div class="right">
+            <div class="guanzu_show"><a href="javascript:void(0);" onClick="subscribe();">{lang tom_love:subscribe_guanzu}</a></div>
+            <div class="guanzu_close" onClick="closeSubscribe();">{lang tom_love:subscribe_close}</div>
+        </div>
+    </div>
+</section>
+<!--{/if}-->
+{template tom_love:footer}
+<section class="porpmt_box giftDetails">
+    <div class="content"></div> 
+</section>
+<section id="gift_shop" class='box_hide'>
+    <div class="close" onClick="$('#gift_shop').hide(500);">x</div>
+    <h4>{lang tom_love:info_gift_shop}</h4>
+    <div class="gift_box clearfix">
+        <!--{if $giftList}-->
+        <!--{loop $giftList $key $value}-->
+        <div class="trem" onClick="giftDetails({$value['id']})">
+            <div class="content">
+                <img src="{$value['gift_picurl']}">
+                <p class="title">{$value['gift_name']}</p>
+                <p class="price">{$value['score_num']}{$jyConfig['score_name']}</p>
+            </div>
+        </div>
+        <!--{/loop}-->
+        <!--{else}-->
+        <div class="notice">{lang tom_love:info_gift_shop_notice}</div>
+        <!--{/if}-->
+    </div>
+</section>
+<section class="rechange">
+    <div class="rechange-box">
+        <div class="box">
+            <div class="box-img"><img src="source/plugin/tom_love/images/rechange_s13_logo.png"></div>
+            <div class="box-content">
+                <p class="content-title">{lang tom_love:rechange_title_1}{$jyConfig['score_name']}{lang tom_love:rechange_title_2}</p>
+                <p id="have">{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+                <p id="need">{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;0</p>
+            </div>
+            <div class="box-button"><a href="plugin.php?id=tom_love&mod=scorepay"><img src="source/plugin/tom_love/images/rechange_s13_link.png"></a></div>
+        </div>
+        <div class="button" onClick="$('.rechange').hide();"><a href="javascript:;"><img src="source/plugin/tom_love/images/rechange_s13_hide.png"></a></div>
+    </div>
+</section>
+<section class="dialog succ-dialog id-pic-succ" style="display: none;">
+   <section class="dialog-wrap">
+        <section class="dialog-center">
+            <a href="javascript:void(0);" onclick="$('.id-pic-succ').hide();" class="group-link close"></a>
+             <section class="dialog-body">
+                  <h1>{lang tom_love:info_pormpt_title}</h1>
+                  <p><span>{lang tom_love:info_pormpt_text}</span></p>
+                  <section class="dialog-btns clear">
+                       <a href="plugin.php?id=tom_love&mod=photo" class="share-link id-share-link">{lang tom_love:info_pormpt_button_1}</a>
+                       <a href="#" class="buy-link id-buy-link" onclick="$('.id-pic-succ').hide();">{lang tom_love:info_pormpt_button_2}</a>
+                  </section>
+             </section>
+        </section>
+   </section>
+</section>
+<div class="js_dialog" id="must_phone" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:must_phone_popup_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:must_phone_popup_content}</div>
+        <div class="weui-dialog__ft">
+            <a href="{$phoneUrl}" class="weui-dialog__btn weui-dialog__btn_default">{lang tom_love:must_phone_popup_go}</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:must_phone_popup_cancel}</a>
+        </div>
+    </div>
+</div>
+<div class="js_dialog" id="over_contact_num" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:over_contact_num_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:over_contact_num_msg_1}<font color="#fd0d0d">{$jyConfig['show_contact_num']}</font>{lang tom_love:over_contact_num_msg_2}</div>
+        <div class="weui-dialog__ft">
+            <a href="plugin.php?id=tom_love&mod=vippay" class="weui-dialog__btn weui-dialog__btn_default"><font color="#238206">{lang tom_love:over_contact_num_vippay_btn}</font></a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:over_contact_num_close_btn}</a>
+        </div>
+    </div>
+</div>
+<div class="js_dialog" id="over_vip_contact_num" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{lang tom_love:over_contact_num_title}</strong></div>
+        <div class="weui-dialog__bd">{lang tom_love:over_vip_contact_num_msg_1}<font color="#fd0d0d">{$jyConfig['vip_show_contact_num']}</font>{lang tom_love:over_vip_contact_num_msg_2}</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">{lang tom_love:over_contact_num_close_btn}</a>
+        </div>
+    </div>
+</div>
+<i class="gotop" id="go-top" style="display: none;"></i>
+{template tom_love:shuoshuohtm}
+<script type="text/javascript">
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+var loadPage = 1;
+function shuoshuoLoadList(){
+    loadPage = 1;
+    loadList(1);
+}
+
+var loadListStatus = 0;
+var no_list_html = $("#no-list-html").html();
+
+var load_html = $("#load-html").html();
+function loadList(Page) {
+    if(loadListStatus == 1){
+        return false;
+    }
+    loadListStatus = 1;
+    $("#art-content").html(load_html);
+    $.ajax({
+        type: "GET",
+        url: "{$shuoshuoUrl}",
+        data: {act:"shuoshuoList",page:Page,uid:"{$uid}",formhash:"{$formhash}"},
+        success: function(msg){
+            $('#load-html').hide();
+            loadListStatus = 0;
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $("#art-content").html(no_list_html);
+                $('#jiazai').hide();
+                return false;
+            }else{
+                loadPage += 1;
+                $("#art-content").html(data);
+            }
+        }
+    });
+}
+
+function clickloadlist() {
+    if(loadPage > 10){
+        return false;
+    }
+    $('#jiazai').hide();
+    $('#load-html').show();
+	$('#no-load-html').hide();
+    loadListStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$shuoshuoUrl}",
+        data: {act:"shuoshuoList",page:loadPage,uid:"{$uid}",formhash:"{$formhash}"},
+        success: function(msg){
+            var data = eval('('+msg+')');
+            if(data == 205){
+                $('#load-html').hide();
+                $('#no-load-html').show();
+                return false;
+            }else{
+                loadPage += 1;
+                $('#load-html').hide();
+                $('#jiazai').show();
+                $("#art-content").append(data);
+            }
+        }
+    });
+}
+
+$(function(){
+	var s=0;
+	var o=$("#gift");
+	var b=$("#gift .gift_box");
+	var j=$("#gift .gift_box .trem");
+    if(j.length <= 3){
+        return false;
+    }
+    j.css({width:""+j.outerWidth()+"px"});
+	b.css({width:""+(j.length*j.outerWidth())+"px",position:"relative",left:"0px"});
+	var sid=function(){
+		s++;
+		if(s>(j.length - 3)){
+			s=0;
+		}
+		b.animate({left:"-"+s*j.outerWidth()+"px"},500);
+	    show=setTimeout(sid,3000);
+
+	}
+	var show=setTimeout(sid,3000);
+    
+})
+</script>
+<script>
+function closeSubscribe(){
+    $('#subscribe').hide();
+    $.get("{$subscribeUrl}");
+}
+
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:subscribe_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+
+var picListStr = '{$picListStr}';
+function wxLoadPic(picurl){
+    <!--{if $show_pic_prompt_box == 1}-->
+    $('.id-pic-succ').show();
+    return false;
+    <!--{/if}-->
+    var picarr = picListStr.split('|');
+    wx.previewImage({
+        current: picurl,
+        urls: picarr 
+    });
+}
+    
+var userId = 0;
+var nowPic = 0;
+var allPic = 0;
+var picData = new Array();
+
+function loadPic(uid,count){
+    
+    <!--{if $show_pic_prompt_box == 1}-->
+    $('.id-pic-succ').show();
+    return false;
+    <!--{/if}-->
+    userId = uid;
+    allPic = count;
+    nowPic = 1;
+    picData = [];
+    
+    if(allPic > 0){
+    }else{
+        return false;
+    }
+    
+    $.ajax({
+        type: "GET",
+        url: "plugin.php?id=tom_love:ajax",
+        data: "act=pic&uid="+userId,
+        dataType : "jsonp",
+        jsonpCallback:"jsonpCallback",
+        cache : false,
+        success: function(json){
+            var i = 1;
+            $.each(json,function(k,v){
+                picData[i] = v;
+                i++;
+            })
+            $(window).scrollTop(0);
+            $(".id-pic-tip-in").css('top', 0).css('height', $(window).height());
+            //$(".id-pic-tip-in").css('top', $(document.body).scrollTop()).css('height', $(window).height());
+            $(".id-pic-tip").removeClass('box_hide');
+            $('.id-pic-tip-in').css('background-image', 'url(' + picData[1] + ')');
+            $('.id-pic-tip-in .id-pic_now').html(1);
+            $('.id-pic-tip-in .id-pic_count').html(allPic);
+        }
+    });
+}
+$(".id-pic-prev").on("click", function(){
+        if(nowPic > 1){
+            nowPic = nowPic - 1;
+            $('.id-pic-tip-in').css('background-image', 'url(' + picData[nowPic] + ')');
+            $('.id-pic-tip-in .id-pic_now').html(nowPic);
+        }
+	});
+
+$(".id-pic-next").on("click", function(){
+		if(nowPic < allPic){
+            nowPic = nowPic + 1;
+            $('.id-pic-tip-in').css('background-image', 'url(' + picData[nowPic] + ')');
+            $('.id-pic-tip-in .id-pic_now').html(nowPic);
+        }
+	});
+
+$(".id-pic-tip-close").on("click", function(){
+		$(".id-pic-tip").addClass('box_hide');
+		$('.id-pic-tip-in').css('background-image', '');
+		userId = 0;
+		picData = [];
+		nowPic = 0;
+        allPic = 0;
+	}); 
+
+var submintStatus = 0;
+function contact(){
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$contactUrl}",
+        data: "",
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==101){
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.have);
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.need);
+                $('.rechange').show();
+                return false;
+            }else if(data.status==301){
+                $('#over_vip_contact_num').show();
+                return false;
+            }else if(data.status==302){
+                $('#over_contact_num').show();
+                return false;
+            }else{
+                tusi("{lang tom_love:info_show_contact_succ}");
+                setTimeout(function(){window.location.href=window.location.href+"&prand={$prand}";},1888);
+            }
+        }
+    });
+}
+
+var anlianTag = "{$anlianTag}";
+anlianTag = anlianTag * 1;
+function anlian(){
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+
+    if(anlianTag == 1){
+        tusi("{lang tom_love:info_show_is_collect}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$anlianUrl}",
+        data: "",
+        success: function(msg){
+            
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==101){
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.have);
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.need);
+                $('.rechange').show();
+                return false;
+            }else{
+                anlianTag = 1;
+                tusi("{lang tom_love:info_show_collect_succ}");
+            }
+            
+        }
+    });
+}
+
+function hello(){
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+    
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$helloUrl}",
+        data: "",
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==101){
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.have);
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.need);
+                $('.rechange').show();
+                return false;
+            }else if(data.status==100){
+                tusi("{lang tom_love:info_show_hello_error_100}");
+            }else{
+                tusi("{lang tom_love:info_show_hello_succ}");
+            }
+        }
+    });
+}
+
+var flag = 1;
+function giftDetails(id){
+    if(flag == 1) {
+        flag = 0;
+        $.ajax({
+            type: "GET",
+            url: "{$detailsUrl}",
+            data: { act:"giftDetails",gift_id:id},
+            success: function(msg){
+                var data = $.trim(msg);
+                data = JSON.parse(data);
+                if(data == 201){
+                    tusi('{lang tom_love:info_gift_shop_details_201}');
+                    return false;
+                }else{
+                    $(".giftDetails .content").html(data);
+                    $(".giftDetails").show();
+                    flag = 1;
+                }
+            }
+        })
+    }
+}
+
+var submintGiftStatus = 0;
+function giftPay(id){
+    if(submintGiftStatus == 1) {
+        return false;
+    }
+    <!--{if $jyConfig['open_must_tel_renzheng'] == 1 && $__UserInfo['phone_renzheng'] != 1}-->
+    $('#must_phone').show();
+    return false;
+    <!--{/if}-->
+    submintGiftStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$scoreUrl}",
+        data: { act:"giftPay",gift_id:id},
+        success: function(msg){
+            submintGiftStatus = 0;
+            var data = $.trim(msg);
+            data = JSON.parse(data);
+            if(data.status == 202){
+                tusi('{lang tom_love:info_gift_shop_details_202}');
+                setTimeout(function(){document.location.reload();},1888);
+            }else if(data.status == 203){
+                $(".giftDetails").hide();
+                $('#gift_shop').hide();
+                $('#have').html("{lang tom_love:rechange_have}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.have);
+                $('#need').html("{lang tom_love:rechange_need}{$jyConfig['score_name']}{lang tom_love:rechange_dian}&nbsp;"+data.need);
+                $('.rechange').show();
+            }else if(data.status == 201){
+                tusi('{lang tom_love:info_gift_shop_details_201}');
+                setTimeout(function(){document.location.reload();},1888);
+            }else{
+                tusi('{lang tom_love:info_gift_shop_details_success}');
+                setTimeout(function(){document.location.reload();},1888);
+            }
+        }
+    })
+    
+}
+
+function noBbsId(){
+    tusi("{lang tom_love:info_show_no_bbs_id}");
+    return false;
+}
+
+$(document).ready(function(){
+    <!--{if $info['status'] == 2}-->
+    tusi("{lang tom_love:fenghao_user_msg}");
+    setTimeout(function(){window.location.href='plugin.php?id=tom_love&mod=index';},1888);
+    <!--{/if}-->
+    $.get("{$ajaxClicksUrl}");
+    $.get("{$ajaxInfoClicksUrl}");
+});
+
+$(".infoziliao.dongtai a").on("click", function(){
+    shuoshuoLoadList();
+    $(".informations").addClass('none');
+    $(this).addClass("color");
+    $(".infoziliao.jieshao a").removeClass("color");
+    $(".art-content").removeClass('none');
+    $(".jiazai").removeClass('none');
+    $(".no-load-html").removeClass('none');
+    
+});
+
+$(".infoziliao.jieshao a").on("click", function(){
+    $(".art-content").addClass('none');
+    $(this).addClass("color");
+    $(".infoziliao.dongtai a").removeClass("color");
+    $(".informations").removeClass('none');
+    $(".jiazai").addClass('none');
+    $(".no-load-html").addClass('none');
+   
+});
+
+
+$(document).on('click', '.weui-dialog__btn_primary', function(){
+    $(this).parents('.js_dialog').fadeOut(200);
+})
+
+function closeSubscribe(){
+    $('#subscribe').hide();
+    $.get("{$subscribeUrl}");
+}
+
+function subscribe(){
+    layer.open({
+        content: '<img src="{$jyConfig['fuwuhao_qrcode']}"><p>{lang tom_love:subscribe_msg}<p/>'
+        ,btn: '{lang tom_love:subscribe_ok}'
+      });
+}
+
+function showPic(picurl){
+    $(".id-shuoshuopic-tip").removeClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', 'url(' + picurl + ')');
+}
+
+$(".pic_shuoshuoinfo").on("click", function(){
+    $(".id-shuoshuopic-tip").addClass('box_hide');
+    $('.id-shuoshuopic-tip-in').css('background-image', '');
+});
+        
+$(window).scroll(function () {
+    var scrollTop       = $(this).scrollTop();
+    var scrollHeight    = $(document).height();
+    var windowHeight    = $(this).height();
+    if ((scrollTop + windowHeight) >= (scrollHeight * 0.9)) {
+    }
+    if ((scrollTop + windowHeight) >= 1000) {
+        $('#go-top').show();
+    }else{
+        $('#go-top').hide();
+    }
+});
+$(document).on('click','#go-top', function () {
+    $('body,html').animate({scrollTop: 0}, 500);
+    return false;
+});
+</script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'previewImage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+            $.get("{$shareAjaxUrl}");
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

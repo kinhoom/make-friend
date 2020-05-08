@@ -1,0 +1,109 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<title>{lang tom_xiangqin:card_info}</title>
+<script src="source/plugin/tom_xiangqin/images/jquery.js" type="text/javascript"></script>
+<script src="source/plugin/tom_xiangqin/images/html2canvas.min.js?v={$cssJsVersion}" type="text/javascript"></script>
+<link href="source/plugin/tom_xiangqin/images/style.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<link href="source/plugin/tom_xiangqin/images/weui.css?v={$cssJsVersion}" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_love/images';
+</script>
+<script src="source/plugin/tom_love/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+<style>
+body{ background:#363636;}
+.none{display:none;}
+</style>
+</head>
+<body style="max-width: 590px;">
+<div class="card_pic">
+    <div class="card_photo">
+        <img class="avtar" src="{$picurl}" style="width: 100%;">
+        <div class="card_info" style="top:590px;font-size: 1em;">
+            <p> 
+                <span>{$age}{lang tom_xiangqin:card_sui},</span>
+                <span>{lang tom_xiangqin:card_height}{$info['height']}cm,</span>
+                <span>{lang tom_xiangqin:card_weight}{$info['weight']}kg</span>
+            </p>
+            <p>
+                <span>{lang tom_xiangqin:card_danshen}</span>
+                <span>{$eduArray[$info['edu_id']]}</span>
+                <span>{$xingzuoArray[$info['xingzuo_id']]}{lang tom_xiangqin:card_zuo}</span>
+            </p>
+            <p>
+                <span>{lang tom_xiangqin:card_zai}{$juzhuCityInfo['name']}{lang tom_xiangqin:card_fazhan}{$info['job']}{lang tom_xiangqin:card_job},</span>
+                <span>{lang tom_xiangqin:card_shouru}{$info['shouru']}{lang tom_xiangqin:card_yuan},</span>
+                <!--{if $info['house_id'] == 3 || $info['house_id'] == 4}-->
+                <span>{lang tom_xiangqin:card_house},</span>
+                <!--{/if}-->
+                <!--{if $info['che_id'] == 2 || $info['che_id'] == 3 || $info['che_id'] == 4}-->
+                <span>{lang tom_xiangqin:card_car}</span>
+                <!--{/if}-->
+            </p>
+            <p>
+                <span>{lang tom_xiangqin:card_hope}{$info['zheou_min_age']}-{$info['zheou_max_age']}{lang tom_xiangqin:info_sui},</span>
+                <span>{lang tom_xiangqin:card_height}{$info['zheou_min_height']}-{$info['zheou_max_height']}cm</span>
+            </p>
+            <a href="plugin.php?id=tom_xiangqin&mod=vip">
+                <div class="vip">
+                    <img src = "source/plugin/tom_xiangqin/images/card_btn.png" style="height:30px;padding-top: 9px;">
+                </div>
+            </a>
+            <div class="card_code qita">
+                <img class="erweima" src="{$hongniangQrcode}">
+            </div>
+        </div>
+    </div>
+    <div class="card_template">
+        <!--{if $info['sex'] == 1}-->
+        <img class="moban" src="source/plugin/tom_xiangqin/images/card/{$xiangqincard_man_listArr[0]}">
+        <!--{else}-->
+        <img class="moban" src="source/plugin/tom_xiangqin/images/card/{$xiangqincard_woman_listArr[0]}">
+        <!--{/if}-->
+        <div class="number" style="position: absolute;top: 346px;right:30%;color:#fff;font-size:1.3em;">{$info['user_no']}</div>
+    </div>
+</div>
+<script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    appId: '{$wxJssdkConfig["appId"]}',
+    timestamp: {$wxJssdkConfig["timestamp"]},
+    nonceStr: '{$wxJssdkConfig["nonceStr"]}',
+    signature: '{$wxJssdkConfig["signature"]}',
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+        title: '{$shareTitle}',
+        link: '{$shareUrl}', 
+        imgUrl: '{$shareLogo}', 
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+    wx.onMenuShareAppMessage({
+        title: '{$shareTitle}',
+        desc: '{$shareDesc}',
+        link: '{$shareUrl}',
+        imgUrl: '{$shareLogo}',
+        type: 'link',
+        dataUrl: '',
+        success: function () { 
+        },
+        cancel: function () { 
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html><html>
+<head>
+<!--{if $isGbk}-->
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--{else}-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--{/if}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<title>{lang tom_ucenter:login_title}</title>
+<link rel="stylesheet" href="source/plugin/tom_ucenter/images/style.css?v={$cssJsVersion}" />
+<script type="text/javascript" src="source/plugin/tom_ucenter/images/jquery.min-2.1.3.js"></script>
+<script type="text/javascript">
+    var commonjspath = 'source/plugin/tom_ucenter/images';
+</script>
+<script src="source/plugin/tom_ucenter/images/common.js?v={$cssJsVersion}" type="text/javascript"></script>
+</head>
+<body class="body-white">
+<header class="header on ">
+   <section class="wrap">
+        <section class="sec-ico go-back" onclick="location.href='{$login_back_plugin}';">{lang tom_ucenter:back}</section>
+        <h2>{lang tom_ucenter:login_title}</h2>
+   </section>
+</header>
+<section class="main" style="width: 95%;">
+    <section class="wrap" style="padding-top: 4em;">
+        <form name="loginForm" id="loginForm">
+             <input type="hidden" name="formhash" value="{$formhash}">
+             <section class="logo1">
+                  <img src="{$ucenterConfig['logo_url']}" />
+             </section>
+             <section class="item">
+                  <section class="sec-input input-user">
+                       <input type="text" name="tel" id="tel" placeholder="{lang tom_ucenter:login_tel}" />
+                  </section>
+             </section>
+             <section class="item">
+                  <section class="sec-input input-pwd">
+                       <input type="password" name="pwd" id="pwd" placeholder="{lang tom_ucenter:login_pwd}" />
+                       <a href="plugin.php?id=tom_ucenter&mod=getpwd&t_from={$t_from}&t_back={$t_back}">{lang tom_ucenter:login_getpwd}</a>
+                  </section>
+             </section>
+             <section class="login-btn-group">
+                  <a href="javascript:void(0);" class="id_login_form_btn">{lang tom_ucenter:login_btn}</a>
+                  <a style="border: 0;line-height: 2em;" href="plugin.php?id=tom_ucenter&mod=reg&t_from={$t_from}&t_back={$t_back}">{lang tom_ucenter:reg_btn}</a>
+             </section>
+        </form>
+   </section>
+</section>
+<script>
+
+var submintStatus = 0;
+$(".id_login_form_btn").click( function () {
+    
+    if(submintStatus == 1){
+        return false;
+    }
+    
+    var tel = $("#tel").val();
+    var pwd = $("#pwd").val();
+    
+    if(tel == '' || !checkMobile(tel)){
+        tusi("{lang tom_ucenter:login_must_tel}");
+        return false;
+    }
+    if(pwd == ""){
+        tusi("{lang tom_ucenter:login_must_pwd}");
+        return false;
+    }
+    submintStatus = 1;
+    $.ajax({
+        type: "GET",
+        url: "{$loginUrl}",
+        data: $('#loginForm').serialize(),
+        success: function(msg){
+            submintStatus = 0;
+            var data = eval('('+msg+')');
+            if(data.status==200){
+                tusi("{lang tom_ucenter:login_succ}");
+                setTimeout(function(){window.location.href='{$t_back_url}';},1888);
+            }else if(data.status==301){
+                tusi("{lang tom_ucenter:login_error301}");
+                return false;
+            }else if(data.status==302){
+                tusi("{lang tom_ucenter:login_error302}");
+                return false;
+            }else{
+                tusi("{lang tom_ucenter:login_error}");
+                return false;
+            }
+        }
+    });
+});
+
+function checkMobile(s){
+	var regu =/^[1][0-9]{10}$/;
+	var re = new RegExp(regu);
+	if (re.test(s)) {
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+</body>
+</html>
