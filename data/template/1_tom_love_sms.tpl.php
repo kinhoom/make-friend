@@ -244,7 +244,7 @@ function sendData(){
             submintStatus = 0;
             if(msg == 101){
                 $('#have').html("现有<?php echo $jyConfig['score_name'];?>:&nbsp;<?php echo $__UserInfo['score'];?>");
-                $('#need').html("所需<?php echo $jyConfig['score_name'];?>:&nbsp;<?php echo $jyConfig['first_sms_score'];?>");
+                $('#need').html("所需<?php echo $jyConfig['score_name'];?>:&nbsp;<?php echo $jyConfig['sms_score'];?>");
                 $('.rechange').show();
                 return false;
             }else{
