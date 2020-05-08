@@ -249,7 +249,7 @@ function sendData(){
                 return false;
             }else{
                tusi("消息发送成功");
-               setTimeout(function(){document.location.reload();},1888); 
+               setTimeout(function(){document.location.reload();},100); 
             }
         }
     });
@@ -273,18 +273,18 @@ function getData(){
 	success: function(msg){
 	    console.log(msg);
 	    if(msg.length == 37){
-		setTimeout(getData,5000);return false;
+		setTimeout(getData,2500);return false;
 	    }
  	    if(msg == 808) {
-		setTimeout(getData,5000);return false;
+		setTimeout(getData,2500);return false;
             } else {
 	        var lastMsg = eval("("+msg+")");
 		var from_id = $("#from_id").val();
 		if(lastMsg.from_id != from_id){
-		    setTimeout(getData,5000);return false;
+		    setTimeout(getData,2500);return false;
 		}
 		if(ltime == lastMsg.add_time){
-		    setTimeout(getData,5000);return false;
+		    setTimeout(getData,2500);return false;
 		}
 	        console.log(lastMsg);
 		ltime = lastMsg.add_time;
@@ -293,7 +293,7 @@ function getData(){
 		avatar = $('#avatar').val();
 	//document.getElementsByClassName("msgbox b_m")[0].append(htmladd);
 		$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+lastMsg.content+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+dateFormat("mm-dd HH:MM",new Date(lastMsg.add_time*1000))+'">'+addtime+'</span></div></div></div>')
-		setTimeout(getData,5000);
+		setTimeout(getData,2500);
             }	
 	}
 

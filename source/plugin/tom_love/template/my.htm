@@ -216,11 +216,11 @@
                 <tr>
                     <td>{lang tom_love:add_sex}<font color="#F60">{lang tom_love:add_must}</font></td>
                     <td>
-                        <select id="sex" name="sex">
+                        <select id="sex" name="sex" <!--{if $__UserInfo['sex'] == 1 or $__UserInfo['sex'] == 2}-->disabled<!--{/if}-->>
                             <option value="0">{lang tom_love:add_select}</option>
                             <option value="1" <!--{if $__UserInfo['sex'] == 1}-->selected<!--{/if}-->>{lang tom_love:man}</option>
                             <option value="2" <!--{if $__UserInfo['sex'] == 2}-->selected<!--{/if}-->>{lang tom_love:woman}</option>
-                        </select>
+                        </select> <span style='color:#FF6600;'>*性别一经提交，更改请联系客服</span>
                     </td>
                 </tr>
                 <tr>
@@ -360,7 +360,7 @@
                 </tr>
                 <tr>
                     <td>{lang tom_love:contact_qq}</td>
-                    <td><input type="text" name="qq" id="qq" value="{$__UserInfo['qq']}" class="input_text"></td>
+                    <td><input type="text" name="qq"  id="qq" value="{$__UserInfo['qq']}" class="input_text"></td>
                 </tr>
                 <tr>
                     <td>{lang tom_love:contact_tel}</td>
@@ -375,7 +375,7 @@
                 <tr>
                     <td>{lang tom_love:add_mate_demands}</td>
                     <td>
-                        <textarea name="mate_demands" id="mate_demands" rows="4" placeholder="{lang tom_love:add_mate_demands_place}">{$__UserInfo['mate_demands']}</textarea>
+                        <textarea  name="mate_demands" id="mate_demands" rows="4" placeholder="{lang tom_love:add_mate_demands_place}">{$__UserInfo['mate_demands']}</textarea>
                     </td>
                 </tr>
                 <tr>
