@@ -290,9 +290,12 @@ function getData(){
 		ltime = lastMsg.add_time;
 	        $.cookie('ltime', ltime, { expires: 7 });
 		addtime = timeago(lastMsg.add_time);
+		if(addtime == undefined) {
+		    addtime = '刚刚';
+		}
 		avatar = $('#avatar').val();
 	//document.getElementsByClassName("msgbox b_m")[0].append(htmladd);
-		$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+lastMsg.content+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+dateFormat("mm-dd HH:MM",new Date(lastMsg.add_time*1000))+'">'+addtime+'</span></div></div></div>')
+		$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+lastMsg.content+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+dateFormat("mm-dd HH:MM",new Date(lastMsg.add_time*1000))+'"></span></div></div></div>')
 		setTimeout(getData,2500);
             }	
 	}
@@ -391,6 +394,7 @@ function loadList(Page) {
             }else{
                 loadPage += 1;
                 $("#index-list").html(data);
+		setTimeout(loadList,5000);
             }
         }
     });

@@ -1,7 +1,7 @@
 <?php
 //Discuz! cache file, DO NOT modify me!
-//Identify: bf226780024f4199dea0b6ef0d978d69
+//Identify: 18e51bb64501b2b4444e070666814ed6
 
 $access_token='';
-$cache_time='1588935535';
+$cache_time='1589004848';
 ?>

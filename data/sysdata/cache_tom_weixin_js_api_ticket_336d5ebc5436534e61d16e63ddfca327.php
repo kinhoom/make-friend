@@ -1,7 +1,7 @@
 <?php
 //Discuz! cache file, DO NOT modify me!
-//Identify: 5dba5380d35e9688d13bf2b1891ee96d
+//Identify: 53dc4b67a0095b47f4129fedd9628d49
 
 $js_api_ticket='';
-$cache_time='1588935788';
+$cache_time='1589002672';
 ?>
