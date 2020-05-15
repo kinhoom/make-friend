@@ -84,8 +84,6 @@ if($value['user_id'] != $__UserInfo['id']) { ?>
             <?php } ?>
         </div>
     </div>
-
-   <input type="hidden" id="self_id" value="<?php echo $__UserInfo['id'];?>">
    <input type="hidden" id="from_id" value="<?php echo $toUserInfo['id'];?>">
    <input type="hidden" name="avatar" id="avatar" value="<?php echo "http://192.168.1.21/data/attachment/common/".$toUserInfo['avatar']?>">
    <input type="hidden"  id="last_msg_time" value="<?php echo $value['userInfo']['avatar'];?>">
@@ -230,18 +228,13 @@ $(".send_btn").click( function () {
     <?php } ?>
 
     var content = $("#content").val();
-	var sid = $("#self_id").val();
     if(content == ""){
         tusi("消息内容不能为空");
         return false;
     }
     submintStatus = 1;
-	console.log($('#send_form').serialize());
-	send_txt = $('#send_form').serialize().split("&")[0].split("=")[1];
-	tid = $('#from_id').val();
-    sendData();
-
-
+console.log($('#send_form').serialize());
+                sendData();
 function sendData(){
     $.ajax({
         type: "GET",
@@ -255,43 +248,17 @@ function sendData(){
                 $('.rechange').show();
                 return false;
             }else{
-			   
-    			var mes='{"type":"text","data":"'+send_txt+'","sid":"'+sid+'","tid":"'+tid+'","send_time":"'+(Date.parse(new Date())/1000)+'"}';
-				console.log(ws);
-				console.log(mes);
-				ws.send(mes);
-				$("#content").val("");	
-                tusi("消息发送成功");
-               	setTimeout(function(){document.location.reload();},100); 
+               tusi("消息发送成功");
+               setTimeout(function(){document.location.reload();},100); 
             }
         }
     });
 }
 });
 $(document).ready(function(){
-	var sid = $("#self_id").val();
-	var avatar = $('#avatar').val();
-    ws = new WebSocket("ws:192.168.1.21:8282");
-	ws.onmessage = function(e){
-		if(e.data.indexOf('logout') !== -1) return ;
-		var mesage = eval("("+e.data+")");		
-		switch(mesage.type){
-			case "init":
-			var bind = '{"type":"bind","sid":"'+sid+'"}';
-			ws.send(bind);
-			break;
-			case "text":
-			if(sid == mesage.tid){
-				$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+mesage.data+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+mesage.time+'">'+timeago(mesage.time)+'</span></div></div></div>')
-				$("#index-list").html();
-			}
-			break;
-		}
-
-	}   
    //$("#avatar").val("<?php echo $value['userInfo']['avatar'];?>");
    $.get("<?php echo $ajaxClicksUrl;?>");
-//getData();
+getData();
 if($.cookie('ltime')){
     var ltime = $.cookie('ltime');
 }else { 
@@ -427,39 +394,14 @@ function loadList(Page) {
             }else{
                 loadPage += 1;
                 $("#index-list").html(data);
-		//setTimeout(loadList,5000);
+		setTimeout(loadList,5000);
             }
         }
     });
 }
 
 $(document).ready(function(){
-	if(ws) ws.close();
-	var sid = <?php echo $__UserInfo['id'];?>;
-    ws1 = new WebSocket("ws:192.168.1.21:8282");
-    ws1.onmessage = function(e){
-		console.log(e.data)
-		if(e.data.indexOf('logout') !== -1) return ;
-        var mesage = eval('('+e.data+')');
-		console.log(mesage);
-        switch(mesage.type){
-            case "init":
-            var bind = '{"type":"bind","sid":"'+sid+'"}';
-	//		console.log(bind);
-            ws1.send(bind);
-            break;
-            case "text":
-            if(sid == mesage.tid){
-   				indexLoadList();
-				//alert(3333);
-				//console.log(mesage.pmListData);
-                //$("#index-list").html(mesage.pmListData);
-            }
-            break;
-        }
-
-    }
-   	indexLoadList();
+   indexLoadList();
 });
 
 $(window).scroll(function () {

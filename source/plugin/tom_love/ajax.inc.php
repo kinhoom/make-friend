@@ -944,6 +944,7 @@ if ($_GET['act'] == 'list' && $_GET['formhash'] == FORMHASH) {
 																		}
 																		$outStr = tom_link_replace($outStr);
 																		$outStr = diconv($outStr, CHARSET, 'utf-8');
+																		//file_put_contents("/var/www/jiaoyouPmlist/".$__UserInfo['id'],$outStr);
 																		echo json_encode($outStr);
 																		exit(0);
 																	} else {
