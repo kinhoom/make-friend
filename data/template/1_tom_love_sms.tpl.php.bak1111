@@ -4,7 +4,7 @@
     setcookie('ltime',$lastMessage[0]['add_time']);
 ?>
 <!DOCTYPE html>
-<html style="height:100%">
+<html>
 <head>
 <?php if($isGbk) { ?>
 <script>
@@ -43,7 +43,7 @@ if (!String.prototype.padStart) {
 <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="source/plugin/tom_love/images/common.js?v=<?php echo $cssJsVersion;?>" type="text/javascript" type="text/javascript"></script>
 </head>
-<body style="height:100%">
+<body>
 <?php 
 $randnum = mt_rand();
 setcookie("randnum",$randnum);
@@ -54,8 +54,8 @@ if($pageType == 'view') { ?>
 <a href="plugin.php?id=tom_love&amp;mod=sms">返回</a>
 <h1>正在和“<span class="nickname"><?php echo $toUserInfo['nickname'];?></span>”聊天</h1>
 </header>
-<section class="message_show clearfix" style="height:100%">
-    <div class="message_show_content clearfix" style="min-height:73%;max-height:96%">
+<section class="message_show clearfix">
+    <div class="message_show_content clearfix">
     	<div class="msgbox b_m" id='msgboxmain'>
             <?php if(is_array($messageList)) foreach($messageList as $key => $value) { ?>                <?php 
 if($value['user_id'] != $__UserInfo['id']) { ?>
@@ -66,7 +66,7 @@ if($value['user_id'] != $__UserInfo['id']) { ?>
                             <div class="dialog_t"><?php echo $value['content'];?></div>
                         </div>
                         <div class="dialog_b"></div>
-                        <div class="date"><?php echo date('m-d H:i',$value[add_time]);?></div>
+                        <div class="date"><?php echo dgmdate($value[add_time], 'u','9999','m-d H:i');?></div>
                     </div>
                 </div>
                 <?php } else { ?>
@@ -77,7 +77,7 @@ if($value['user_id'] != $__UserInfo['id']) { ?>
                             <div class="dialog_t"><?php echo $value['content'];?></div>
                         </div>
                         <div class="dialog_b"></div>
-                        <div class="date"><?php echo date('m-d H:i',$value[add_time]);?></div>
+                        <div class="date">d H:i');?></div>
                     </div>
                 </div>
                 <?php } ?>
@@ -283,7 +283,7 @@ $(document).ready(function(){
 			break;
 			case "text":
 			if(sid == mesage.tid && tid == mesage.sid){
-				$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+mesage.data+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+mesage.time+'">'+dateFormat("mm-dd HH:MM",new Date(mesage.time*1000))+'</span></div></div></div>')
+				$('#msgboxmain').append('<div class="friend_msg cl"><div class="avat z"><img style="height:32px;width:32px;" src="'+avatar+'"></div><div class="dialog_green z"><div class="dialog_c"><div class="dialog_t">'+mesage.data+'</div></div><div class="dialog_b"></div><div class="date"><span title="'+mesage.time+'">'+timeago(mesage.time)+'</span></div></div></div>')
 				$("#index-list").html();
 			}
 			break;

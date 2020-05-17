@@ -162,7 +162,7 @@ if($act == 'create' && $_GET['formhash'] == FORMHASH){
         $toUserInfo = C::t('#tom_love#tom_love')->fetch_by_id($pmListsInfo['min_use_id']);
     }
     
-    $pagesize = 6;
+    $pagesize = 10;
     $start = ($page-1)*$pagesize;
     
     $messageListTmp = C::t('#tom_love#tom_love_pm_message')->fetch_all_list(" AND pm_lists_id={$pm_lists_id} "," ORDER BY add_time DESC,id DESC ",$start,$pagesize);

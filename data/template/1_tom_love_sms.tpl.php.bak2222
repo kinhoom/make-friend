@@ -4,7 +4,7 @@
     setcookie('ltime',$lastMessage[0]['add_time']);
 ?>
 <!DOCTYPE html>
-<html style="height:100%">
+<html>
 <head>
 <?php if($isGbk) { ?>
 <script>
@@ -43,7 +43,7 @@ if (!String.prototype.padStart) {
 <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="source/plugin/tom_love/images/common.js?v=<?php echo $cssJsVersion;?>" type="text/javascript" type="text/javascript"></script>
 </head>
-<body style="height:100%">
+<body>
 <?php 
 $randnum = mt_rand();
 setcookie("randnum",$randnum);
@@ -54,8 +54,8 @@ if($pageType == 'view') { ?>
 <a href="plugin.php?id=tom_love&amp;mod=sms">返回</a>
 <h1>正在和“<span class="nickname"><?php echo $toUserInfo['nickname'];?></span>”聊天</h1>
 </header>
-<section class="message_show clearfix" style="height:100%">
-    <div class="message_show_content clearfix" style="min-height:73%;max-height:96%">
+<section class="message_show clearfix">
+    <div class="message_show_content clearfix">
     	<div class="msgbox b_m" id='msgboxmain'>
             <?php if(is_array($messageList)) foreach($messageList as $key => $value) { ?>                <?php 
 if($value['user_id'] != $__UserInfo['id']) { ?>
